@@ -1,0 +1,22 @@
+.page {
+    max-width: 1000px;
+    margin: 60px auto;
+}
+
+.appointment-button {
+    background-color: indianred;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+}
+
+.appointment-button:hover {
+    background-color:  saddlebrown;
+    cursor: pointer;
+}
+
+.all-images{
+    width: 200px;
+    height: 250px;
+}
