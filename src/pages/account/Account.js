@@ -1,153 +1,130 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {AuthContext} from "../../context/AuthContext";
 import {Link, useNavigate} from "react-router-dom";
-import Checkbox from '../../components/checkbox/Checkbox';
-//import "../App.css"
 import axios from "axios";
 import login from "../login/Login";
 import {useForm} from "react-hook-form";
-
+import Header from "../../components/header/Header";
+import pic from '../../../../KLEDING_BIEB/src/assets/hilado-en-huso.jpg';
 
 function Account() {
-     const {isAuth, authAxios, noAuthAxios} = useContext(AuthContext);
-    const { register } = useForm( {fileName: ''});
+    const {isAuth, authAxios, noAuthAxios} = useContext(AuthContext);
+    // const { register } = useForm( {fileName: ''});
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [item, setItem] = useState("");
     const [items, setItems] = useState([]);
-    const [date_Info, setDate_Info] = useState("");
+    const [dateInfo, setDateInfo] = useState("");
     const [username, setUsername] = useState("");
     const [id, setId] = useState(false);
-  //const {handleImageChance, setHandleImageChance} = useState("");
+    //const {handleImageChance, setHandleImageChance} = useState("");
     const [previewUrl, setPreviewUrl] = useState("");
-    const [file, setFile] = useState("");
+    const [file, setFile] = useState([]);
     const [item_id, setItem_id] = useState(0);
     const token = localStorage.getItem('token');
     const [addSuccesPhoto, toggleAddSuccessPhoto] = useState(false);
-    // const tags = new Array("sustainable", "biological", "organic", "pesticide-free",
-    //     "additive-free", "non-chemical", "minimalistic", "linen", "silk", "cotton", "wool",
-    //     "organisch", "wol", "linnen");
-
+    const [nameInfo, setnameInfo] = useState("");
+    const {register: register2, formState: {errors: errors2}, handleSubmit: handleSubmit2, reset} = useForm();
     const [ textarea, setTextarea ] = useState('');
 
+    const resetFormFields = () => {
+        setPreviewUrl(""); // Clear the image preview
+        setItem(""); // Clear the item value
+        setTextarea(""); // Clear the textarea value
+        setDateInfo("");// Add other form fields you want to reset here
+    };
 
 
-        /////////////////////////////////////////////////////// // photo
+    /////////////////////////////////////////////////////// // photo
         function handleImageChance(e) {
-            const uploadedFile = e.target.file[0];
+            const uploadedFile = e.target.files[0];
             console.log (uploadedFile);
             setFile(uploadedFile);
             setPreviewUrl(URL.createObjectURL(uploadedFile));
         }
 
-        let formData;
+
 
         async function sendImage(e) {
             e.preventDefault();
 
             console.log(textarea)
-            formData = new FormData();
+            const formData = new FormData();
             formData.append("file", file);
           //  data.tags = [];
 
 
 
             try {
-                const response = await axios.post(`http://localhost:8083/items/${id}/photo`, formData,
+                const response = await axios.post(`http://localhost:8083/items/photo`, formData,
                     {
                         headers: {
                             "Content-Type": "multipart/form-data",
                             "Authorization": `Bearer ${token}`,
                         },
                     })
-              setId(response.data);
+                setId(response.data);
                 if (response.status === 204) {
                     toggleAddSuccessPhoto(true);
+                      resetFormFields();
                 }
+                console.log(response)
                 console.log(formData)
+                navigate("/Account");
             } catch (e) {
                 console.error(e)
             }
-    //         function handleSubmit(e) {
-    //             e.preventDefault();
-    //             console.log(`
-    // username: ${username}
-    // );}
-    //
 
             return formData
         }
-////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////reserveren
+
     const Order = async (e) => {
         e.preventDefault();
         try {
-            const response = await authAxios.get(`http://localhost:8083/orders`, {
-                username: username,
+            const response = await axios.post(`http://localhost:8083/items`, {
+                nameInfo: nameInfo,
                 item_id: item_id,
-                date_Info: date_Info
+                dateInfo: dateInfo
             });
             console.log(response)
-            if (response.status === 201) {
-                navigate("/login")
-            }
+            resetFormFields();
+            navigate("/Account");
         } catch (e) {
             console.log(e)
         }
     }
 ///////////////////////////////////////////////////////////////////////////account
-//         useEffect(() => {
-//             async function fetchProfile() {
-//
-//                 try {
-//                     const response = await authAxios.get(`http://localhost:8083/accounts/${username}`);
-//                     setUsername(response.data.username);
-//                     setEmail(response.data.email)
-//                     console.log(response.data);
-//                 } catch (e) {
-//
-//                     console.error(e);
-//                     setError(true);
-//                 }
-//
-//             }
-//
-//         void fetchProfile()
-//
-//         }, [username])
+
 
     useEffect(() => {
         async function fetchItems() {
             const token = localStorage.getItem('token')
 
-            //////
-            //   useEffect(() => {
-            //       getProductData()
-            //   }, []);
-            //
-            //   async function getProductData() {
-            //       toggleLoading(true);
-            //       toggleError(false);
-
-            /////////
-
             try {
 
                 const response = await axios.get(`http://localhost:8083/items`,
                     {
+                        nameInfo: nameInfo,
+                        item_id: item_id,
+                        dateInfo: dateInfo,
+
                         headers: {
                             "Content-Type": "application/json",
-                            // "Authorization": `Bearer ${token}`,
+
                         },
                     })
                 setItems(response.data);
 
                 console.log(response.data);
+                navigate("/Account");
             } catch (e) {
 
                 console.error(e);
-                //setError(true);
-            }
 
+            }
 
 
 
@@ -162,21 +139,24 @@ function Account() {
 //////////////////////////////////////////////////////////////////////
 
             return (
-                <p className="page2">
-
+                  <p className="page2">
+                   <h1>Leuk dat je langskomt! Maak een keuze</h1>
+                    <Header icon={pic}/>
 
                     <ul className="form-xtra">
 
 
 
-                        <label htmlFor="name"><h1>Leuk dat je langs komt !</h1>
+                        <label htmlFor="name">
+
                             <strong>{username}</strong>
                             <strong> {email}</strong>
                             <div className="img-row">
 
-                                        <h2>Item afbelding uploaden en preview bekijken:</h2>
-
-                                        <form onSubmit={sendImage}>
+                                <fieldset>
+                                    <legend><h2>Item afbelding uploaden:</h2></legend>
+                                    <form onSubmit={sendImage} >
+                                    {/*<form onSubmit={handleSubmit2(sendImage)} ref={register2}>*/}
                                             <label htmlFor="item-image">
                                             kies afbeelding
                                             <input onChange={handleImageChance} id="item_id" type="file"
@@ -228,43 +208,43 @@ function Account() {
                                                     id="FileName"
                                                     /// value={comment}
                                                     //  onChange={(e) => setComment(e.target.value)}
-                                                    rows="3"
+                                                    rows="5"
                                                     cols="33"
                                                     placeholder="vertel ons meer over de item"
                                                     value={textarea}
                                                     onChange={(e) => setTextarea(e.target.value)}
+                                                    validationRules={{
+                                                        required: {
+                                                            value: true,
+                                                            message: 'Dit veld is verplicht',
+                                                        }
+                                                    }}
+                                                    register={register2}
+
+                                                    errors={errors2}
                                                 />
+                                                {errors2.subject && <p>{errors2.subject.message}</p>}
+                                                {/*{ errors2.textarea && <p>{errors2.textarea.message}</p>}*/}
+
                                                 <button type="submit"> Uploaden</button>
 
-                                                {/*<button type="submit">*/}
-                                                {/*    Versturen*/}
-                                                {/*</button>*/}
+
                                             </label>
 
                                         </form>
-
+                                </fieldset>
                             </div>
 
                         </label>
 
+                        <fieldset>
 
 
 
-
-                        <h2>Reserveren</h2>
-
-
-                        {/*{items && items.map((test) => {*/}
-                        {/*return <label htmlFor={`${test.id}-${test.nameInfo}`}>Item:*/}
-                        {/*    <input*/}
-                        {/*        type="list"*/}
-                        {/*        id={`${test.id}-${test.nameInfo}`}*/}
-                        {/*        value={test.nameInfo}*/}
-                        {/*    />*/}
-                        {/*</label>*/}
+                            <legend><h2>Reserveren van Items</h2></legend>
 
 
-                         <label htmlFor="Items-field">Item
+                            <label htmlFor="Items-field">Item
                              <select
                                 name="items"
                                 id="item_id"
@@ -273,34 +253,32 @@ function Account() {
                                 onChange={(e) => setItem(e.target.value)}
                              >
                                  <option value="kies ">Wat vind jij leuk? </option>
-                                 {items.map((test) => {
-                                     return <option value={test.nameInfo}> item id: {test.id} - {test.nameInfo}</option>
+                                 {items.map((item) => {
+                                     return <option value={item.nameInfo}> item id: {item.id} - {item.nameInfo}</option>
                                  })}
 
 
-                               </select>
+                             </select>
                          </label>
 
                          <label htmlFor="date_Info-field">Date
                          <input
                           name="date_Info"
                           id="date_Info-field"
-                          value={date_Info}
-                           onChange={(e) => setDate_Info(e.target.value)}
+                          value={dateInfo}
+                           onChange={(e) => setDateInfo(e.target.value)}
                           />
                          </label>
 
                         <button id="button-box" className="button" type="submit" onClick={Order}>Verstuur</button>
-
+                        </fieldset>
                     </ul>
 
 
                 </p>
+
             );
         }
 
 export default Account;
 
-//<strong>{username}</strong>
-
-//<strong> {email}</strong>

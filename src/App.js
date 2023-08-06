@@ -4,7 +4,7 @@ import Account from './pages/account/Account';
 import Blog from './pages/blog/Blog';
 import Home from './pages/home/Home';
 import Contact from './pages/contact/Contact';
-import Appointments from './pages/appointments/Appointments';
+import Admin from './pages/admin/Admin';
 import ClothingLibrary from './pages/clothing library/Clothing Library';
 import Navigation from './components/navigation/Navigation';
 import {Routes, Route, Navigate} from 'react-router-dom';
@@ -26,7 +26,7 @@ function App() {
                 <Route exact path="/Subscription" element={<Subscription/>}/>
                 <Route path="/Blog" element={<Blog/> }/>
                 <Route path="/Account" element={isAuth ?<Account/> : <Navigate to="/Login"/>}/>
-                <Route path="/Appointments" element={isAuth ?  <Appointments/> : <Navigate to ="/"/>}/>
+                <Route path="/Admin" element={isAuth ?  <Admin/> : <Navigate to ="/"/>}/>
                 <Route path="/ClothingLibrary" element={<ClothingLibrary />}/>
                 <Route path="/Contact" element={<Contact />}/>
             </Routes>

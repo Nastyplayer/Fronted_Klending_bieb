@@ -78,6 +78,12 @@ function Navigation() {
                           >
                               Account
                           </NavLink>
+                          -
+                          <NavLink
+                              className={({ isActive }) => isActive ? 'active-menu-link' : 'default-menu-link'} to="/Admin"
+                          >
+                              Admin
+                          </NavLink>
                       </li>
 
 
