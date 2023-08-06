@@ -2,21 +2,18 @@ body {
     margin: 0;
 }
 
-form {
+
+.form-xtra {
+    max-width:400px;
+    flex-direction: column;
     display: inline-block;
 
-
-}
-.form-xtra {
-    max-width:350px;
-    flex-direction: column;
 }
 
 label {
 
     display:flow-root ;
     margin: 13px 20px ;
-
     font-weight: bold;
 }
 
@@ -30,10 +27,6 @@ text {
 
 }
 
-legend {
-
-
-}
 
 textarea {
     margin: 8px 0 0 0;
@@ -52,6 +45,8 @@ button {
     border-radius: 4px;
     border: none;
     padding: 8px;
-    margin: 20px 20px 16px ;
+    margin: 20px  ;
+    background-color: lightgrey;
+
 
 }

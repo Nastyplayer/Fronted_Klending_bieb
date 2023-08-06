@@ -13,44 +13,34 @@ import axios from "axios";
 function Login() {
 
     const {login} = useContext(AuthContext);
-    const [email, setEmail] = useState( "");
+    const [username, setUsername] = useState( "");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-   //const [unknown, setUnknown] = useState(false);
+    const [error, toggleError] = useState(false);
 
     async function handleSubmit(e) {
         e.preventDefault();
-        console.log(email, password)
+        console.log(username, password)
+        toggleError(false);
         try {
             const response = await axios.post('http://localhost:8083/authenticate', {
-                username: email,
+                username: username,
                     password: password
             }
              );
-            // if (response.status !== 201) {
-            //     setUnknown(true);
-            // }
+
             console.log('test: ', response);
-           navigate('/account');
+           navigate('/Account');
             login(response.data.jwt);
         } catch ( e ) {
             if(axios.isCancel(e)){
                 console.log(' request was cancelled')
             } else {
                 console.error(e)
+                toggleError(true);
             }
         }
     }
-    //
-    // function handleSubmit(e) {
-    //     e.preventDefault();
-    //     console.log({
-    //         email: email,
-    //         password: password
-    //     })
-    //     login(email);
-    //     navigate('/Account');
-    // }
 
 
 
@@ -67,17 +57,26 @@ function Login() {
 
                 <h1>Inloggen</h1>
 
-                <label htmlFor="email">
-                    <input id="email" value={email} onChange={(e) => setEmail(e.target.value)}
-                           name="email" placeholder="username"/>
+                <label htmlFor="username">
+                    <input id="username"
+                           value={username}
+                           onChange={(e) => setUsername(e.target.value)}
+                           name="username"
+                           placeholder="username"/>
                 </label>
 
                 <label htmlFor="pass">
-                    <input id="pass" value={password} onChange={(e) => setPassword(e.target.value)}
-                           type="text" placeholder="password"/>
+                    <input id="pass"
+                           value={password}
+                           onChange={(e) => setPassword(e.target.value)}
+                           name="password"
+                           placeholder="password"/>
                 </label>
 
-                <button type="submit">Inloggen</button>
+                {error && <p className="error-msg">Inloggen mislukt !!
+                    Gebruikersnaam of wachtwoord onjuist</p>}
+
+                <button type="submit">Inloggen </button>
             </form>
 
 
@@ -93,4 +92,3 @@ function Login() {
 
 export default Login;
 
-//(onSubmit)}>
