@@ -1,5 +1,5 @@
 import React from 'react';
-import './Input.css';
+
 
 function Input({ type, name, labelText, className, placeholder, value, min, max, step, register, validationRules, errors }) {
 

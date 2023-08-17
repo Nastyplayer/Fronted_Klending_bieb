@@ -1,10 +1,4 @@
 
-
-
-import Header from '../../components/header/Header';
-import './Admin.css';
-import bib from "../../assets/Mar_Bib.jpg";
-
 import React, {useContext, useEffect, useRef, useState} from 'react';
 import './Admin.css';
 import axios from "axios";
@@ -13,16 +7,10 @@ import {useForm} from "react-hook-form";
 
 import Button from "../../components/button/Button";
 import {Link, useNavigate} from "react-router-dom";
-
+import Header from "../../components/header/Header";
 import {Subscription} from "../subscription/Subscription";
 import {AuthContext} from "../../context/AuthContext";
 import pic from "../../assets/hilado-en-huso.jpg";
-
-
-// class Admin extends React.Component {
-//     render() {
-
-
 
 
 function Admin() {
@@ -37,29 +25,30 @@ function Admin() {
     const [users, setUsers] = useState([]);
     const [singleUser, setSingleUser] = useState('');
 
+    const [accounts, setAccounts] = useState([]);
+    const [accountsList, setAccountsList] = useState('');
 
     const [toDelete, setToDelete] = useState([]);
     const [items, setItems] = useState([]);
-    //  const [deleteThisItem, toggleDeleteThisItem] = useState(false);
-    //  const [singleItem, setSingleItem] = useState('');
-    //  const [item_id, setItem_id] = useState(0);
-    //  const [nameInfo, setNameInfo] = useState("");
-
 
     const [idToDelete, setIdToDelete] = useState("");
+
+    const [orders, setOrders] = useState([]);
+    const [ordersList,  setOrdersList] = useState([]);
+    const [patchThisOrder, togglePatchThisOrder] = useState(false);
+    const [orderIdToPatch, setOrderIdToPatch] = useState("")
 
 
     const [subscriptions, setSubscriptions] = useState([]);
     const [subscriptionsList, setSubscriptionsList] = useState([]);
 
-    // const [userInfo, setUserInfo] = useState("");
-    // const [expirationDate, setExpirationDate] = useState("");
-    // const [subscriptionStatus, setSubscriptionStatus] = useState("");
-    // const [typeSubscription, setTypeSubscription] = useState("");
+    const [expirationDate, setExpirationDate] = useState("");
+
+    const [typeSubscription, setTypeSubscription] = useState("");
     const [patchThisSubscription, togglePatchThisSubscription] = useState(false);
     const [subscriptionIdToPatch, setSubscriptionIdToPatch] = useState("");
+   const  subscriptionStatus = "http://localhost:8083/subscriptions/"
 
-    // const { handleSubmit, formState: { errors4 } } = useForm();
 
     //patch user
     const {register, handleSubmit: handleSubmit1, formState: {errors}} = useForm();
@@ -69,18 +58,18 @@ function Admin() {
     const {isAuth, user} = useContext(AuthContext);
     const [admin, toggleAdmin] = useState(false);
 
-    const [clicks, setClicks]= useState(0);
+
     //mail
 
     const [userIdToEmail, setUserIdToEmail] = useState("");
     const [succesSendMail, toggleSuccesSendMail] = useState(false);
+    const [clicks, setClicks]= useState(0);
 
     const { register: register2, formState: {errors: errors2}, handleSubmit: handleSubmit2, reset} = useForm();
     const { register: register3, handleSubmit: handleSubmit3, reset: resetForm3, formState: { errors: errors3 } } = useForm();
-    const { register: register4, handleSubmit: handleSubmit4, reset: resetForm4, formState: { errors: errors4 } } = useForm();
+    // const { register: register4, handleSubmit: handleSubmit4, reset: resetForm4, formState: { errors: errors4 } } = useForm();
     const { register: register5, handleSubmit: handleSubmit5, reset: resetForm5, formState: { errors: errors5 } } = useForm();
     const { register: register6, handleSubmit: handleSubmit6, reset: resetForm6, formState: { errors: errors6 } } = useForm();
-    const { register: register7, handleSubmit: handleSubmit7, reset: resetForm7, formState: { errors: errors7 } } = useForm();
     const { register: register8, handleSubmit: handleSubmit8, reset: resetForm8, formState: { errors: errors8 } } = useForm();
     const resetFormFields = () => {
         setSingleUser(""); // Clear the selected user value
@@ -91,16 +80,11 @@ function Admin() {
         togglePatchThisUser(false); // Reset user patch state
         setSubscriptions( []);
         resetForm3();
-        resetForm4();
         resetForm5();
         resetForm6();
-        resetForm7();
         resetForm8();
     };
 
-    // const refreshPage = () =>{
-    //     setClicks(clicks +1 );
-    //     window.location.reload();}
 
 
     // to get all users//////////////////////////////////////////////////////////////////////////////////////
@@ -110,7 +94,6 @@ function Admin() {
 
         async function fetchUsers() {
 
-            // toggleDeleteUser(false);
             togglePatchThisUser(false);
 
 
@@ -157,7 +140,7 @@ function Admin() {
             });
             console.log(response)
             resetFormFields();
-            navigate("/Admin");
+            navigate('/Account');
         } catch (e) {
             console.error(e);
             toggleError(true);
@@ -172,12 +155,10 @@ function Admin() {
 
         const controller = new AbortController();
         async function fetchItems() {
-            // toggleDeleteThisItem(false);
+
             try {
                 const response = await axios.get('http://localhost:8083/items', {
-                    // item_id: item_id,
-                    // name_Info: nameInfo,
-                    // user_username: user_username,
+
 
                     headers: {
                         "Content-Type": "application/json",
@@ -216,20 +197,113 @@ function Admin() {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`,
                 },
-                // signal: controller.signal,
-            });
 
-            // setItems(response.data);
+            });
+            setItems(response.data);
             console.log(response)
             setIdToDelete(response.data);
             resetFormFields();
-            navigate("/Admin");
+            navigate('/Account');
         } catch (e) {
             console.error(e);
             toggleError(true);
         }
         toggleLoading(true);
     }
+/////  to get all accounts info ////////////////////////////////////////////////////////////////
+
+    useEffect(() => {
+
+        const controller = new AbortController();
+        async function fetchAccounts() {
+
+            try {
+                const response = await axios.get('http://localhost:8083/accounts', {
+
+
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`,
+                    },
+                    signal: controller.signal,
+                });
+
+                setAccounts(response.data);
+                navigate('/Admin');
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        void fetchAccounts();
+        return function cleanup() {
+            controller.abort();
+        }
+    }, []);
+
+/////  to get all orders info ////////////////////////////////////////////////
+
+    useEffect(() => {
+
+        const controller = new AbortController();
+        async function fetchOrders() {
+
+            try {
+                const response = await axios.get('http://localhost:8083/orders', {
+
+
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`,
+                    },
+                    signal: controller.signal,
+                });
+
+                setOrders(response.data);
+                navigate('/Admin');
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        void fetchOrders();
+        return function cleanup() {
+            controller.abort();
+        }
+    }, []);
+
+
+    /////// Change info bij Orders /////////////////////////////////////////
+
+
+    async function patchOrder(data) {
+        toggleError(false);
+        toggleLoading(true);
+        try {
+
+
+
+            // const idAsLong = Number(id); // Converteer naar een Long
+            const response = await axios.patch(`http://localhost:8083/orders/${orderIdToPatch}`,
+                data, {
+
+
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`,
+                    },
+                });
+            togglePatchThisOrder(true);
+            console.log('Order updated:', response.data);
+            resetFormFields();
+            navigate('/Account');
+        } catch (e) {
+            console.error(e);
+            toggleError(true);
+        }
+        toggleLoading(true);
+    }
+
 
 
 /////  to get all subscriptions info ////////////////////////////////////////////////////////////////
@@ -251,7 +325,8 @@ function Admin() {
                 });
 
                 setSubscriptions(response.data);
-
+                navigate('/Admin');
+                setSubscriptionsList(response.data);
             } catch (e) {
                 console.error(e);
             }
@@ -273,15 +348,12 @@ function Admin() {
         toggleLoading(true);
         try {
 
-
-
-
             const response = await axios.patch(`http://localhost:8083/subscriptions/${subscriptionIdToPatch}`,
                 data, {
-                    // expirationDate: expirationDate,
-                    // userInfo: userInfo,
-                    // subscriptionStatus: subscriptionStatus,
-                    // typeSubscription: typeSubscription,
+                    expirationDate: expirationDate,
+
+                    subscriptionStatus: subscriptionStatus,
+                    typeSubscription: typeSubscription,
 
 
                     headers: {
@@ -291,8 +363,8 @@ function Admin() {
                 });
             togglePatchThisSubscription(true);
             console.log('Subscription updated:', response.data);
-           resetFormFields();
-            navigate("/Admin");
+            resetFormFields();
+            navigate('/Account');
         } catch (e) {
             console.error(e);
             toggleError(true);
@@ -318,7 +390,7 @@ function Admin() {
             togglePatchThisUser(true);
             console.log(response);
             resetFormFields();
-            navigate("/Admin");
+            navigate('/Account');
         } catch (e) {
             console.error(e);
             toggleError(true);
@@ -348,9 +420,10 @@ function Admin() {
                 toggleSuccesSendMail(true);
             }
             console.log("Response adminpage")
+            console.log(response);
             console.log(response.status);
             resetFormFields();
-            navigate("/Admin");
+            navigate('/Admin');
         } catch (e) {
             console.error(e);
             toggleError(true);
@@ -366,8 +439,8 @@ function Admin() {
 
         <main className="page">
             {(isAuth && user.authority === "ROLE_USER" && !admin) &&
-                <article className="page" > <h1>Sorry, go back to your<Link to="/Account"> account </Link> 😵</h1>
-                    <h2>Only for Administrators </h2>
+                <article className="page" > <h1>Sorry, go back to your<Link to="/Account"> account </Link>  😵</h1>
+                    <h2>Only for Administrator </h2>
 
                     <Header icon={pic}/>
                 </article>}
@@ -376,102 +449,43 @@ function Admin() {
                 <article className="page2">
 
 
-
-                    {/*//////////             accounts lijst/////////////////////////////////////////////////////////////////////////*/}
-
-
-                    {/*<h2 className="margin-top2">Lijst van accounts </h2>*/}
-                    {/*<select*/}
-                    {/*    name="accounts"*/}
-                    {/*    id="userInfo"*/}
-                    {/*    type="list"*/}
-                    {/*    value={accountsList}*/}
-                    {/*    onChange={(e) => setAccountsList(e.target.value)}*/}
-                    {/*>*/}
-                    {/*    <option>selecteer een username</option>*/}
-                    {/*    {accountsList.map((list) => {*/}
-                    {/*        return <option key={list.id}*/}
-                    {/*                       value={list.userInfo}>*/}
-                    {/*            {list.comment} - {list.email} -*/}
-                    {/*            {list.userInfo}*/}
-                    {/*        </option>*/}
-                    {/*    })}*/}
-
-                    {/*</select>*/}
-
-
-                    {/*change subscription ///////////////////////////////////////////////////////////////////////////////////////*/}
-                    <section>
-
-                        <fieldset>
-                            <legend><h2 className="margin-top2">Lijst en aanpassen van subscriptions</h2></legend>
-
-                            <select
-                                className="subscription-change"
-                                // id="typeSubscription"
-                                // type="list"
-                                // value={subscriptionIdToPatch}
-                                onChange={e => setSubscriptionIdToPatch(e.currentTarget.value)}
-                            >
-                                <option>selecteer subscription</option>
-                                {subscriptions.map(list => (
-                                    <option
-                                        key={list.id}
-                                        value={list.id}
-                                    >{list.typeSubscription}- {list.subscriptionStatus}-
-                                        {list.expirationDate}
-                                    </option>
-                                ))}
-                            </select>
-
-
-                            <form
-                                key={3}
-                                className="margin-top3"
-                                onSubmit={handleSubmit3(patchSubscription)}
-                            >
-                                <Input
-                                    labelText="SubscriptionStatus"
-                                    type="text"
-                                    name="Status"
-                                    // value="SubscriptionStatus"
-                                    className="input_text"
-                                    register={register5}
-                                    errors={errors5}
-                                    // onChange={(e) => setSubscriptionStatus(e.target.value)}
-                                />
-
-                                <Input
-                                    labelText="expirationDate"
-                                    type="date"
-                                    name="expirationDate"
-                                    // value="expirationDate"
-                                    className="input_text"
-                                    register={register6}
-                                    errors={errors6}
-                                    // onChange={(e) => setExpirationDate(e.target.value)}
-                                />
-
-                                <Button
-                                    type="submit"
-                                    className="button-ellips"
-                                >
-                                    Aanpassen
-                                </Button>
-
-                                {patchThisSubscription &&
-                                    <h4 className="margin-top1">De subscription is gewijzigd.</h4>}
-
-                            </form>
-
-
-                        </fieldset>
-                    </section>
+                    {/*//////////////// LIJST VAN USERS  /////////////////////////////////////////////////////////////////////////////////*/}
 
 
 
 
-                    {/*change user///////////////////////////////////////////////////////////////////////////////////////*/}
+                    <fieldset>
+                        <legend> <h2 className="margin-top2">Lijst van users </h2></legend>
+                        <select
+                            name="users"
+                            id="username"
+                            type="list"
+                            value={singleUser}
+                            onChange={(e) => setSingleUser(e.target.value)}
+                        >
+                            <option>selecteer een username</option>
+                            {users.map((user) => {
+                                return <option key={user.id}
+                                               value={user.username}>
+                                    {user.email} - {user.nameInfo} -
+                                    {user.username}
+                                </option>
+                            })}
+                        </select>
+                        <button id="button-box" className="button" type="submit"
+
+                                onClick={(e) => deleteUserFunction(e, singleUser)}>
+                            Verwijderen van User
+                        </button>
+
+                    </fieldset>
+
+
+
+
+                    {/*////////////////////change user///////////////////////////////////////////////////////////////////////////////////////*/}
+
+
                     <section>
                         <fieldset>
                             <legend> <h2 className="margin-top2">Aanpassen van user</h2></legend>
@@ -505,64 +519,156 @@ function Admin() {
                                     register={register3}
                                     errors={errors3}
                                 />
-
+                                {/*/////// bij de nieuwe staat op 4 !!!! //////////////////////////////////*/}
                                 <Input
-                                    labelText="username"
-                                    type="text"
-                                    name="username"
+                                    labelText="emailadres"
+                                    type="email"
+                                    name="emailadress"
                                     className="input_text"
-                                    register={register4}
-                                    errors={errors4}
+                                    register={register3}
+                                    errors={errors3}
                                 />
-
-                                <Button
+                        <Button
                                     type="submit"
                                     className="button-ellips"
                                 >
                                     versturen
                                 </Button>
                                 {patchThisUser &&
-                                    <h4 className="margin-top1">De user is gewijzigd.</h4>}
+                                    <h4 className="margin-top1">De user is gewijzigd. Refresh de pagina.</h4>}
 
                             </form>
                         </fieldset>
                     </section>
 
-                    {/*/////  lijst USERS n delete///////////////////////////////////////////////////*/}
+                    {/*change subscription ///////////////////////////////////////////////////////////////////////////////////////*/}
+                    <section>
+
+                        <fieldset>
+                            <legend><h2 className="margin-top2">Lijst en aanpassen van subscriptions</h2></legend>
+
+                            <select
+                                className="subscription-change"
+                                onChange={e => setSubscriptionIdToPatch(e.currentTarget.value)}
+                            >
+                                <option>selecteer subscription</option>
+                                {subscriptions.map(list => (
+                                    <option
+                                        key={list.id}
+                                        value={list.id}
+                                    >{list.typeSubscription}-id nr: {list.id}- {list.subscriptionStatus}-
+                                        {list.expirationDate}
+                                    </option>
+                                ))}
+                            </select>
+
+
+                            <form
+                                key={3}
+                                className="margin-top3"
+                                onSubmit={handleSubmit3(patchSubscription)}
+                            >
+                                <Input
+                                    labelText="SubscriptionStatus"
+                                    type="text"
+                                    name="Status"
+                                    className="input_text"
+                                    register={register5}
+                                    errors={errors5}
+
+                                />
+
+                                <Input
+                                    labelText="expirationDate"
+                                    type="date"
+                                    name="expirationDate"
+                                    className="input_text"
+                                    register={register6}
+                                    errors={errors6}
+
+                                />
+                                <Input labelText="typeSubscription"
+                                       type="text"
+                                       name="typeSubscriptiono"
+
+                                       className="input_text"
+                                       register={register}
+                                       errors={errors}
+
+
+                                />
+
+                                <Button
+                                    type="submit"
+                                    className="button-ellips"
+                                >
+                                    Aanpassen
+                                </Button>
+
+
+                            </form>
+                        </fieldset>
+                    </section>
+
+
+
+
+
+                    {/*//////////  Orders lijst/////////////////////////////////////////////////////////////////////////*/}
 
                     <fieldset>
-                        <legend> <h2 className="margin-top2">Lijst van users </h2></legend>
+                        <legend><h2 className="margin-top2">Lijst  van orders </h2></legend>
                         <select
-                            name="users"
-                            id="username"
+                            name="orders"
+                            id="itemInfo"
                             type="list"
-                            value={singleUser}
-                            onChange={(e) => setSingleUser(e.target.value)}
+                            value={ordersList}
+                            onChange={(e) => setOrdersList(e.target.value)}
                         >
-                            <option>selecteer een username</option>
-                            {users.map((user) => {
-                                return <option key={user.id}
-                                               value={user.username}>
-                                    {user.email} - {user.nameInfo} -
-                                    {user.username}
+                            <option>selecteer een order</option>
+                            {orders.map((list) => {
+                                return <option key={list.id}
+                                               value={list.itemInfo}>
+                                    {list.itemInfo}
+                                    /{list.id}
                                 </option>
                             })}
-                        </select>
-                        <button id="button-box" className="button" type="submit"
 
-                                onClick={(e) => deleteUserFunction(e, singleUser)}>
-                            Verwijderen van User
-                        </button>
+                        </select>
+
+
 
                     </fieldset>
 
 
 
+                    {/*//////////   accounts lijst/////////////////////////////////////////////////////////////////////////*/}
+
+                    <fieldset>
+                        <legend><h2 className="margin-top2">Lijst van accounts </h2></legend>
+                        <select
+                            name="accounts"
+                            id="userInfo"
+                            type="list"
+                            value={accountsList}
+                            onChange={(e) => setAccountsList(e.target.value)}
+                        >
+                            <option>selecteer een username</option>
+                            {accounts.map((list) => {
+                                return <option key={list.id}
+                                               value={list.userInfo}>
+                                    {list.comment} - {list.email} -
+                                    {list.userInfo}
+                                </option>
+                            })}
+
+                        </select>
+                    </fieldset>
+
+
 
 
                     {/*Items lijst/////////////////////////////////////////////////////////////////////////.*/}
-
-
                     <fieldset>
                         <legend> <h2 className="margin-top2">Lijst van items </h2></legend>
 
@@ -591,6 +697,10 @@ function Admin() {
 
                     </fieldset>
 
+
+
+
+
                     {/*mail/////////////////////////////////////////////////////////////////////////.*/}
 
                     <section>
@@ -603,6 +713,7 @@ function Admin() {
                             >
                                 <div className="margin-bottom2">
 
+
                                     <label htmlFor="recipient">
                                         Email naar:
                                         <select
@@ -614,6 +725,7 @@ function Admin() {
                                                 return (
                                                     <option
                                                         key={user.username}
+
                                                     >
                                                         {user.email}
                                                     </option>
@@ -636,10 +748,11 @@ function Admin() {
                                             message: 'Dit veld is verplicht',
                                         }
                                     }}
-                                    register={register7}
-                                    errors={errors7}
+                                    /////////////////////  bij de nieuwe staat op 7 !!!!!!    //////////////
+                                    register={register2}
+                                    errors={errors2}
                                 />
-                                {errors7.subject && <p>{errors7.subject.message}</p>}
+                                {errors2.subject && <p>{errors2.subject.message}</p>}
 
 
                                 <div className="textarea_field">
@@ -666,6 +779,8 @@ function Admin() {
 
                                 <Button
                                     type="submit"
+
+
                                 >
                                     versturen
                                 </Button>
@@ -680,3 +795,112 @@ function Admin() {
     );
 }
 export default Admin;
+
+
+
+
+
+// {/*/!*//////////  Subscriptions lijst/////////////////////////////////////////////////////////////////////////*!/*/}
+//
+//
+//     {/*    <fieldset>*/}
+//
+//     {/*        <legend> <h2 className="margin-top2">Lijst van subscriptions </h2></legend>*/}
+//     {/*<select*/}
+//     {/*    name="subscriptions"*/}
+//     {/*    id="typeSubscription"*/}
+//     {/*    type="list"*/}
+//     {/*    value={subscriptionsList}*/}
+//     {/*    onChange={(e) => setSubscriptionsList(e.target.value)}*/}
+//     {/*>*/}
+//     {/*    <option>selecteer een subscription</option>*/}
+//     {/*    {subscriptions.map((list) => {*/}
+//     {/*        return <option key={list.id}*/}
+//     {/*                       value={list.subscriptionStatus}>*/}
+//     {/*            {list.subscriptionStatus}/{list.id}*/}
+//
+//     {/*        </option>*/}
+//     {/*    })}*/}
+//     {/*</select>*/}
+//
+//     {/*        <button id="button-box" className="button" type="submit"*/}
+//
+//     {/*                onClick={(e) => deleteSubscriptionsFunction(e, toDelete)}>*/}
+//     {/*            Verwijderen van subsciptions*/}
+//     {/*        </button>*/}
+//
+//
+//     {/*    </fieldset>*/}
+//     {/*</section>*/}
+//
+//
+//     ///to delete Subscriptions///////////////////////////////////////////////////////////////////////////////////////////
+//
+//     async function deleteSubscriptionsFunction(e, id) {
+//         e.preventDefault(id);
+//         toggleError(false);
+//         toggleLoading(true);
+//         console.log()
+//
+//         try {
+//
+//
+//             const response = await axios.delete(`${subscriptionStatus}${id}`,{
+//                 headers: {
+//                     "Content-Type": "application/json",
+//                     "Authorization": `Bearer ${token}`,
+//                 },
+//
+//             });
+//
+//
+//             console.log(response)
+//             setIdToDelete(response.data);
+//             resetFormFields();
+//             navigate('/Account');
+//         } catch (e) {
+//             console.error(e);
+//             toggleError(true);
+//         }
+//     }
+//
+//     <form
+//                             key={5}
+//                             className="margin-top5"
+//                             onSubmit={handleSubmit5(patchOrder)}
+//                         >
+//                             <Input
+//                                 labelText="itemInfo"
+//                                 type="text"
+//                                 name="itemInfo"
+//                                 className="input_text"
+//                                 register={register5}
+//                                 errors={errors5}
+//
+//                             />
+//
+//                             <Input
+//                                 labelText="dateInfo"
+//                                 type="date"
+//                                 name="dateInfo"
+//                                 className="input_text"
+//                                 register={register8}
+//                                 errors={errors8}
+//
+//                             />
+//
+//
+//                             <Button
+//                                 type="submit"
+//                                 className="button-ellips"
+//                             >
+//                                 Aanpassen
+//                             </Button>
+//
+//
+//                         </form>
+//
+//
+//
+//
+//

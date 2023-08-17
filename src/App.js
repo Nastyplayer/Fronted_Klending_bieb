@@ -3,7 +3,6 @@ import './App.css';
 import Account from './pages/account/Account';
 import Blog from './pages/blog/Blog';
 import Home from './pages/home/Home';
-import Contact from './pages/contact/Contact';
 import Admin from './pages/admin/Admin';
 import ClothingLibrary from './pages/clothing library/Clothing Library';
 import Navigation from './components/navigation/Navigation';
@@ -18,6 +17,7 @@ function App() {
     const {isAuth} = useContext(AuthContext);
     return (
         <>
+
             <Navigation />
             <Routes>
                 <Route path="/" element={<Home/>}/>
@@ -28,17 +28,11 @@ function App() {
                 <Route path="/Account" element={isAuth ?<Account/> : <Navigate to="/Login"/>}/>
                 <Route path="/Admin" element={isAuth ?  <Admin/> : <Navigate to ="/"/>}/>
                 <Route path="/ClothingLibrary" element={<ClothingLibrary />}/>
-                <Route path="/Contact" element={<Contact />}/>
+
             </Routes>
         </>
     );
 }
 
 export default App;
-
-//  <Route exact path="/login" element={<Login/>}/>
-//  <Route path="/subscription" element={<Subscription/>}/>
-//  <Route path="/profile" element={isAuth ? <Profile/>  : <Navigate to="/Blog"/>}/>
-//<Route exact path="/Login" element={isAuth ? <Login/>  : <Navigate to="/Blog"/>}/>
-//  <Route exact path="/Login" element={<Login/>}/>
 

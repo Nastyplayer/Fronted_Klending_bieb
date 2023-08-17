@@ -1,9 +1,10 @@
 import React from 'react';
 import logo from '../../../../KLEDING_BIEB/src/assets/R_organic.jfif';
+import afspraak from '../../../../KLEDING_BIEB/src/assets/berg_kleding.jpg';
 import Header from '../../components/header/Header';
 import './Home.css';
 import {Link} from "react-router-dom";
-import afspraak from '../../../../KLEDING_BIEB/src/assets/berg_kleding.jpg';
+
 
 function Home() {
     return (

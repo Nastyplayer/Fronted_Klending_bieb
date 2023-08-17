@@ -3,7 +3,6 @@ import {Link, useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../context/AuthContext';
 import React, {useContext, useState} from 'react';
 import pic from '../../../../KLEDING_BIEB/src/assets/silk.jpg';
-
 import Header from '../../components/header/Header';
 import axios from "axios";
 
