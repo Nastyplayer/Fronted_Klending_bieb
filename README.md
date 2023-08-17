@@ -4,10 +4,10 @@ Om het project te laten draaien, moet eerst een aantal “tools” (javaScript-b
 
 1. Open de terminal in webstorm(tabblad eronder).
 2. Voer de commando’s één voor één in en druk na elke commando op “Enter” om de “tools” te laden.
-npm install 
-npm install react-router-dom 
-npm install axios 
-npm install jwt-decode 
+-npm install. 
+-npm install react-router-dom. 
+-npm install axios. 
+-npm install jwt-decode. 
 3. Nu kan de applicatie worden gestart door de terminal opnieuw te openen  en het volgende commando in te voeren: 
 npm start 
  Druk op “Enter”.
