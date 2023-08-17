@@ -5,46 +5,5 @@
     margin: 60px auto;
 }
 
-.users {
-    border-collapse: collapse;
-    width: 90%;
-    margin-bottom: 2em;
-}
-
-.users td, .users th {
-    border: 2px solid white;
-    padding: 0.8em;
-}
-
-.users tr:nth-child(even) {
-    background-color:transparent;
-}
-
-.users tr:hover {
-    background-color: transparent;
-}
-
-.users th {
-    padding-top: 1em;
-    padding-bottom: 1em;
-    text-align: left;
-    background-color: transparent;
-    color: white;
-}
-
-.label__select {
-    width: 5em;
-    padding: 0.3em;
-    border-radius: 5px;
-    border: 2px solid lightgray;
-    font-size: 10px;
-}
-
-@media print {
-    .print__button {
-        display: none;
-    }
-}
-
 
 

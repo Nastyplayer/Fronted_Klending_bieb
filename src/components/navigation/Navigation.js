@@ -9,7 +9,7 @@ function Navigation() {
 
  const {isAuth, user, logout} = useContext(AuthContext);
  console.log(isAuth)
-  //const navigate = useNavigate();
+
 
   return (
       <nav>
@@ -42,14 +42,6 @@ function Navigation() {
             </li>
 
 
-
-            <li>
-              <NavLink
-                 className={({ isActive }) => isActive ? 'active-menu-link' : 'default-menu-link'} to="/Contact"
-              >
-                Contact
-              </NavLink>
-            </li>
 
 
 
