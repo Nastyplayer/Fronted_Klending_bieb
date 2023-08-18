@@ -55,7 +55,7 @@ function Admin() {
     const [patchThisUser, togglePatchThisUser] = useState(false);
     const [userIdToPatch, setUserIdToPatch] = useState("");
 
-    const {isAuth, user} = useContext(AuthContext);
+    const {isAuth, user, email} = useContext(AuthContext);
     const [admin, toggleAdmin] = useState(false);
 
 
@@ -63,14 +63,14 @@ function Admin() {
 
     const [userIdToEmail, setUserIdToEmail] = useState("");
     const [succesSendMail, toggleSuccesSendMail] = useState(false);
-    const [clicks, setClicks]= useState(0);
+
 
     const { register: register2, formState: {errors: errors2}, handleSubmit: handleSubmit2, reset} = useForm();
     const { register: register3, handleSubmit: handleSubmit3, reset: resetForm3, formState: { errors: errors3 } } = useForm();
-    // const { register: register4, handleSubmit: handleSubmit4, reset: resetForm4, formState: { errors: errors4 } } = useForm();
+    const { register: register4, handleSubmit: handleSubmit4, reset: resetForm4, formState: { errors: errors4 } } = useForm();
     const { register: register5, handleSubmit: handleSubmit5, reset: resetForm5, formState: { errors: errors5 } } = useForm();
     const { register: register6, handleSubmit: handleSubmit6, reset: resetForm6, formState: { errors: errors6 } } = useForm();
-    const { register: register8, handleSubmit: handleSubmit8, reset: resetForm8, formState: { errors: errors8 } } = useForm();
+    const { register: register7, handleSubmit: handleSubmit8, reset: resetForm7, formState: { errors: errors7 } } = useForm();
     const resetFormFields = () => {
         setSingleUser(""); // Clear the selected user value
         setToDelete([]); // Clear the selected item value
@@ -82,7 +82,7 @@ function Admin() {
         resetForm3();
         resetForm5();
         resetForm6();
-        resetForm8();
+        resetForm7();
     };
 
 
@@ -273,36 +273,6 @@ function Admin() {
     }, []);
 
 
-    /////// Change info bij Orders /////////////////////////////////////////
-
-
-    async function patchOrder(data) {
-        toggleError(false);
-        toggleLoading(true);
-        try {
-
-
-
-            // const idAsLong = Number(id); // Converteer naar een Long
-            const response = await axios.patch(`http://localhost:8083/orders/${orderIdToPatch}`,
-                data, {
-
-
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`,
-                    },
-                });
-            togglePatchThisOrder(true);
-            console.log('Order updated:', response.data);
-            resetFormFields();
-            navigate('/Account');
-        } catch (e) {
-            console.error(e);
-            toggleError(true);
-        }
-        toggleLoading(true);
-    }
 
 
 
@@ -378,9 +348,14 @@ function Admin() {
     async function patchUser(data) {
         toggleError(false);
         toggleLoading(true);
+        console.log(email,  user.username )
         try {
             const response = await axios.patch(`http://localhost:8083/users/${userIdToPatch}`,
-                data,
+
+                {
+
+                },
+
                 {
                     headers: {
                         "Content-Type": "application/json",
@@ -500,7 +475,7 @@ function Admin() {
                                         key={user.username}
                                         value={user.username}
                                     >
-                                        {user.username}
+                                        {user.username}-{user.email}
                                     </option>
                                 ))}
                             </select>
@@ -509,7 +484,7 @@ function Admin() {
                             <form
                                 key={1}
                                 className="margin-top2"
-                                onSubmit={handleSubmit1(patchUser)}
+                                onSubmit={handleSubmit4(patchUser)}
                             >
                                 <Input
                                     labelText="wachtwoord"
@@ -519,14 +494,14 @@ function Admin() {
                                     register={register3}
                                     errors={errors3}
                                 />
-                                {/*/////// bij de nieuwe staat op 4 !!!! //////////////////////////////////*/}
+
                                 <Input
                                     labelText="emailadres"
                                     type="email"
                                     name="emailadress"
                                     className="input_text"
-                                    register={register3}
-                                    errors={errors3}
+                                    register={register4}
+                                    errors={errors4}
                                 />
                         <Button
                                     type="submit"
@@ -534,8 +509,6 @@ function Admin() {
                                 >
                                     versturen
                                 </Button>
-                                {patchThisUser &&
-                                    <h4 className="margin-top1">De user is gewijzigd. Refresh de pagina.</h4>}
 
                             </form>
                         </fieldset>
@@ -748,11 +721,11 @@ function Admin() {
                                             message: 'Dit veld is verplicht',
                                         }
                                     }}
-                                    /////////////////////  bij de nieuwe staat op 7 !!!!!!    //////////////
-                                    register={register2}
-                                    errors={errors2}
+
+                                    register={register7}
+                                    errors={errors7}
                                 />
-                                {errors2.subject && <p>{errors2.subject.message}</p>}
+                                {errors7.subject && <p>{errors7.subject.message}</p>}
 
 
                                 <div className="textarea_field">
@@ -797,110 +770,3 @@ function Admin() {
 export default Admin;
 
 
-
-
-
-// {/*/!*//////////  Subscriptions lijst/////////////////////////////////////////////////////////////////////////*!/*/}
-//
-//
-//     {/*    <fieldset>*/}
-//
-//     {/*        <legend> <h2 className="margin-top2">Lijst van subscriptions </h2></legend>*/}
-//     {/*<select*/}
-//     {/*    name="subscriptions"*/}
-//     {/*    id="typeSubscription"*/}
-//     {/*    type="list"*/}
-//     {/*    value={subscriptionsList}*/}
-//     {/*    onChange={(e) => setSubscriptionsList(e.target.value)}*/}
-//     {/*>*/}
-//     {/*    <option>selecteer een subscription</option>*/}
-//     {/*    {subscriptions.map((list) => {*/}
-//     {/*        return <option key={list.id}*/}
-//     {/*                       value={list.subscriptionStatus}>*/}
-//     {/*            {list.subscriptionStatus}/{list.id}*/}
-//
-//     {/*        </option>*/}
-//     {/*    })}*/}
-//     {/*</select>*/}
-//
-//     {/*        <button id="button-box" className="button" type="submit"*/}
-//
-//     {/*                onClick={(e) => deleteSubscriptionsFunction(e, toDelete)}>*/}
-//     {/*            Verwijderen van subsciptions*/}
-//     {/*        </button>*/}
-//
-//
-//     {/*    </fieldset>*/}
-//     {/*</section>*/}
-//
-//
-//     ///to delete Subscriptions///////////////////////////////////////////////////////////////////////////////////////////
-//
-//     async function deleteSubscriptionsFunction(e, id) {
-//         e.preventDefault(id);
-//         toggleError(false);
-//         toggleLoading(true);
-//         console.log()
-//
-//         try {
-//
-//
-//             const response = await axios.delete(`${subscriptionStatus}${id}`,{
-//                 headers: {
-//                     "Content-Type": "application/json",
-//                     "Authorization": `Bearer ${token}`,
-//                 },
-//
-//             });
-//
-//
-//             console.log(response)
-//             setIdToDelete(response.data);
-//             resetFormFields();
-//             navigate('/Account');
-//         } catch (e) {
-//             console.error(e);
-//             toggleError(true);
-//         }
-//     }
-//
-//     <form
-//                             key={5}
-//                             className="margin-top5"
-//                             onSubmit={handleSubmit5(patchOrder)}
-//                         >
-//                             <Input
-//                                 labelText="itemInfo"
-//                                 type="text"
-//                                 name="itemInfo"
-//                                 className="input_text"
-//                                 register={register5}
-//                                 errors={errors5}
-//
-//                             />
-//
-//                             <Input
-//                                 labelText="dateInfo"
-//                                 type="date"
-//                                 name="dateInfo"
-//                                 className="input_text"
-//                                 register={register8}
-//                                 errors={errors8}
-//
-//                             />
-//
-//
-//                             <Button
-//                                 type="submit"
-//                                 className="button-ellips"
-//                             >
-//                                 Aanpassen
-//                             </Button>
-//
-//
-//                         </form>
-//
-//
-//
-//
-//
