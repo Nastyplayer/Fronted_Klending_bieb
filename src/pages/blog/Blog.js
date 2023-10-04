@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../../components/header/Header';
-import Img from '../../../../KLEDING_BIEB/src/assets/img.png';
+import Img from "../../assets/img.png";
+
 import './Blog.css';
 
 

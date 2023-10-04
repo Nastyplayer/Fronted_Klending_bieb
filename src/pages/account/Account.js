@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {useForm} from "react-hook-form";
 import Header from "../../components/header/Header";
-import pic from '../../../../KLEDING_BIEB/src/assets/hilado-en-huso.jpg';
+import pic from "../../assets/hilado-en-huso.jpg";
 
 function Account() {
 

@@ -1,9 +1,10 @@
 import React from 'react';
-import logo from '../../../../KLEDING_BIEB/src/assets/R_organic.jfif';
-import afspraak from '../../../../KLEDING_BIEB/src/assets/berg_kleding.jpg';
+
 import Header from '../../components/header/Header';
 import './Home.css';
 import {Link} from "react-router-dom";
+import logo  from "../../assets/organic.jpg";
+import berg from "../../assets/berg_kleding.jpg";
 
 
 function Home() {
@@ -32,7 +33,7 @@ function Home() {
 
             </p>
 
-            <Header icon={afspraak} title= "Grotere of meer kasten gaan kopen omdat je ruimtegebruik hebt?"/>
+            <Header icon={berg} title= "Grotere of meer kasten gaan kopen omdat je ruimtegebruik hebt?"/>
             
             <p className="page">
 
