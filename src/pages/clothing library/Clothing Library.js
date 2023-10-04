@@ -1,11 +1,8 @@
 import React, { useEffect, useState} from 'react';
 import Header from '../../components/header/Header';
-
-
 import './Clothing Library.css';
 import {useNavigate} from "react-router-dom";
-import cien from "../../../../KLEDING_BIEB/src/assets/Cien.jfif";
-
+import cien from "../../assets/Cien.webp";
 import axios from "axios";
 
 

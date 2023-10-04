@@ -2,11 +2,10 @@
  import React, { useState} from "react";
  import {Link, useNavigate} from "react-router-dom";
  import axios from "axios";
- import pic from '../../../../KLEDING_BIEB/src/assets/cotton.jpg';
  import Header from "../../components/header/Header";
  import {useForm} from "react-hook-form";
  import Input from "../../components/input/Input";
-
+ import pic from "../../assets/cotton.jpg";
 
  function Subscription() {
 
