@@ -34,9 +34,6 @@
              <section className="form-xtra">
                  <form onSubmit={handleSubmit(registerUser)}>
 
-
-
-
                           <h1>Registreren</h1>
 
                          <label htmlFor="details-email">
