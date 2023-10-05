@@ -35,9 +35,6 @@ function Admin() {
 
     const [orders, setOrders] = useState([]);
     const [ordersList,  setOrdersList] = useState([]);
-    const [patchThisOrder, togglePatchThisOrder] = useState(false);
-    const [orderIdToPatch, setOrderIdToPatch] = useState("")
-
 
     const [subscriptions, setSubscriptions] = useState([]);
     const [subscriptionsList, setSubscriptionsList] = useState([]);
@@ -424,13 +421,76 @@ function Admin() {
                 <article className="page2">
 
 
-                    {/*//////////////// LIJST VAN USERS  /////////////////////////////////////////////////////////////////////////////////*/}
+
+{/*//////////   accounts lijst/////////////////////////////////////////////////////////////////////////*/}
+
+                    <fieldset>
+                        <legend><h2 className="margin-top2">Lijst van accounts </h2></legend>
+
+                        <h3>id - username - email - comment</h3>
+                        <select
+                            name="accounts"
+                            id="userInfo"
+                            type="list"
+                            value={accountsList}
+                            onChange={(e) => setAccountsList(e.target.value)}
+                        >
+                            <option>selecteer een username</option>
+                            {accounts.map((list) => {
+                                return <option key={list.id}
+                                               value={list.userInfo}>
+                                    {list.id} - {list.userInfo} - {list.email} - {list.comment}
+
+                                </option>
+                            })}
+
+                        </select>
+                    </fieldset>
+
+
+
+
+ {/*//////////  Orders lijst/////////////////////////////////////////////////////////////////////////*/}
+
+                    <fieldset>
+                        <legend><h2 className="margin-top2">Lijst  van orders </h2></legend>
+                        <h3>order id  en items  </h3>
+                        <select
+                            name="orders"
+                            id="itemInfo"
+                            type="list"
+                            value={ordersList}
+                            onChange={(e) => setOrdersList(e.target.value)}
+                        >
+                            <option>selecteer een order</option>
+                            {orders.map((list) => {
+                                return <option key={list.id}
+                                               value={list.itemInfo}>
+                                    Order id {list.id}--{list.itemInfo}
+                                </option>
+                            })}
+
+                        </select>
+
+
+
+                    </fieldset>
+
+
+
+
+
+
+
+
+  {/*//////////////// LIJST VAN USERS  /////////////////////////////////////////////////////////////////////////////////*/}
 
 
 
 
                     <fieldset>
                         <legend> <h2 className="margin-top2">Lijst van users </h2></legend>
+                        <h3> username - email </h3>
                         <select
                             name="users"
                             id="username"
@@ -442,8 +502,8 @@ function Admin() {
                             {users.map((user) => {
                                 return <option key={user.id}
                                                value={user.username}>
-                                    {user.email} - {user.nameInfo} -
-                                    {user.username}
+                                    {user.username} - {user.email}
+
                                 </option>
                             })}
                         </select>
@@ -458,7 +518,7 @@ function Admin() {
 
 
 
-                    {/*////////////////////change user///////////////////////////////////////////////////////////////////////////////////////*/}
+   {/*////////////////////change user///////////////////////////////////////////////////////////////////////////////////////*/}
 
 
                     <section>
@@ -514,7 +574,7 @@ function Admin() {
                         </fieldset>
                     </section>
 
-                    {/*change subscription ///////////////////////////////////////////////////////////////////////////////////////*/}
+     {/*change subscription ///////////////////////////////////////////////////////////////////////////////////////*/}
                     <section>
 
                         <fieldset>
@@ -587,65 +647,11 @@ function Admin() {
 
 
 
-                    {/*//////////  Orders lijst/////////////////////////////////////////////////////////////////////////*/}
-
-                    <fieldset>
-                        <legend><h2 className="margin-top2">Lijst  van orders </h2></legend>
-                        <select
-                            name="orders"
-                            id="itemInfo"
-                            type="list"
-                            value={ordersList}
-                            onChange={(e) => setOrdersList(e.target.value)}
-                        >
-                            <option>selecteer een order</option>
-                            {orders.map((list) => {
-                                return <option key={list.id}
-                                               value={list.itemInfo}>
-                                    {list.itemInfo}
-                                    /{list.id}
-                                </option>
-                            })}
-
-                        </select>
-
-
-
-                    </fieldset>
-
-
-
-                    {/*//////////   accounts lijst/////////////////////////////////////////////////////////////////////////*/}
-
-                    <fieldset>
-                        <legend><h2 className="margin-top2">Lijst van accounts </h2></legend>
-                        <select
-                            name="accounts"
-                            id="userInfo"
-                            type="list"
-                            value={accountsList}
-                            onChange={(e) => setAccountsList(e.target.value)}
-                        >
-                            <option>selecteer een username</option>
-                            {accounts.map((list) => {
-                                return <option key={list.id}
-                                               value={list.userInfo}>
-                                    {list.comment} - {list.email} -
-                                    {list.userInfo}
-                                </option>
-                            })}
-
-                        </select>
-                    </fieldset>
-
-
-
-
-                    {/*Items lijst/////////////////////////////////////////////////////////////////////////.*/}
+   {/*Items lijst/////////////////////////////////////////////////////////////////////////.*/}
                     <fieldset>
                         <legend> <h2 className="margin-top2">Lijst van items </h2></legend>
 
-
+                        <h3>Tags - item Info - item Id</h3>
                         <select
                             name="items"
                             id="tags"
@@ -674,7 +680,7 @@ function Admin() {
 
 
 
-                    {/*mail/////////////////////////////////////////////////////////////////////////.*/}
+    {/*////////////////////mail/////////////////////////////////////////////////////////////////////////.*/}
 
                     <section>
                         <fieldset>

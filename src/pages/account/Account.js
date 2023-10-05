@@ -17,7 +17,7 @@ function Account() {
     const [items, setItems] = useState([]);
 
     const [dateInfo, setDateInfo] = useState("");
-   // const [itemInfo, setItemInfo ] = useState( "");
+
 
     const [ id, setId] = useState(false);
     const [previewUrl, setPreviewUrl] = useState("");
@@ -25,7 +25,7 @@ function Account() {
 
     const token = localStorage.getItem('token');
     const [addSuccessPhoto,toggleAddSuccessPhoto] = useState(false);
-   // const [setNameInfo] = useState("");
+
     const {register: register2, formState: {errors: errors2}, handleSubmit: handleSubmit2} = useForm();
     const [ textarea, setTextarea ] = useState('');
 
