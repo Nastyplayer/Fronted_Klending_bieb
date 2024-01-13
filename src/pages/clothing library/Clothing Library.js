@@ -4,6 +4,8 @@ import './Clothing Library.css';
 import {useNavigate} from "react-router-dom";
 import cien from "../../assets/Cien.webp";
 import axios from "axios";
+import Button from "../../components/button/Button";
+import Main from "../../components/main/Main";
 
 
 
@@ -58,7 +60,7 @@ function ClothingLibrary(){
 
      return (
 
-                <main className="page">
+                <Main className="page">
 
                     <Header icon={cien} title="Clothing Library"/>
 
@@ -93,11 +95,20 @@ function ClothingLibrary(){
 
                     <button
                         type="button" onClick={handleClick} className="appointment-button">
-                        come visit us!
+
                     </button>
+// Button
+                    <Button
+                        type="button"
+                        onClick={handleClick}
+
+                    >come visit us!
 
 
-                </main>
+                    </Button>
+
+
+                </Main>
             );
 
 

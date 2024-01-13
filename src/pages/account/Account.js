@@ -6,6 +6,7 @@ import axios from "axios";
 import {useForm} from "react-hook-form";
 import Header from "../../components/header/Header";
 import pic from "../../assets/hilado-en-huso.jpg";
+import Main from "../../components/main/Main";
 
 function Account() {
 
@@ -158,7 +159,7 @@ function Account() {
                 <Header icon={pic}/>
 
 
-
+            <Main>
             <ul className="form-xtra">
 
                 <label htmlFor="name">
@@ -286,7 +287,7 @@ function Account() {
                     <button id="button-box" className="button" type="button" onClick={Order}>Verstuur</button>
                 </fieldset>
             </ul>
-
+            </Main>
 
         </p>
     );

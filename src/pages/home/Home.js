@@ -5,11 +5,12 @@ import './Home.css';
 import {Link} from "react-router-dom";
 import logo  from "../../assets/organic.jpg";
 import berg from "../../assets/berg_kleding.jpg";
+import Main from "../../components/main/Main";
 
 
 function Home() {
     return (
-        <main className="page">
+        <Main className="page">
             <Header icon={logo} title="The Lady Mayonnaise" />
             <p>
             </p>
@@ -49,7 +50,7 @@ function Home() {
             <p>Lees <Link to="/Blog">hier</Link> meer over duurzaamheid</p>
             <p>Nog geen account? <Link to="/Subscription">Registreer</Link> je dan eerst.</p>
 
-        </main>
+        </Main>
     );
 }
 
