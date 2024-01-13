@@ -3,11 +3,12 @@ import Header from '../../components/header/Header';
 import Img from "../../assets/img.png";
 
 import './Blog.css';
+import Main from "../../components/main/Main";
 
 
 function Blog() {
     return (
-        <main className="page">
+        <Main className="page">
             <Header icon={Img} title=" Wat is duurzame kleding & waarom is het belangrijk? "/>
             <p>
             </p>
@@ -120,7 +121,7 @@ function Blog() {
                 Een betere wereld begint wel degelijk bij jezelf.
             </p>
 
-        </main>
+        </Main>
     );
 }
 

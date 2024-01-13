@@ -11,6 +11,7 @@ import Header from "../../components/header/Header";
 import {Subscription} from "../subscription/Subscription";
 import {AuthContext} from "../../context/AuthContext";
 import pic from "../../assets/hilado-en-huso.jpg";
+import Main from "../../components/main/Main";
 
 
 function Admin() {
@@ -409,7 +410,7 @@ function Admin() {
     return (
 
 
-        <main className="page">
+        <Main className="page">
             {(isAuth && user.authority === "ROLE_USER" && !admin) &&
                 <article className="page" > <h1>Sorry, go back to your<Link to="/Account"> account </Link>  😵</h1>
                     <h2>Only for Administrator </h2>
@@ -770,7 +771,7 @@ function Admin() {
                     </section>
 
                 </article>}
-        </main>
+        </Main>
     );
 }
 export default Admin;
