@@ -155,11 +155,11 @@ function Account() {
     return (
 
 
-        <p className="page2">
+       < p className="page2">
 
 
                 <Header icon={pic} />
-
+            <Main>
 
             <ul className="form-xtra">
 
@@ -288,10 +288,11 @@ function Account() {
                     <Button id="button-box" className="button" type="button" onClick={Order}>Verstuur</Button>
                 </fieldset>
             </ul>
+            </Main>
 
             <Footer description="Copyright © 2023 Javier Talavera. Alle rechten voorbehouden."
             />
-        </p>
+       </p>
     );
 }
 

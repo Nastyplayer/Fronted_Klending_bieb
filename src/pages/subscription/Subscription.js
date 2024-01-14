@@ -32,10 +32,11 @@
          }
      }
      return (
+        <>
+         <p className="page2">
 
-         <>
-         <Main className="page2">
              <Header icon={pic}/>
+             < Main >
              <section className="form-xtra">
                  <form onSubmit={handleSubmit(registerUser)}>
 
@@ -110,6 +111,8 @@
                  <p>Heb je al een account? Je kunt je <Link to="/Login">hier</Link> inloggen.</p>
              </section>
          </Main>
+         </p>
+
          <Footer description="Copyright © 2023 Javier Talavera. Alle rechten voorbehouden."
          />
 
