@@ -6,6 +6,7 @@ import cien from "../../assets/Cien.webp";
 import axios from "axios";
 import Button from "../../components/button/Button";
 import Main from "../../components/main/Main";
+import Footer from "../../components/footer/Footer";
 
 
 
@@ -59,7 +60,7 @@ function ClothingLibrary(){
 /////////////////////////////////////////////////////////
 
      return (
-
+                <>
                 <Main className="page">
 
                     <Header icon={cien} title="Clothing Library"/>
@@ -93,11 +94,11 @@ function ClothingLibrary(){
 
                     </div>
 
-                    <button
-                        type="button" onClick={handleClick} className="appointment-button">
+                    {/*<button*/}
+                    {/*    type="button" onClick={handleClick} className="appointment-button">*/}
 
-                    </button>
-// Button
+                    {/*</button>*/}
+
                     <Button
                         type="button"
                         onClick={handleClick}
@@ -109,7 +110,12 @@ function ClothingLibrary(){
 
 
                 </Main>
-            );
+
+                <Footer description="Copyright © 2023 Javier Talavera. Alle rechten voorbehouden."
+                />
+
+          </>
+          );
 
 
         }

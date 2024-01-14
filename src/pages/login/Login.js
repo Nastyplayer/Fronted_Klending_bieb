@@ -5,6 +5,8 @@ import React, {useContext, useState} from 'react';
 import Header from '../../components/header/Header';
 import axios from "axios";
 import pic from "../../assets/silk.jpg";
+import Main from "../../components/main/Main";
+import Footer from "../../components/footer/Footer";
 
 
 
@@ -46,9 +48,8 @@ function Login() {
 
     return (
 
-        <p className="page2">
+        <p  className="page2">
         <Header icon={pic}/>
-
             <ul className="form-xtra">
 
             <form onSubmit={handleSubmit}>
@@ -79,10 +80,11 @@ function Login() {
 
 
                 <p>Nog geen account? <Link to="/Subscription">Registreer</Link> je dan eerst.</p>
-
-
-                
         </ul>
+
+
+           <Footer description="Copyright © 2023 Javier Talavera. Alle rechten voorbehouden."
+               />
         </p>
     );
 

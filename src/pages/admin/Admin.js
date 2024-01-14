@@ -12,6 +12,7 @@ import {Subscription} from "../subscription/Subscription";
 import {AuthContext} from "../../context/AuthContext";
 import pic from "../../assets/hilado-en-huso.jpg";
 import Main from "../../components/main/Main";
+import Footer from "../../components/footer/Footer";
 
 
 function Admin() {
@@ -409,7 +410,7 @@ function Admin() {
 
     return (
 
-
+        <>
         <Main className="page">
             {(isAuth && user.authority === "ROLE_USER" && !admin) &&
                 <article className="page" > <h1>Sorry, go back to your<Link to="/Account"> account </Link>  😵</h1>
@@ -772,6 +773,10 @@ function Admin() {
 
                 </article>}
         </Main>
+            <Footer description="Copyright © 2023 Javier Talavera. Alle rechten voorbehouden."
+            />
+        </>
+
     );
 }
 export default Admin;

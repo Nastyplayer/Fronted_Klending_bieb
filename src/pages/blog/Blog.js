@@ -4,10 +4,12 @@ import Img from "../../assets/img.png";
 
 import './Blog.css';
 import Main from "../../components/main/Main";
+import Footer from "../../components/footer/Footer";
 
 
 function Blog() {
     return (
+        <>
         <Main className="page">
             <Header icon={Img} title=" Wat is duurzame kleding & waarom is het belangrijk? "/>
             <p>
@@ -122,7 +124,11 @@ function Blog() {
             </p>
 
         </Main>
-    );
+    <Footer description="Copyright © 2023 Javier Talavera. Alle rechten voorbehouden."
+    />
+</>
+
+);
 }
 
 export default Blog;

@@ -5,8 +5,11 @@ function Main({ children }) {
     return (
         <main className="page">
 
+               {children}
 
-            {children}
+
+
+
         </main>
     )
 }

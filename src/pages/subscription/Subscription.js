@@ -6,6 +6,8 @@
  import {useForm} from "react-hook-form";
  import Input from "../../components/input/Input";
  import pic from "../../assets/cotton.jpg";
+ import Main from "../../components/main/Main";
+ import Footer from "../../components/footer/Footer";
 
  function Subscription() {
 
@@ -29,7 +31,9 @@
          }
      }
      return (
-         <div className="page2">
+
+         <>
+         <Main className="page2">
              <Header icon={pic}/>
              <section className="form-xtra">
                  <form onSubmit={handleSubmit(registerUser)}>
@@ -105,8 +109,13 @@
                  </form>
                  <p>Heb je al een account? Je kunt je <Link to="/Login">hier</Link> inloggen.</p>
              </section>
-         </div>);
- }
+         </Main>
+         <Footer description="Copyright © 2023 Javier Talavera. Alle rechten voorbehouden."
+         />
+
+         </>
+
+     )}
 
  export default Subscription;
 

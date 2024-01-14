@@ -6,14 +6,16 @@ import {Link} from "react-router-dom";
 import logo  from "../../assets/organic.jpg";
 import berg from "../../assets/berg_kleding.jpg";
 import Main from "../../components/main/Main";
+import Footer from "../../components/footer/Footer";
 
 
 function Home() {
     return (
-        <Main className="page">
+        <>
+
             <Header icon={logo} title="The Lady Mayonnaise" />
-            <p>
-            </p>
+
+            <Main className="page">
 
 
             <p>
@@ -51,6 +53,11 @@ function Home() {
             <p>Nog geen account? <Link to="/Subscription">Registreer</Link> je dan eerst.</p>
 
         </Main>
+            <Footer description="Copyright © 2023 Javier Talavera. Alle rechten voorbehouden."
+            />
+
+
+        </>
     );
 }
 
