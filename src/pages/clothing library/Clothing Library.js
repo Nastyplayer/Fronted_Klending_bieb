@@ -105,7 +105,6 @@ function ClothingLibrary(){
 
                     >come visit us!
 
-
                     </Button>
 
 

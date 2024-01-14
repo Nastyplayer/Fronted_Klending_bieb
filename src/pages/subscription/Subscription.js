@@ -8,6 +8,7 @@
  import pic from "../../assets/cotton.jpg";
  import Main from "../../components/main/Main";
  import Footer from "../../components/footer/Footer";
+ import Button from "../../components/button/Button";
 
  function Subscription() {
 
@@ -99,12 +100,11 @@
                          {!succesRegister &&
                              <h3>Something went wrong 😳 Please contact Administrator - jftalavera@hotmail.com</h3>}
 
-                         <button
+                         <Button
                              type="submit"
-
                          >
                              registreren
-                         </button>
+                         </Button>
 
                  </form>
                  <p>Heb je al een account? Je kunt je <Link to="/Login">hier</Link> inloggen.</p>

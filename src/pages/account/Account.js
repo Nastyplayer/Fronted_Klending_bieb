@@ -8,6 +8,7 @@ import Header from "../../components/header/Header";
 import pic from "../../assets/hilado-en-huso.jpg";
 import Main from "../../components/main/Main";
 import Footer from "../../components/footer/Footer";
+import Button from "../../components/button/Button";
 
 function Account() {
 
@@ -284,7 +285,7 @@ function Account() {
                         />
                     </label>
 
-                    <button id="button-box" className="button" type="button" onClick={Order}>Verstuur</button>
+                    <Button id="button-box" className="button" type="button" onClick={Order}>Verstuur</Button>
                 </fieldset>
             </ul>
 
