@@ -49,8 +49,10 @@ function Login() {
 
     return (
 
-        <p  className="page2">
+        < p className="page2"  >
         <Header icon={pic}/>
+
+          <Main>
             <ul className="form-xtra">
 
             <form onSubmit={handleSubmit}>
@@ -87,7 +89,7 @@ function Login() {
 
                 <p>Nog geen account? <Link to="/Subscription">Registreer</Link> je dan eerst.</p>
         </ul>
-
+          </Main>
 
            <Footer description="Copyright © 2023 Javier Talavera. Alle rechten voorbehouden."
                />
