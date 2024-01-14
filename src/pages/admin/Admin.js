@@ -509,11 +509,11 @@ function Admin() {
                                 </option>
                             })}
                         </select>
-                        <button id="button-box" className="button" type="submit"
+                        <Button id="button-box" className="button" type="submit"
 
                                 onClick={(e) => deleteUserFunction(e, singleUser)}>
                             Verwijderen van User
-                        </button>
+                        </Button>
 
                     </fieldset>
 
@@ -670,11 +670,11 @@ function Admin() {
                         </select>
 
 
-                        <button id="button-box" className="button" type="submit"
+                        <Button id="button-box" className="button" type="submit"
 
                                 onClick={(e) => deleteItemFunction(e, toDelete)}>
                             Verwijderen van Item
-                        </button>
+                        </Button>
 
                     </fieldset>
 
@@ -760,8 +760,6 @@ function Admin() {
 
                                 <Button
                                     type="submit"
-
-
                                 >
                                     versturen
                                 </Button>

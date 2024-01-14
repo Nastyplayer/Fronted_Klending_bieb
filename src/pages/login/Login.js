@@ -7,6 +7,7 @@ import axios from "axios";
 import pic from "../../assets/silk.jpg";
 import Main from "../../components/main/Main";
 import Footer from "../../components/footer/Footer";
+import Button from "../../components/button/Button";
 
 
 
@@ -75,7 +76,12 @@ function Login() {
                 {error && <p className="error-msg">Inloggen mislukt !!
                     Gebruikersnaam of wachtwoord onjuist</p>}
 
-                <button type="submit">Inloggen </button>
+
+                <Button type="submit">Inloggen </Button>
+
+
+
+
             </form>
 
 
