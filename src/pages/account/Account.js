@@ -7,6 +7,7 @@ import {useForm} from "react-hook-form";
 import Header from "../../components/header/Header";
 import pic from "../../assets/hilado-en-huso.jpg";
 import Main from "../../components/main/Main";
+import Footer from "../../components/footer/Footer";
 
 function Account() {
 
@@ -155,11 +156,10 @@ function Account() {
 
         <p className="page2">
 
-            <h1>Leuk dat je langskomt! Maak een keuze </h1>
-                <Header icon={pic}/>
+
+                <Header icon={pic} />
 
 
-            <Main>
             <ul className="form-xtra">
 
                 <label htmlFor="name">
@@ -287,8 +287,9 @@ function Account() {
                     <button id="button-box" className="button" type="button" onClick={Order}>Verstuur</button>
                 </fieldset>
             </ul>
-            </Main>
 
+            <Footer description="Copyright © 2023 Javier Talavera. Alle rechten voorbehouden."
+            />
         </p>
     );
 }
