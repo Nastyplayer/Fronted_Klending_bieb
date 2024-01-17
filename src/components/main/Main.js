@@ -3,13 +3,14 @@ import './Main.css';
 
 function Main({ children }) {
     return (
-        <main className="page">
+        <main className="outer-container">
+            <article className="inner-container">
+                <div className="content-container">
 
-               {children}
+                    {children}
 
-
-
-
+                </div>
+            </article>
         </main>
     )
 }

@@ -2,6 +2,7 @@ import React, { useContext} from 'react';
 import './Navigation.css';
 import {NavLink} from 'react-router-dom';
 import {AuthContext} from "../../context/AuthContext";
+import Button from "../button/Button";
 
 
 
@@ -61,9 +62,10 @@ function Navigation() {
 
                   <span>{user.username}</span>
 
-                  <button type="button" onClick={logout}>
+                  <Button
+                      type="button" onClick={logout}>
                     Log out
-                  </button>
+                  </Button>
                       <li>
                           <NavLink
                               className={({ isActive }) => isActive ? 'active-menu-link' : 'default-menu-link'} to="/Account"

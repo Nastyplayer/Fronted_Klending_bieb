@@ -7,16 +7,20 @@ import logo  from "../../assets/organic.jpg";
 import berg from "../../assets/berg_kleding.jpg";
 import Main from "../../components/main/Main";
 import Footer from "../../components/footer/Footer";
+import Article from "../../components/article/Article";
 
 
 function Home() {
     return (
         <>
 
+
+            <Main >
+
+
+
+         <Article  className="article-inner-container " >
             <Header icon={logo} title="The Lady Mayonnaise" />
-
-            <Main className="page">
-
 
             <p>
 
@@ -35,11 +39,16 @@ function Home() {
                 Hierbij focussen we vooral op wat dit ons brengt: rust, tevredenheid en meer tijd.
 
             </p>
+         </Article>
+
+
+         <Article  className="article-inner-container" >
+
 
             <Header icon={berg} title= "Grotere of meer kasten gaan kopen omdat je ruimtegebruik hebt?"/>
             
-            <p className="page">
-
+            {/*<p className="page">*/}
+            <p>
                 Eerst cijfers! Jaarlijks kopen wij Nederlanders voor ongeveer 20 miljard euro aan nieuwe kleding.
                 Daarnaast gooien we met z'n allen zo'n 240 miljoen kilo aan textiel weg. En dat is echt zonde.
                 En dus zijn er een aantal moderne Jeanne d'Arcs opgestaan die een alternatief willen bieden.
@@ -51,9 +60,12 @@ function Home() {
             </p>
             <p>Lees <Link to="/Blog">hier</Link> meer over duurzaamheid</p>
             <p>Nog geen account? <Link to="/Subscription">Registreer</Link> je dan eerst.</p>
+         </Article>
+
+
 
         </Main>
-            <Footer description="Copyright © 2023 Javier Talavera. Alle rechten voorbehouden."
+            <Footer description="Copyright © 2023 LaBruja. Alle rechten voorbehouden."
             />
 
 

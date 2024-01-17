@@ -32,7 +32,7 @@ function Registration() {
 
             <Footer
 
-                description="Copyright © 2023 Javier Talavera. Alle rechten voorbehouden."
+                description="Copyright © 2023 LaBruja. Alle rechten voorbehouden."
             />
 
 

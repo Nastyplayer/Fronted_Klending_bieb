@@ -61,7 +61,7 @@ function ClothingLibrary(){
 
      return (
                 <>
-                <Main className="page">
+                <Main className="outer-container">
 
                     <Header icon={cien} title="Clothing Library"/>
 
@@ -77,10 +77,7 @@ function ClothingLibrary(){
 
                     <h1>Onze nieuwe collectie</h1>
 
-                    <div className="page3">
-
-
-
+                    <div className="article-inner-container">
 
                         {uploads.map((img) => {
                            return (
@@ -91,26 +88,20 @@ function ClothingLibrary(){
                             )
                                 })}
 
-
                     </div>
-
-                    {/*<button*/}
-                    {/*    type="button" onClick={handleClick} className="appointment-button">*/}
-
-                    {/*</button>*/}
 
                     <Button
                         type="button"
                         onClick={handleClick}
 
-                    >come visit us!
+                    >come visit us and enjoy
 
                     </Button>
 
 
                 </Main>
 
-                <Footer description="Copyright © 2023 Javier Talavera. Alle rechten voorbehouden."
+                <Footer description="Copyright © 2023 LaBruja. Alle rechten voorbehouden."
                 />
 
           </>
