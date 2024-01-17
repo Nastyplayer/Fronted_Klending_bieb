@@ -5,15 +5,24 @@ import Img from "../../assets/img.png";
 import './Blog.css';
 import Main from "../../components/main/Main";
 import Footer from "../../components/footer/Footer";
+import Article from "../../components/article/Article";
 
 
 function Blog() {
     return (
         <>
-        <Main className="page">
-            <Header icon={Img} title=" Wat is duurzame kleding & waarom is het belangrijk? "/>
-            <p>
-            </p>
+
+
+      <Main>
+            {/*<Article className="page">*/}
+
+
+       <Header icon={Img} title=" Wat is duurzame kleding & waarom is het belangrijk? "/>
+
+
+
+           {/*<div className="home-page-layout">*/}
+
 
             <p>Maar spullen weggooien is toch helemaal niet duurzaam?</p>
 
@@ -86,21 +95,29 @@ function Blog() {
                 Tegenwoordig zijn er veel wet- en regelgevingen bijgekomen om de werkomstandigheden te verbeteren van de fabrieksarbeiders. Bijvoorbeeld tegen:
 
             </p>
-            <p className="page3">
-                <p>- De enorme snelheid waarmee en hoeveelheid waarin kleding gemaakt wordt.</p>
-                <p>- Voor het verbouwen van de grondstoffen is veel water en vaak kunstmest nodig.</p>
-                <p>- Er worden tevens gifstoffen gebruikt tijdens het telen tegen onkruid en insecten.</p>
-                <p>- Het verwerken van materialen in de fabriek is vervuilend (schadelijke verfstoffen).</p>
-                <p>- Bedrijven gaan hier belachelijk mee om door het ongefilterd te dumpen in rivieren.</p>
-                <p>- Ook voor onze gezondheid zijn die bewerkte stoffen slecht (hormoonverstorend).</p>
-                <p>- Daarbij komt het vervoeren van materialen en het eindproduct over de hele wereld.</p>
-                <p>- Omdat de consument steeds goedkoper wil, is de kwaliteit van kleding steeds lager.</p>
-                <p>- Daardoor zijn we het gaan zien als wegwerp en kopen we juist ook weer meer.</p>
-                <p>- Bij het wassen komen vaak microplastics vrij die in ons water terecht komen.</p>
-                <p>- Door trends is bepaalde kleding zo weer uit de mode en heb je weer wat ‘nodig’.</p>
-                <p>- Er is zoveel kleding op aarde dat we niet meer weten waar het te moeten laten.</p>
-            </p>
 
+             {/*<div className="wrapper-container">*/}
+
+            <Article className="page3">
+                {/*<div className="page3">*/}
+
+                <p>❀ De enorme snelheid waarmee en hoeveelheid waarin kleding gemaakt wordt.</p>
+                <p>❀ Voor het verbouwen van de grondstoffen is veel water en vaak kunstmest nodig.</p>
+                <p>❀ Er worden tevens gifstoffen gebruikt tijdens het telen tegen onkruid en insecten.</p>
+                <p>❀ Het verwerken van materialen in de fabriek is vervuilend (schadelijke verfstoffen).</p>
+                <p>❀ Bedrijven gaan hier belachelijk mee om door het ongefilterd te dumpen in rivieren.</p>
+                <p>❀ Ook voor onze gezondheid zijn die bewerkte stoffen slecht (hormoonverstorend).</p>
+                <p>❀ Daarbij komt het vervoeren van materialen en het eindproduct over de hele wereld.</p>
+                <p>❀ Omdat de consument steeds goedkoper wil, is de kwaliteit van kleding steeds lager.</p>
+                <p>❀ Daardoor zijn we het gaan zien als wegwerp en kopen we juist ook weer meer.</p>
+                <p>❀ Bij het wassen komen vaak microplastics vrij die in ons water terecht komen.</p>
+                <p>❀ Door trends is bepaalde kleding zo weer uit de mode en heb je weer wat ‘nodig’.</p>
+                <p>❀ Er is zoveel kleding op aarde dat we niet meer weten waar het te moeten laten.</p>
+                {/*</div>*/}
+            </Article>
+            {/*</div>*/}
+
+            {/*<Article className= "page">*/}
             <p>
                 Wanneer je minimalisme hebt omarmt, koop je minder en wanneer je wel iets koopt, maak je bewuste keuzes.
                 Omdat je bewust bent van je aankopen, ga je ook ‘achter’ de producten kijken. Waar zijn ze van gemaakt,
@@ -122,10 +139,12 @@ function Blog() {
                 Het omarmen van een minimalistische leefstijl zet een proces in gang waarbij je je bewust wordt van je ecologische voetprint en deze steeds kleiner wil maken.
                 Een betere wereld begint wel degelijk bij jezelf.
             </p>
-
+         {/*</div>*/}
+        {/*</Article>*/}
         </Main>
-    <Footer description="Copyright © 2023 Javier Talavera. Alle rechten voorbehouden."
-    />
+
+
+    <Footer description="Copyright © 2023 LaBruja. Alle rechten voorbehouden."/>
 </>
 
 );

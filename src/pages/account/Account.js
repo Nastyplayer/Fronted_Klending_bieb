@@ -290,7 +290,7 @@ function Account() {
             </ul>
             </Main>
 
-            <Footer description="Copyright © 2023 Javier Talavera. Alle rechten voorbehouden."
+            <Footer description="Copyright © 2023 LaBruja. Alle rechten voorbehouden."
             />
        </p>
     );

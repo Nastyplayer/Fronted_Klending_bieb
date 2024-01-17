@@ -79,7 +79,9 @@ function Login() {
                     Gebruikersnaam of wachtwoord onjuist</p>}
 
 
-                <Button type="submit">Inloggen </Button>
+                <Button type="submit">
+                    Inloggen
+                </Button>
 
 
 
@@ -91,7 +93,7 @@ function Login() {
         </ul>
           </Main>
 
-           <Footer description="Copyright © 2023 Javier Talavera. Alle rechten voorbehouden."
+           <Footer description="Copyright © 2023 LaBruja. Alle rechten voorbehouden."
                />
         </p>
     );
