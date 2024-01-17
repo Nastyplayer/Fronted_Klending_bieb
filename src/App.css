@@ -1,3 +1,50 @@
+
+
+:root {
+
+}
+
+.outer-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.inner-container {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 1200px;
+  flex-grow: 0;
+  flex-shrink: 1;
+  align-items: center;
+  margin: 10px;
+  width: 100%;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 10px;
+  margin: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 body {
   background-color: rosybrown;
   line-height: 1.5;
@@ -36,9 +83,6 @@ a:hover{
 }
 
 
-/*.page {*/
-/*  justify-content: center;*/
-/*}*/
 
 .page3 {
   column-count: 3;
@@ -51,16 +95,4 @@ a:hover{
   padding-bottom: 80px;
 
 }
-  /*display: flex;*/
-  /*flex-direction: row;*/
-  /*justify-content: center;*/
-  /*align-items: center;*/
-  /*flex-wrap: wrap;*/
-  /*padding: 15px;*/
-  /*margin: 5px;*/
-  /*width: 100%;*/
-  /*height: fit-content;*/
-  /*border: 1px solid white;*/
-  /*border-radius: 25px;*/
-
 
