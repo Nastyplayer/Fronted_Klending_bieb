@@ -17,17 +17,14 @@ function Blog() {
             {/*<Article className="page">*/}
 
 
-       <Header icon={Img} title=" Wat is duurzame kleding & waarom is het belangrijk? "/>
+            <Header icon={Img} title=" Wat is duurzame kleding & waarom is het belangrijk? "/>
 
 
 
            {/*<div className="home-page-layout">*/}
-<section>
+           <section className="wrapper-container-blog" >
 
-            <p>Maar spullen weggooien is toch helemaal niet duurzaam?</p>
-
-
-            <p>   Een kritische vraag die vaak gesteld wordt wanneer je begint te minimaliseren.
+            <p>Maar spullen weggooien is toch helemaal niet duurzaam? Een kritische vraag die vaak gesteld wordt wanneer je begint te minimaliseren.
                 En het klopt. Weggooien is niet duurzaam en niemand is gebaat bij overvolle containers en bergen afval.
                 De natuur zeker niet. Veel mensen gebruiken dit als argument om hun spullen maar te behouden onder het mom van ‘zonde om weg te gooien.’
                 Terwijl de meest duurzame spullen zijn juist diegene die goed gebruikt worden.
@@ -58,7 +55,6 @@ function Blog() {
                 Geef oude babykleertjes aan een moeder en kindje die het niet zo breed hebben. Zo kan je delen in jouw overvloed en hoeft de ander niks nieuws te kopen.
                 Zij blij, jij blij. Want samen hebben we veel meer dan genoeg.
             </p>
-
 
             <p>
                 WAT IS DUURZAME KLEDING & WAAROM IS HET BELANGRIJK?
@@ -96,6 +92,8 @@ function Blog() {
 
             </p>
            </section>
+
+
              {/*<div className="wrapper-container">*/}
 
             <Article className="article-inner-container">
@@ -118,8 +116,8 @@ function Blog() {
 
             {/*</div>*/}
 
-            {/*<Article className= "page">*/}
-           <section>
+
+           <section className="wrapper-container-blog">
             <p>
                 Wanneer je minimalisme hebt omarmt, koop je minder en wanneer je wel iets koopt, maak je bewuste keuzes.
                 Omdat je bewust bent van je aankopen, ga je ook ‘achter’ de producten kijken. Waar zijn ze van gemaakt,
@@ -142,8 +140,7 @@ function Blog() {
                 Een betere wereld begint wel degelijk bij jezelf.
             </p>
            </section>
-         {/*</div>*/}
-        {/*</Article>*/}
+
         </Main>
 
 

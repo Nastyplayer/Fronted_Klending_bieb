@@ -19,7 +19,7 @@ function Home() {
 
 
 
-         <Article  className="article-inner-container " >
+         <section className="wrapper-container">
             <Header icon={logo} title="The Lady Mayonnaise" />
 
             <p>
@@ -39,15 +39,15 @@ function Home() {
                 Hierbij focussen we vooral op wat dit ons brengt: rust, tevredenheid en meer tijd.
 
             </p>
-         </Article>
+        </section>
 
-
-         <Article  className="article-inner-container" >
+        <section className="wrapper-container">
+         {/*<Article  className="article-inner-container" >*/}
 
 
             <Header icon={berg} title= "Grotere of meer kasten gaan kopen omdat je ruimtegebruik hebt?"/>
             
-            {/*<p className="page">*/}
+
             <p>
                 Eerst cijfers! Jaarlijks kopen wij Nederlanders voor ongeveer 20 miljard euro aan nieuwe kleding.
                 Daarnaast gooien we met z'n allen zo'n 240 miljoen kilo aan textiel weg. En dat is echt zonde.
@@ -60,8 +60,8 @@ function Home() {
             </p>
             <p>Lees <Link to="/Blog">hier</Link> meer over duurzaamheid</p>
             <p>Nog geen account? <Link to="/Subscription">Registreer</Link> je dan eerst.</p>
-         </Article>
-
+         {/*</Article>*/}
+         </section>
 
 
         </Main>
