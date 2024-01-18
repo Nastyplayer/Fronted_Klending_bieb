@@ -13,7 +13,7 @@ function Blog() {
         <>
 
 
-      <Main>
+       <Main className="outer-container">
             {/*<Article className="page">*/}
 
 
@@ -22,7 +22,7 @@ function Blog() {
 
 
            {/*<div className="home-page-layout">*/}
-
+<section>
 
             <p>Maar spullen weggooien is toch helemaal niet duurzaam?</p>
 
@@ -95,11 +95,11 @@ function Blog() {
                 Tegenwoordig zijn er veel wet- en regelgevingen bijgekomen om de werkomstandigheden te verbeteren van de fabrieksarbeiders. Bijvoorbeeld tegen:
 
             </p>
-
+           </section>
              {/*<div className="wrapper-container">*/}
 
-            <Article className="page3">
-                {/*<div className="page3">*/}
+            <Article className="article-inner-container">
+                <div className="page3">
 
                 <p>❀ De enorme snelheid waarmee en hoeveelheid waarin kleding gemaakt wordt.</p>
                 <p>❀ Voor het verbouwen van de grondstoffen is veel water en vaak kunstmest nodig.</p>
@@ -113,11 +113,13 @@ function Blog() {
                 <p>❀ Bij het wassen komen vaak microplastics vrij die in ons water terecht komen.</p>
                 <p>❀ Door trends is bepaalde kleding zo weer uit de mode en heb je weer wat ‘nodig’.</p>
                 <p>❀ Er is zoveel kleding op aarde dat we niet meer weten waar het te moeten laten.</p>
-                {/*</div>*/}
+                </div>
             </Article>
+
             {/*</div>*/}
 
             {/*<Article className= "page">*/}
+           <section>
             <p>
                 Wanneer je minimalisme hebt omarmt, koop je minder en wanneer je wel iets koopt, maak je bewuste keuzes.
                 Omdat je bewust bent van je aankopen, ga je ook ‘achter’ de producten kijken. Waar zijn ze van gemaakt,
@@ -139,6 +141,7 @@ function Blog() {
                 Het omarmen van een minimalistische leefstijl zet een proces in gang waarbij je je bewust wordt van je ecologische voetprint en deze steeds kleiner wil maken.
                 Een betere wereld begint wel degelijk bij jezelf.
             </p>
+           </section>
          {/*</div>*/}
         {/*</Article>*/}
         </Main>

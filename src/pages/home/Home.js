@@ -15,7 +15,7 @@ function Home() {
         <>
 
 
-            <Main >
+        <Main >
 
 
 
