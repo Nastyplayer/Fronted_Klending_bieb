@@ -79,7 +79,10 @@ function ClothingLibrary(){
                     <h1>Onze nieuwe collectie</h1>
 
 
+
+
                     <section className="wrapper-container-library">
+
                     {/*<Article className="article-inner-container">*/}
                     <div className="page3">
 
@@ -99,7 +102,7 @@ function ClothingLibrary(){
                     >come visit us
                     </Button>
                     {/*</Article>*/}
-                     </section>
+                    </section>
 
                 </Main>
 

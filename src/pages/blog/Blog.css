@@ -4,7 +4,7 @@
 }
 
 
-.wrapper-container {
+.wrapper-container-blog {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -14,4 +14,8 @@
     width: 100%;
     /*border: 1px solid white;*/
     /*border-radius: 25px;*/
+}
+.article-inner-container{
+    max-width:  1100px;
+    padding-left: 40px;
 }

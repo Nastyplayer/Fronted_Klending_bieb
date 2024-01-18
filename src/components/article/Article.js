@@ -2,7 +2,7 @@ import "./Article.css";
 import React from "react";
 
 
-function Article({title, message, children, stylingTitle, page3, stylingArticle}) {
+function Article({children}) {
 
     return(
             <main className="article-outer-container">
