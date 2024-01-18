@@ -3,7 +3,7 @@ body {
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
+    background-image: linear-gradient( rgba(188, 143, 143, 0.97), rgba(188, 143, 143, 0.96)),url("https://yt3.googleusercontent.com/47DxnLGtSiqm-o5vbWDHK9HkjrWsBPXE6CMkiM3Yw96Vbs9KJTfZyO6-DKP0GPG3yIQY_6Mn=s900-c-k-c0x00ffffff-no-rj");
 }
 
 code {
