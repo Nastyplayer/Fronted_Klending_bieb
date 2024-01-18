@@ -7,6 +7,7 @@ import axios from "axios";
 import Button from "../../components/button/Button";
 import Main from "../../components/main/Main";
 import Footer from "../../components/footer/Footer";
+import Article from "../../components/article/Article";
 
 
 
@@ -77,7 +78,10 @@ function ClothingLibrary(){
 
                     <h1>Onze nieuwe collectie</h1>
 
-                    <div className="article-inner-container">
+
+                    <section className="wrapper-container-library">
+                    {/*<Article className="article-inner-container">*/}
+                    <div className="page3">
 
                         {uploads.map((img) => {
                            return (
@@ -87,17 +91,15 @@ function ClothingLibrary(){
                                     </>
                             )
                                 })}
-
                     </div>
 
                     <Button
                         type="button"
                         onClick={handleClick}
-
-                    >come visit us and enjoy
-
+                    >come visit us
                     </Button>
-
+                    {/*</Article>*/}
+                     </section>
 
                 </Main>
 
