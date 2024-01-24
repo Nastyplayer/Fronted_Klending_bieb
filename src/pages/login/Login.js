@@ -53,11 +53,11 @@ function Login() {
         <Header icon={pic}/>
 
           <Main>
-            <ul className="form-xtra">
+              <form className="form-xtra"
+                     onSubmit={handleSubmit}>
 
-            <form onSubmit={handleSubmit}>
-
-                <h1>Inloggen</h1>
+               <fieldset>
+                <legend><h1>Inloggen</h1></legend>
 
                 <label htmlFor="username">
                     <input id="username"
@@ -83,14 +83,17 @@ function Login() {
                     Inloggen
                 </Button>
 
+                   <p>Nog geen account? <Link to="/Subscription">Registreer</Link> je dan eerst.</p>
 
+
+               </fieldset>
 
 
             </form>
 
 
-                <p>Nog geen account? <Link to="/Subscription">Registreer</Link> je dan eerst.</p>
-        </ul>
+
+
           </Main>
 
            <Footer description="Copyright © 2023 LaBruja. Alle rechten voorbehouden."

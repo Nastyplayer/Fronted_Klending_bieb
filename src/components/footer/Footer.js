@@ -9,7 +9,7 @@ function Footer( { description, children }) {
     return(
         <footer className="footer-outer-container">
             <article className="footer-inner-container">
-                <div className="footer-content-container">
+                {/*<div className="footer-content-container">*/}
                     {/*<h4 className="footer-message">{message}</h4>*/}
                     <p className="footer-description">{description}</p>
 
@@ -18,7 +18,7 @@ function Footer( { description, children }) {
                         {children}
 
 
-                </div>
+                {/*</div>*/}
             </article>
         </footer>
     );
