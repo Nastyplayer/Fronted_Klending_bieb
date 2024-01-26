@@ -17,12 +17,12 @@ body {
 
 
 .form-xtra {
-    max-width:320px;
+    max-width:300px;
     /*margin-bottom: 80px;*/
     flex-direction: column;
     display: inline-block;
     /*flex-grow: 1;*/
-    /*height: 90vw;*/
+    /*height: 30vw;*/
     /*align-items:flex-start;*/
     /*border: 1rem solid red;*/
 
@@ -50,7 +50,7 @@ fieldset {
     margin-left: 16px ;
     margin-right: 10px;
 
-    height: 25vw;
+    /*height: 25vw;*/
     /*flex-grow: 1;*/
     /*alignment: top;*/
 

@@ -4,8 +4,32 @@
 /*}*/
 
 
-.wrapper-container-sub {
-display: flex;
-    /*column-count: 2;*/
-    flex-direction: row;
+/*.wrapper-container-sub {*/
+/*display: flex;*/
+/*    !*column-count: 2;*!*/
+/*    flex-direction: row;*/
+/*}*/
+
+
+.outer-container-sub {
+    display: flex;
+
+}
+.inner-container-sub{
+    display: flex;
+    padding-bottom: 120px;
+    justify-content: center;
+    flex-wrap: wrap;
+    /*!*align-items: stretch;*!*/
+    width: 90vw;
+    /*border: 1rem solid red;*/
+}
+
+.cotton-1 {
+    display: flex;
+    justify-content: space-evenly;
+    flex-grow: 1;
+  padding-bottom: 45px;
+    flex-wrap: wrap;
+    /*border: 1rem solid red;*/
 }
