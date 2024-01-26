@@ -8,6 +8,7 @@ import silk from "../../assets/silk.jpg";
 import Main from "../../components/main/Main";
 import Footer from "../../components/footer/Footer";
 import Button from "../../components/button/Button";
+import './Login.css';
 
 
 
@@ -63,7 +64,7 @@ function Login() {
 
 
                <fieldset>
-                <legend><h1>Inloggen</h1></legend>
+                <legend>Inloggen</legend>
 
 
                 <label htmlFor="username">

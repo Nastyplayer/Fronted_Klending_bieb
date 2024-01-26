@@ -17,12 +17,14 @@ body {
 
 
 .form-xtra {
-    max-width:300px;
+    max-width:320px;
     /*margin-bottom: 80px;*/
     flex-direction: column;
     display: inline-block;
-    /*flex-direction: row;*/
-
+    /*flex-grow: 1;*/
+    /*height: 90vw;*/
+    /*align-items:flex-start;*/
+    /*border: 1rem solid red;*/
 
 }
 
@@ -48,5 +50,14 @@ fieldset {
     margin-left: 16px ;
     margin-right: 10px;
 
-}
+    height: 25vw;
+    /*flex-grow: 1;*/
+    /*alignment: top;*/
 
+}
+legend {
+    font-size: 40px;
+    margin-left: 17px ;
+    margin-bottom: 40px;
+    /*padding-left: 100px;*/
+}
