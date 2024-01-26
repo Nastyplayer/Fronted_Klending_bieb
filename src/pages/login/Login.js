@@ -53,7 +53,7 @@ function Login() {
 <>
     <Main className="outer-container-login">
         <div className="inner-container-login">
-        <div className="cotton">
+        <div className="silk-1">
             <img src={silk}/>
 
 

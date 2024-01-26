@@ -63,10 +63,12 @@
  import Header from "../../components/header/Header";
  import {useForm} from "react-hook-form";
  import Input from "../../components/input/Input";
- import pic from "../../assets/cotton.jpg";
+ import cotton from "../../assets/cotton.jpg";
  import Main from "../../components/main/Main";
  import Footer from "../../components/footer/Footer";
  import Button from "../../components/button/Button";
+ import './Subscription.css';
+
 
  function Subscription() {
 
@@ -92,17 +94,20 @@
      return (
       <>
          {/*<p className="page2">*/}
-          <section className="wrapper-container-sub">
-            {/*<Main className="content-container">*/}
-             <Header icon={pic}/>
+          <Main className="outer-container-sub">
+            <div className="inner-container-sub">
+            <div className="cotton-1">
+
+             <img src={cotton}/>
 
 
 
                  <form className="form-xtra"
                        onSubmit={handleSubmit(registerUser)}>
 
+
                      <fieldset>
-                     <legend> <h1>Registreren</h1></legend>
+                     <legend>Registreren</legend>
 
                          <label htmlFor="details-email">
                              E-mailadres :
@@ -173,11 +178,11 @@
                      </fieldset>
 
                  </form>
+                </div>
 
+              </div>
 
-</section>
-
-            {/*</Main>*/}
+            </Main>
 
          <Footer description="Copyright © 2023 Javier Talavera. Alle rechten voorbehouden."
          />
