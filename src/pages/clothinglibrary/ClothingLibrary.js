@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import Header from '../../components/header/Header';
-import './Clothing Library.css';
+import './ClothingLibrary.css';
 import {useNavigate} from "react-router-dom";
 import cien from "../../assets/Cien.webp";
 import axios from "axios";
@@ -64,7 +64,9 @@ function ClothingLibrary(){
                 <>
                 <Main className="outer-container">
 
-                    <Header icon={cien} title="Clothing Library"/>
+                    <Header icon={cien} title="ClothingLibrary"/>
+
+                    <section className="wrapper-container-library">
 
 
                     <p>
@@ -75,7 +77,7 @@ function ClothingLibrary(){
                         Maaaar,,, Wat is nou precies duurzame kleding?
                         En wat is het verschil met de normale kleding?
                     </p>
-
+                    </section>
                     <h1>Onze nieuwe collectie</h1>
 
 

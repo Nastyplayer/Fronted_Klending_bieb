@@ -8,27 +8,41 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
+  /*margin-bottom: 50px;*/
   width: 100%;
 }
 
 .inner-container {
   display: flex;
-  flex-direction: column;
+  /*flex-direction: column;*/
   flex-basis: 1200px;
   flex-grow: 0;
   flex-shrink: 1;
-  align-items: center;
-  margin: 110px;
+
+  /*margin-bottom: 90px;*/
+  /*align-items: center;*/
+  margin: 90px;
   width: 100%;
+  /*flex-direction: row;*/
+  /*flex-wrap: wrap;*/
 }
 
 .content-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  /*column-count: 2;*/
+  /*display: flex;*/
+  flex-direction: row;
+  /*justify-content: center;*/
   flex-wrap: wrap;
-  padding: 10px;
-  margin: 10px;
+  /*padding: 10px;*/
+  /*margin: 10px;*/
+
+
+
+/*margin-top: -80px;*/
+/*  margin-bottom: 50px;*/
+/*  padding: 10px; by  display flex gaat library klaggen*/
+
 }
 
 
@@ -45,11 +59,11 @@
 
 
 
-body {
-  background-color: rosybrown;
-  line-height: 1.5;
-  color: white;
-}
+/*body {*/
+/*  !*background-color: rosybrown;*!*/
+/*  line-height: 1.5;*/
+/*  color: white;*/
+/*}*/
 
 p {
   font-family: Arial, sans-serif;
@@ -90,9 +104,9 @@ a:hover{
 /*}*/
 
 
-.page2 {
-  column-count: 2;
-  padding-bottom: 80px;
+/*.page2 {*/
+/*  column-count: 2;*/
+/*  padding-bottom: 80px;*/
 
-}
+/*}*/
 

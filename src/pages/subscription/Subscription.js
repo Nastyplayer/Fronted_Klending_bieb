@@ -90,9 +90,10 @@
          }
      }
      return (
-        <>
-         <p className="page2">
-
+      <>
+         {/*<p className="page2">*/}
+          <section className="wrapper-container-sub">
+            {/*<Main className="content-container">*/}
              <Header icon={pic}/>
 
 
@@ -174,9 +175,9 @@
                  </form>
 
 
+</section>
 
-
-         </p>
+            {/*</Main>*/}
 
          <Footer description="Copyright © 2023 Javier Talavera. Alle rechten voorbehouden."
          />

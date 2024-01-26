@@ -6,7 +6,7 @@ function Main({ children }) {
         <main className="outer-container">
             <article className="inner-container">
                 <div className="content-container">
-
+                     {/*// page2={page2}>*/}
                     {children}
 
                 </div>

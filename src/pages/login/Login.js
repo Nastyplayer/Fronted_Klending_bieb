@@ -2,9 +2,9 @@
 import {Link, useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../context/AuthContext';
 import React, {useContext, useState} from 'react';
-import Header from '../../components/header/Header';
+
 import axios from "axios";
-import pic from "../../assets/silk.jpg";
+import silk from "../../assets/silk.jpg";
 import Main from "../../components/main/Main";
 import Footer from "../../components/footer/Footer";
 import Button from "../../components/button/Button";
@@ -49,15 +49,22 @@ function Login() {
 
     return (
 
-        < p className="page2"  >
-        <Header icon={pic}/>
+<>
+    <Main className="outer-container-login">
+        <div className="inner-container-login">
+        <div className="cotton">
+            <img src={silk}/>
 
-          <Main>
+
+
               <form className="form-xtra"
                      onSubmit={handleSubmit}>
 
+
+
                <fieldset>
                 <legend><h1>Inloggen</h1></legend>
+
 
                 <label htmlFor="username">
                     <input id="username"
@@ -91,14 +98,16 @@ function Login() {
 
             </form>
 
+        </div>
+        </div>
+</Main>
 
-
-
-          </Main>
 
            <Footer description="Copyright © 2023 LaBruja. Alle rechten voorbehouden."
                />
-        </p>
+
+</>
+
     );
 
 }

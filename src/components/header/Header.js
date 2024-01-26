@@ -1,7 +1,7 @@
 import React from 'react';
 import './Header.css';
 
-function Header({  icon, title }) {
+function Header({  icon, title , form}) {
     return (
         <header className="header-outer-container">
             <div className="header-inner-container">
@@ -9,6 +9,7 @@ function Header({  icon, title }) {
 
            {/*<p> className="first-title"</p>*/}
             <img src={icon} alt={title} />
+              {/*<div > form </div>*/}
             <h1>{title}</h1>
 
                 {/*</div>*/}
