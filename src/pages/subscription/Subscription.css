@@ -2,3 +2,10 @@
 /*    max-width:1000px;*/
 /*    margin: 60px auto;*/
 /*}*/
+
+
+.wrapper-container-sub {
+display: flex;
+    /*column-count: 2;*/
+    flex-direction: row;
+}

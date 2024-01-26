@@ -4,30 +4,25 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-image: linear-gradient( rgba(188, 143, 143, 0.97), rgba(188, 143, 143, 0.96)),url("https://yt3.googleusercontent.com/47DxnLGtSiqm-o5vbWDHK9HkjrWsBPXE6CMkiM3Yw96Vbs9KJTfZyO6-DKP0GPG3yIQY_6Mn=s900-c-k-c0x00ffffff-no-rj");
+
+    line-height: 1.5;
+    color: white;
+
 }
 
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-
-
-
-
-
-
-
-
-/*body {*/
-/*    margin: 0;*/
+/*code {*/
+/*    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',*/
+/*    monospace;*/
 /*}*/
 
 
 .form-xtra {
     max-width:300px;
+    /*margin-bottom: 80px;*/
     flex-direction: column;
     display: inline-block;
+    /*flex-direction: row;*/
+
 
 }
 

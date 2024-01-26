@@ -4,7 +4,7 @@ import Account from './pages/account/Account';
 import Blog from './pages/blog/Blog';
 import Home from './pages/home/Home';
 import Admin from './pages/admin/Admin';
-import ClothingLibrary from './pages/clothing library/Clothing Library';
+import ClothingLibrary from './pages/clothinglibrary/ClothingLibrary';
 import Navigation from './components/navigation/Navigation';
 import {Routes, Route, Navigate} from 'react-router-dom';
 import Login from "./pages/login/Login";
