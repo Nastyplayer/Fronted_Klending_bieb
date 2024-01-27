@@ -5,10 +5,14 @@ import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {useForm} from "react-hook-form";
 import Header from "../../components/header/Header";
-import pic from "../../assets/hilado-en-huso.jpg";
+import hilado from "../../assets/hilado-en-huso.jpg";
 import Main from "../../components/main/Main";
 import Footer from "../../components/footer/Footer";
 import Button from "../../components/button/Button";
+import './Account.css';
+import silk from "../../assets/silk.jpg";
+
+
 
 function Account() {
 
@@ -155,13 +159,19 @@ function Account() {
     return (
 
 
-       < p className="page2">
+       // < p className="page2">
+       //
+       //
+       //          <Header icon={pic} />
+       //      <Main>
+        <>
+        <Main className="outer-container-account">
+            <div className="inner-container-account">
+                <div className="hilado-1">
+                                 <img src={hilado}/>
 
 
-                <Header icon={pic} />
-            <Main>
-
-            <ul className="form-xtra">
+            <form className="form-xtra">
 
                 <label htmlFor="name">
 
@@ -172,7 +182,7 @@ function Account() {
 
 
                         <fieldset>
-                            <legend><h2>Item afbelding uploaden:</h2></legend>
+                            <legend>Item afbelding uploaden:</legend>
 
                             <form onSubmit={sendImage}>
                                 <label htmlFor="item-image">
@@ -254,7 +264,7 @@ function Account() {
 
 
                 <fieldset>
-                    <legend><h2>Reserveren van Items</h2></legend>
+                    <legend>Reserveren van Items</legend>
 
                     <label htmlFor="Items-field">Item
                         <select
@@ -287,12 +297,15 @@ function Account() {
 
                     <Button id="button-box" className="button" type="button" onClick={Order}>Verstuur</Button>
                 </fieldset>
-            </ul>
+            </form>
+                </div>
+            </div>
+
             </Main>
 
             <Footer description="Copyright © 2023 LaBruja. Alle rechten voorbehouden."
             />
-       </p>
+       </>
     );
 }
 
