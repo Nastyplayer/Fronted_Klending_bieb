@@ -20,9 +20,12 @@
 
 .hilado-1 {
     display: flex;
-    justify-content: space-evenly;
+    /*justify-content: space-evenly;*/
     flex-grow: 1;
     padding-bottom: 45px;
     flex-wrap: wrap;
+    /*align-items:center;*/
+
+    /*margin-left: 15px;*/
     /*border: 1rem solid red;*/
 }

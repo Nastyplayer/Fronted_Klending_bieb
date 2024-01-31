@@ -167,8 +167,8 @@ function Account() {
         <>
         <Main className="outer-container-account">
             <div className="inner-container-account">
-                <div className="hilado-1">
-                                 <img src={hilado}/>
+            <div className="hilado-1">
+                 <img src={hilado}/>
 
 
             <form className="form-xtra">
@@ -257,13 +257,14 @@ function Account() {
                             </form>
                         </fieldset>
 
+
                     </div>
 
                 </label>
 
 
 
-                <fieldset>
+                    <fieldset>
                     <legend>Reserveren van Items</legend>
 
                     <label htmlFor="Items-field">Item
@@ -296,9 +297,9 @@ function Account() {
                     </label>
 
                     <Button id="button-box" className="button" type="button" onClick={Order}>Verstuur</Button>
-                </fieldset>
+                    </fieldset>
             </form>
-                </div>
+            </div>
             </div>
 
             </Main>

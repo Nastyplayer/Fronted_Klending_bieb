@@ -413,75 +413,78 @@ function Admin() {
     return (
 
         <>
-        <Main className="page">
+        <Main className="outer-container-admin">
+          <div className="inner-container-admin">
+              <div className="page_admin">
+        {/*<Main className="page">*/}
             {(isAuth && user.authority === "ROLE_USER" && !admin) &&
                 <article className="page" > <h1>Sorry, go back to your<Link to="/Account"> account </Link>  😵</h1>
                     <h2>Only for Administrator </h2>
 
-                    <Header icon={pic}/>
+                    {/*<Header icon={pic}/>*/}
                 </article>}
             {(isAuth && user.authority === "ROLE_ADMIN" && !admin) &&
 
                 <article className="page2">
 
 
+                {/*//////////   accounts lijst/////////////////////////////////////////////////////////////////////////*/}
 
-{/*//////////   accounts lijst/////////////////////////////////////////////////////////////////////////*/}
+                <fieldset>
+            {/*<legend>className="margin-top2">Lijst van accounts</legend>*/}
+                <legend>Lijst van accounts</legend>
 
-                    <fieldset>
-                        {/*<legend>className="margin-top2">Lijst van accounts</legend>*/}
-                        <legend>Lijst van accounts</legend>
+                <h3>id - username - email - comment</h3>
+                <select
+                name="accounts"
+                id="userInfo"
+                type="list"
+                value={accountsList}
+                onChange={(e) => setAccountsList(e.target.value)}
+                >
+                <option>selecteer een username</option>
+            {accounts.map((list) => {
+                return <option key={list.id}
+                value={list.userInfo}>
+            {list.id} - {list.userInfo} - {list.email} - {list.comment}
 
-                        <h3>id - username - email - comment</h3>
-                        <select
-                            name="accounts"
-                            id="userInfo"
-                            type="list"
-                            value={accountsList}
-                            onChange={(e) => setAccountsList(e.target.value)}
-                        >
-                            <option>selecteer een username</option>
-                            {accounts.map((list) => {
-                                return <option key={list.id}
-                                               value={list.userInfo}>
-                                    {list.id} - {list.userInfo} - {list.email} - {list.comment}
+                </option>
+            })}
 
-                                </option>
-                            })}
+                </select>
+                </fieldset>
 
-                        </select>
-                    </fieldset>
 
 
 
+            {/*//////////  Orders lijst/////////////////////////////////////////////////////////////////////////*/}
 
- {/*//////////  Orders lijst/////////////////////////////////////////////////////////////////////////*/}
+                <fieldset>
+            {/*<legend>className="margin-top2">Lijst  van orders</legend>*/}
+                <legend>Lijst  van orders</legend>
 
-                    <fieldset>
-                        {/*<legend>className="margin-top2">Lijst  van orders</legend>*/}
-                        <legend>Lijst  van orders</legend>
+                <h3>order id  en items  </h3>
+                <select
+                name="orders"
+                id="itemInfo"
+                type="list"
+                value={ordersList}
+                onChange={(e) => setOrdersList(e.target.value)}
+                >
+                <option>selecteer een order</option>
+            {orders.map((list) => {
+                return <option key={list.id}
+                value={list.itemInfo}>
+                Order id {list.id}--{list.itemInfo}
+                </option>
+            })}
 
-                        <h3>order id  en items  </h3>
-                        <select
-                            name="orders"
-                            id="itemInfo"
-                            type="list"
-                            value={ordersList}
-                            onChange={(e) => setOrdersList(e.target.value)}
-                        >
-                            <option>selecteer een order</option>
-                            {orders.map((list) => {
-                                return <option key={list.id}
-                                               value={list.itemInfo}>
-                                    Order id {list.id}--{list.itemInfo}
-                                </option>
-                            })}
+                </select>
 
-                        </select>
 
 
+                </fieldset>
 
-                    </fieldset>
 
 
 
@@ -489,297 +492,299 @@ function Admin() {
 
 
 
+            {/*//////////////// LIJST VAN USERS  /////////////////////////////////////////////////////////////////////////////////*/}
 
-  {/*//////////////// LIJST VAN USERS  /////////////////////////////////////////////////////////////////////////////////*/}
 
 
 
+                <fieldset>
+            {/*<legend>className="margin-top2">Lijst van users</legend>*/}
+                <legend>Lijst van users</legend>
 
-                    <fieldset>
-                        {/*<legend>className="margin-top2">Lijst van users</legend>*/}
-                        <legend>Lijst van users</legend>
-
-                        <h3> username - email </h3>
-                        <select
-                            name="users"
-                            id="username"
-                            type="list"
-                            value={singleUser}
-                            onChange={(e) => setSingleUser(e.target.value)}
-                        >
-                            <option>selecteer een username</option>
-                            {users.map((user) => {
-                                return <option key={user.id}
-                                               value={user.username}>
-                                    {user.username} - {user.email}
-
-                                </option>
-                            })}
-                        </select>
-                        <Button id="button-box" className="button" type="submit"
-
-                                onClick={(e) => deleteUserFunction(e, singleUser)}>
-                            Verwijderen van User
-                        </Button>
-
-                    </fieldset>
-
-
-
-
-   {/*////////////////////change user///////////////////////////////////////////////////////////////////////////////////////*/}
-
-
-                    <section>
-                        <fieldset>
-                            {/*<legend>className="margin-top2">Aanpassen van user</legend>*/}
-                            <legend>Aanpassen van user</legend>
-                            <select
-                                className="user-change"
-                                onChange={e => setUserIdToPatch(e.currentTarget.value)}
-                            >
-                                <option>selecteer een username</option>
-                                {users.map(user => (
-                                    <option
-                                        key={user.username}
-                                        value={user.username}
-                                    >
-                                        {user.username}-{user.email}
-                                    </option>
-                                ))}
-                            </select>
-
-
-                            <form
-                                key={1}
-                                className="margin-top2"
-                                onSubmit={handleSubmit4(patchUser)}
-                            >
-                                <Input
-                                    labelText="wachtwoord"
-                                    type="text"
-                                    name="password"
-                                    className="input_text"
-                                    register={register3}
-                                    errors={errors3}
-                                />
-
-                                <Input
-                                    labelText="emailadres"
-                                    type="email"
-                                    name="emailadress"
-                                    className="input_text"
-                                    register={register4}
-                                    errors={errors4}
-                                />
-                        <Button
-                                    type="submit"
-                                    className="button-ellips"
-                                >
-                                    versturen
-                                </Button>
-
-                            </form>
-                        </fieldset>
-                    </section>
-
-     {/*change subscription ///////////////////////////////////////////////////////////////////////////////////////*/}
-                    <section>
-
-                        <fieldset>
-                            {/*<legend>className="margin-top2">Lijst en aanpassen van subscriptions</legend>*/}
-                            <legend>Lijst en aanpassen van subscriptions</legend>
-
-                            <select
-                                className="subscription-change"
-                                onChange={e => setSubscriptionIdToPatch(e.currentTarget.value)}
-                            >
-                                <option>selecteer subscription</option>
-                                {subscriptions.map(list => (
-                                    <option
-                                        key={list.id}
-                                        value={list.id}
-                                    >{list.typeSubscription}-id nr: {list.id}- {list.subscriptionStatus}-
-                                        {list.expirationDate}
-                                    </option>
-                                ))}
-                            </select>
-
-
-                            <form
-                                key={3}
-                                className="margin-top3"
-                                onSubmit={handleSubmit3(patchSubscription)}
-                            >
-                                <Input
-                                    labelText="SubscriptionStatus"
-                                    type="text"
-                                    name="Status"
-                                    className="input_text"
-                                    register={register5}
-                                    errors={errors5}
-
-                                />
-
-                                <Input
-                                    labelText="expirationDate"
-                                    type="date"
-                                    name="expirationDate"
-                                    className="input_text"
-                                    register={register6}
-                                    errors={errors6}
-
-                                />
-                                <Input labelText="typeSubscription"
-                                       type="text"
-                                       name="typeSubscriptiono"
-
-                                       className="input_text"
-                                       register={register}
-                                       errors={errors}
-
-
-                                />
-
-                                <Button
-                                    type="submit"
-                                    className="button-ellips"
-                                >
-                                    Aanpassen
-                                </Button>
-
-
-                            </form>
-                        </fieldset>
-                    </section>
-
-
-
-
-
-   {/*Items lijst/////////////////////////////////////////////////////////////////////////.*/}
-                    <fieldset>
-                        {/*<legend>className="margin-top2">Lijst van items</legend>*/}
-                        <legend>Lijst van items</legend>
-
-                        <h3>Tags - item Info - item Id</h3>
-                        <select
-                            name="items"
-                            id="tags"
-                            type="list"
-                            value={toDelete}
-                            onChange={(e) => setToDelete(e.target.value)}
-                        >
-                            <option>selecteer een item</option>
-                            {items.map((item) => {
-                                return <option key={item.id}
-                                               value={item.id}> {item.tags}-{item.nameInfo}--item id/{item.id}
-                                </option>
-                            })}
-                        </select>
-
-
-                        <Button id="button-box" className="button" type="submit"
-
-                                onClick={(e) => deleteItemFunction(e, toDelete)}>
-                            Verwijderen van Item
-                        </Button>
-
-                    </fieldset>
-
-
-
-
-
-    {/*////////////////////mail/////////////////////////////////////////////////////////////////////////.*/}
-
-                    <section>
-                        <fieldset>
-                            {/*<legend>className="margin-top2">Bericht versturen</legend>*/}
-
-                            <legend>Bericht versturen</legend>
-                            <form
-                                key={2}
-                                onSubmit={handleSubmit2(emailUserFunction)}
-                            >
-                                <div className="margin-bottom2">
-
-
-                                    <label htmlFor="recipient">
-                                        Email naar:
-                                        <select
-                                            className="text_select"
-                                            onChange={e => setUserIdToEmail(e.target.value)}
-                                        >
-                                            <option>selecteer een emailadres</option>
-                                            {users.map((user) => {
-                                                return (
-                                                    <option
-                                                        key={user.username}
-
-                                                    >
-                                                        {user.email}
-                                                    </option>
-                                                )
-                                            })}
-                                        </select>
-                                    </label>
-                                </div>
-
-                                <Input
-                                    id="subject"
-                                    labelText="Onderwerp:"
-                                    type="text"
-                                    name="subject"
-                                    className="input_text"
-                                    placeholder="onderwerp"
-                                    validationRules={{
-                                        required: {
-                                            value: true,
-                                            message: 'Dit veld is verplicht',
-                                        }
-                                    }}
-
-                                    register={register7}
-                                    errors={errors7}
-                                />
-                                {errors7.subject && <p>{errors7.subject.message}</p>}
-
-
-                                <div className="textarea_field">
-                                    <label htmlFor="textarea_text">
-                                        Bericht:
-                                        <textarea
-                                            className="textarea_text"
-                                            name="msgBody"
-                                            rows="4"
-                                            cols="50"
-                                            placeholder="laat hier je bericht"
-                                            {...register2("msgBody", {
-                                                required: {
-                                                    maxLength: "500",
-                                                    message: 'Maximaal 500 karakters'
-                                                }
-                                            })}
-                                            errors={errors2}
-                                        >
-                        {errors2.msgBody && <p>{errors2.msgBody.message}</p>}
-                            </textarea>
-                                    </label>
-                                </div>
-
-                                <Button
-                                    type="submit"
-                                >
-                                    versturen
-                                </Button>
-
-                                {succesSendMail && <h4 className="margin-top1"> Email is verzonden.</h4>}
-                            </form>
-                        </fieldset>
-                    </section>
-
-                </article>}
+                <h3> username - email </h3>
+                <select
+                name="users"
+                id="username"
+                type="list"
+                value={singleUser}
+                onChange={(e) => setSingleUser(e.target.value)}
+                >
+                <option>selecteer een username</option>
+            {users.map((user) => {
+                return <option key={user.id}
+                value={user.username}>
+            {user.username} - {user.email}
+
+                </option>
+            })}
+                </select>
+                <Button id="button-box" className="button" type="submit"
+
+                onClick={(e) => deleteUserFunction(e, singleUser)}>
+                Verwijderen van User
+                </Button>
+
+                </fieldset>
+
+
+
+
+            {/*////////////////////change user///////////////////////////////////////////////////////////////////////////////////////*/}
+
+
+                <section>
+                <fieldset>
+            {/*<legend>className="margin-top2">Aanpassen van user</legend>*/}
+                <legend>Aanpassen van user</legend>
+                <select
+                className="user-change"
+                onChange={e => setUserIdToPatch(e.currentTarget.value)}
+                >
+                <option>selecteer een username</option>
+            {users.map(user => (
+                <option
+                key={user.username}
+                value={user.username}
+                >
+            {user.username}-{user.email}
+                </option>
+                ))}
+                </select>
+
+
+                <form
+                key={1}
+                className="margin-top2"
+                onSubmit={handleSubmit4(patchUser)}
+                >
+                <Input
+                labelText="wachtwoord"
+                type="text"
+                name="password"
+                className="input_text"
+                register={register3}
+                errors={errors3}
+                />
+
+                <Input
+                labelText="emailadres"
+                type="email"
+                name="emailadress"
+                className="input_text"
+                register={register4}
+                errors={errors4}
+                />
+                <Button
+                type="submit"
+                className="button-ellips"
+                >
+                versturen
+                </Button>
+
+                </form>
+                </fieldset>
+                </section>
+
+            {/*change subscription ///////////////////////////////////////////////////////////////////////////////////////*/}
+                <section>
+
+                <fieldset>
+            {/*<legend>className="margin-top2">Lijst en aanpassen van subscriptions</legend>*/}
+                <legend>Lijst en aanpassen van subscriptions</legend>
+
+                <select
+                className="subscription-change"
+                onChange={e => setSubscriptionIdToPatch(e.currentTarget.value)}
+                >
+                <option>selecteer subscription</option>
+            {subscriptions.map(list => (
+                <option
+                key={list.id}
+                value={list.id}
+                >{list.typeSubscription}-id nr: {list.id}- {list.subscriptionStatus}-
+            {list.expirationDate}
+                </option>
+                ))}
+                </select>
+
+
+                <form
+                key={3}
+                className="margin-top3"
+                onSubmit={handleSubmit3(patchSubscription)}
+                >
+                <Input
+                labelText="SubscriptionStatus"
+                type="text"
+                name="Status"
+                className="input_text"
+                register={register5}
+                errors={errors5}
+
+                />
+
+                <Input
+                labelText="expirationDate"
+                type="date"
+                name="expirationDate"
+                className="input_text"
+                register={register6}
+                errors={errors6}
+
+                />
+                <Input labelText="typeSubscription"
+                type="text"
+                name="typeSubscriptiono"
+
+                className="input_text"
+                register={register}
+                errors={errors}
+
+
+                />
+
+                <Button
+                type="submit"
+                className="button-ellips"
+                >
+                Aanpassen
+                </Button>
+
+
+                </form>
+                </fieldset>
+                </section>
+
+
+
+
+
+            {/*Items lijst/////////////////////////////////////////////////////////////////////////.*/}
+                <fieldset>
+            {/*<legend>className="margin-top2">Lijst van items</legend>*/}
+                <legend>Lijst van items</legend>
+
+                <h3>Tags - item Info - item Id</h3>
+                <select
+                name="items"
+                id="tags"
+                type="list"
+                value={toDelete}
+                onChange={(e) => setToDelete(e.target.value)}
+                >
+                <option>selecteer een item</option>
+            {items.map((item) => {
+                return <option key={item.id}
+                value={item.id}> {item.tags}-{item.nameInfo}--item id/{item.id}
+                </option>
+            })}
+                </select>
+
+
+                <Button id="button-box" className="button" type="submit"
+
+                onClick={(e) => deleteItemFunction(e, toDelete)}>
+                Verwijderen van Item
+                </Button>
+
+                </fieldset>
+
+
+
+
+
+            {/*////////////////////mail/////////////////////////////////////////////////////////////////////////.*/}
+
+                <section>
+                <fieldset>
+            {/*<legend>className="margin-top2">Bericht versturen</legend>*/}
+
+                <legend>Bericht versturen</legend>
+                <form
+                key={2}
+                onSubmit={handleSubmit2(emailUserFunction)}
+                >
+                <div className="margin-bottom2">
+
+
+                <label htmlFor="recipient">
+                Email naar:
+                <select
+                className="text_select"
+                onChange={e => setUserIdToEmail(e.target.value)}
+                >
+                <option>selecteer een emailadres</option>
+            {users.map((user) => {
+                return (
+                <option
+                key={user.username}
+
+                >
+            {user.email}
+                </option>
+                )
+            })}
+                </select>
+                </label>
+                </div>
+
+                <Input
+                id="subject"
+                labelText="Onderwerp:"
+                type="text"
+                name="subject"
+                className="input_text"
+                placeholder="onderwerp"
+                validationRules={{
+                required: {
+                value: true,
+                message: 'Dit veld is verplicht',
+            }
+            }}
+
+                register={register7}
+                errors={errors7}
+                />
+            {errors7.subject && <p>{errors7.subject.message}</p>}
+
+
+                <div className="textarea_field">
+                <label htmlFor="textarea_text">
+                Bericht:
+                <textarea
+                className="textarea_text"
+                name="msgBody"
+                rows="4"
+                cols="50"
+                placeholder="laat hier je bericht"
+            {...register2("msgBody", {
+                required: {
+                maxLength: "500",
+                message: 'Maximaal 500 karakters'
+            }
+            })}
+                errors={errors2}
+                >
+            {errors2.msgBody && <p>{errors2.msgBody.message}</p>}
+                </textarea>
+                </label>
+                </div>
+
+                <Button
+                type="submit"
+                >
+                versturen
+                </Button>
+
+            {succesSendMail && <h4 className="margin-top1"> Email is verzonden.</h4>}
+                </form>
+                </fieldset>
+                </section>
+
+                 </article>
+            }
+              </div>
+          </div>
         </Main>
             <Footer description="Copyright © 2023 LaBruja. Alle rechten voorbehouden."
             />
