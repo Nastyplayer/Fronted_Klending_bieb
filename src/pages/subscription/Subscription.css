@@ -13,13 +13,13 @@
 
 .outer-container-sub {
     display: flex;
-
+    flex-wrap: wrap;
 }
 .inner-container-sub{
     display: flex;
-    padding-bottom: 120px;
+    padding-bottom: 90px;
     justify-content: center;
-    flex-wrap: wrap;
+
     /*!*align-items: stretch;*!*/
     width: 90vw;
     /*border: 1rem solid red;*/
@@ -29,7 +29,7 @@
     display: flex;
     justify-content: space-evenly;
     flex-grow: 1;
-  padding-bottom: 45px;
-    flex-wrap: wrap;
+    padding-bottom: 45px;
+    /*flex-wrap: wrap;*/
     /*border: 1rem solid red;*/
 }

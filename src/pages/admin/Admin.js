@@ -8,7 +8,7 @@ import {useForm} from "react-hook-form";
 import Button from "../../components/button/Button";
 import {Link, useNavigate} from "react-router-dom";
 import Header from "../../components/header/Header";
-import {Subscription} from "../subscription/Subscription";
+// import {Subscription} from "../subscription/Subscription";
 import {AuthContext} from "../../context/AuthContext";
 import pic from "../../assets/hilado-en-huso.jpg";
 import Main from "../../components/main/Main";
@@ -33,29 +33,29 @@ function Admin() {
     const [toDelete, setToDelete] = useState([]);
     const [items, setItems] = useState([]);
 
-    const [idToDelete, setIdToDelete] = useState("");
+    const [IdToDelete, setIdToDelete] = useState("");
 
     const [orders, setOrders] = useState([]);
     const [ordersList,  setOrdersList] = useState([]);
 
     const [subscriptions, setSubscriptions] = useState([]);
-    const [subscriptionsList, setSubscriptionsList] = useState([]);
+    const [SubscriptionsList, setSubscriptionsList] = useState([]);
 
     const [expirationDate, setExpirationDate] = useState("");
 
     const [typeSubscription, setTypeSubscription] = useState("");
-    const [patchThisSubscription, togglePatchThisSubscription] = useState(false);
+    const [PatchThisSubscription, togglePatchThisSubscription] = useState(false);
     const [subscriptionIdToPatch, setSubscriptionIdToPatch] = useState("");
-   const  subscriptionStatus = "http://localhost:8083/subscriptions/"
+    const  subscriptionStatus = "http://localhost:8083/subscriptions/"
 
 
     //patch user
     const {register, handleSubmit: handleSubmit1, formState: {errors}} = useForm();
-    const [patchThisUser, togglePatchThisUser] = useState(false);
+    const [PatchThisUser, togglePatchThisUser] = useState(false);
     const [userIdToPatch, setUserIdToPatch] = useState("");
 
     const {isAuth, user, email} = useContext(AuthContext);
-    const [admin, toggleAdmin] = useState(false);
+    const [admin] = useState(false);
 
 
     //mail
@@ -69,7 +69,7 @@ function Admin() {
     const { register: register4, handleSubmit: handleSubmit4, reset: resetForm4, formState: { errors: errors4 } } = useForm();
     const { register: register5, handleSubmit: handleSubmit5, reset: resetForm5, formState: { errors: errors5 } } = useForm();
     const { register: register6, handleSubmit: handleSubmit6, reset: resetForm6, formState: { errors: errors6 } } = useForm();
-    const { register: register7, handleSubmit: handleSubmit8, reset: resetForm7, formState: { errors: errors7 } } = useForm();
+    const { register: register7, handleSubmit: handleSubmit7, reset: resetForm7, formState: { errors: errors7 } } = useForm();
     const resetFormFields = () => {
         setSingleUser(""); // Clear the selected user value
         setToDelete([]); // Clear the selected item value
@@ -111,9 +111,11 @@ function Admin() {
                 setUsers(response.data);
 
             } catch (e) {
-                console.error(e);
-            }
-        }
+
+
+                    console.error(e);
+                }
+              }
 
         void fetchUsers();
         return function cleanup() {
@@ -427,7 +429,8 @@ function Admin() {
 {/*//////////   accounts lijst/////////////////////////////////////////////////////////////////////////*/}
 
                     <fieldset>
-                        <legend><h2 className="margin-top2">Lijst van accounts </h2></legend>
+                        {/*<legend>className="margin-top2">Lijst van accounts</legend>*/}
+                        <legend>Lijst van accounts</legend>
 
                         <h3>id - username - email - comment</h3>
                         <select
@@ -455,7 +458,9 @@ function Admin() {
  {/*//////////  Orders lijst/////////////////////////////////////////////////////////////////////////*/}
 
                     <fieldset>
-                        <legend><h2 className="margin-top2">Lijst  van orders </h2></legend>
+                        {/*<legend>className="margin-top2">Lijst  van orders</legend>*/}
+                        <legend>Lijst  van orders</legend>
+
                         <h3>order id  en items  </h3>
                         <select
                             name="orders"
@@ -491,7 +496,9 @@ function Admin() {
 
 
                     <fieldset>
-                        <legend> <h2 className="margin-top2">Lijst van users </h2></legend>
+                        {/*<legend>className="margin-top2">Lijst van users</legend>*/}
+                        <legend>Lijst van users</legend>
+
                         <h3> username - email </h3>
                         <select
                             name="users"
@@ -525,8 +532,8 @@ function Admin() {
 
                     <section>
                         <fieldset>
-                            <legend> <h2 className="margin-top2">Aanpassen van user</h2></legend>
-
+                            {/*<legend>className="margin-top2">Aanpassen van user</legend>*/}
+                            <legend>Aanpassen van user</legend>
                             <select
                                 className="user-change"
                                 onChange={e => setUserIdToPatch(e.currentTarget.value)}
@@ -580,7 +587,8 @@ function Admin() {
                     <section>
 
                         <fieldset>
-                            <legend><h2 className="margin-top2">Lijst en aanpassen van subscriptions</h2></legend>
+                            {/*<legend>className="margin-top2">Lijst en aanpassen van subscriptions</legend>*/}
+                            <legend>Lijst en aanpassen van subscriptions</legend>
 
                             <select
                                 className="subscription-change"
@@ -651,7 +659,8 @@ function Admin() {
 
    {/*Items lijst/////////////////////////////////////////////////////////////////////////.*/}
                     <fieldset>
-                        <legend> <h2 className="margin-top2">Lijst van items </h2></legend>
+                        {/*<legend>className="margin-top2">Lijst van items</legend>*/}
+                        <legend>Lijst van items</legend>
 
                         <h3>Tags - item Info - item Id</h3>
                         <select
@@ -686,8 +695,9 @@ function Admin() {
 
                     <section>
                         <fieldset>
-                            <legend>  <h2 className="margin-top2">Bericht versturen</h2></legend>
+                            {/*<legend>className="margin-top2">Bericht versturen</legend>*/}
 
+                            <legend>Bericht versturen</legend>
                             <form
                                 key={2}
                                 onSubmit={handleSubmit2(emailUserFunction)}
