@@ -20,12 +20,13 @@ body {
     max-width:300px;
     /*margin-bottom: 80px;*/
     flex-direction: column;
-    display: inline-block;
+    /*display: inline-block;*/
+    /*padding-left: 15px;*/
     /*flex-grow: 1;*/
     /*height: 30vw;*/
-    /*align-items:flex-start;*/
+    /*align-items:center;*/
     /*border: 1rem solid red;*/
-
+/*justify-content: center;*/
 }
 
 select {

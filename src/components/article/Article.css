@@ -2,8 +2,10 @@
 
 .page3 {
     column-count: 3;
-    alignment: top;
-    pading-top: 45px;
+    /*alignment: center;*/
+    /*pading-top: 45px;*/
+    /*justify-content: center;*/
+
 }
 
 

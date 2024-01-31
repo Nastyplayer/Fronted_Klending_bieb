@@ -78,13 +78,13 @@ function ClothingLibrary(){
                         En wat is het verschil met de normale kleding?
                     </p>
                     </section>
-                    <h1>Onze nieuwe collectie</h1>
+
 
 
 
 
                     <section className="wrapper-container-library">
-
+                        <h1>Onze nieuwe collectie</h1>
                     {/*<Article className="article-inner-container">*/}
                     <div className="page3">
 
