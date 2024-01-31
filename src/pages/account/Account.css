@@ -2,3 +2,27 @@
     max-width: 2000px;
     margin: 60px auto;
 }
+
+
+.outer-container-account {
+    display: flex;
+
+}
+.inner-container-account{
+    display: flex;
+    padding-bottom: 120px;
+    justify-content: center;
+    flex-wrap: wrap;
+    /*!*align-items: stretch;*!*/
+    width: 90vw;
+    /*border: 1rem solid red;*/
+}
+
+.hilado-1 {
+    display: flex;
+    justify-content: space-evenly;
+    flex-grow: 1;
+    padding-bottom: 45px;
+    flex-wrap: wrap;
+    /*border: 1rem solid red;*/
+}

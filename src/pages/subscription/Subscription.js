@@ -91,6 +91,10 @@
              console.error(e)
          }
      }
+
+
+
+
      return (
       <>
          {/*<p className="page2">*/}
@@ -127,6 +131,8 @@
                          />
                          </label>
 
+
+
                          <label htmlFor="details-gebruikersnaam">
                              Gebruikersnaam :
 
@@ -145,6 +151,7 @@
                              errors={errors}
                          />
                          </label>
+
 
 
                          <label htmlFor="details-wachtwoord">
@@ -168,11 +175,14 @@
                          {!succesRegister &&
                              <h3>Something went wrong 😳 Please contact Administrator - jftalavera@hotmail.com</h3>}
 
+
                          <Button
                              type="submit"
                          >
                              registreren
                          </Button>
+
+
                          <p>Heb je al een account? Je kunt je <Link to="/Login">hier</Link> inloggen.</p>
 
                      </fieldset>
