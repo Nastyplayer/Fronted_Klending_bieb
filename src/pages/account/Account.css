@@ -11,7 +11,7 @@
 .inner-container-account{
     display: flex;
     padding-bottom: 120px;
-    justify-content: center;
+    /*justify-content: space-evenly;*/
     flex-wrap: wrap;
     /*!*align-items: stretch;*!*/
     width: 90vw;
@@ -20,12 +20,12 @@
 
 .hilado-1 {
     display: flex;
-    /*justify-content: space-evenly;*/
+    justify-content: space-evenly;
     flex-grow: 1;
-    padding-bottom: 45px;
+    /*padding-bottom: 45px;*/
     flex-wrap: wrap;
     /*align-items:center;*/
-
+    /*justify-content: center;*/
     /*margin-left: 15px;*/
     /*border: 1rem solid red;*/
 }

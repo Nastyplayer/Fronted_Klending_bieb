@@ -176,8 +176,7 @@ function Account() {
                 <label htmlFor="name">
 
 
-                    <strong>{user.username}</strong>
-                    <strong> {email}</strong>
+                    {/*<strong>{user.username}{email}</strong>*/}
                     <div className="img-row">
 
 
@@ -208,7 +207,7 @@ function Account() {
                                         value={item}
                                         onChange={(e) => setItem(e.target.value)}
                                     >
-                                        <option value="kies ">click hieronder aan wat van toepassing is</option>
+                                        <option value="kies ">click hier aan wat van toepassing is</option>
                                         <option
                                             value=  {item.map}
 
@@ -235,7 +234,7 @@ function Account() {
                                                 <textarea
                                                     id="FileName"
                                                     rows="5"
-                                                    cols="33"
+                                                    cols="29"
                                                     placeholder="vertel ons meer over de item"
                                                     value={textarea}
                                                     onChange={(e) => setTextarea(e.target.value)}
@@ -301,7 +300,8 @@ function Account() {
             </form>
             </div>
             </div>
-
+            {/*{error &&*/}
+            {/*    <p>Er is iets mis gegaan.... neem contact met de Admin.</p>}*/}
             </Main>
 
             <Footer description="Copyright © 2023 LaBruja. Alle rechten voorbehouden."
