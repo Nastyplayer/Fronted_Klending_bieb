@@ -94,7 +94,7 @@ function Admin() {
         async function fetchUsers() {
 
             togglePatchThisUser(false);
-
+            toggleLoading(true);
 
             try {
                 const response = await axios.get('http://localhost:8083/users', {
@@ -111,10 +111,11 @@ function Admin() {
                 setUsers(response.data);
 
             } catch (e) {
-
-
                     console.error(e);
+                // console.error("Error status:", e.response.status);
+                // console.error("Error data:", e.response.data);
                 }
+            toggleLoading(false);
               }
 
         void fetchUsers();
@@ -146,7 +147,7 @@ function Admin() {
             console.error(e);
             toggleError(true);
         }
-        toggleLoading(true);
+        toggleLoading(false);
     }
 
 
@@ -156,7 +157,7 @@ function Admin() {
 
         const controller = new AbortController();
         async function fetchItems() {
-
+            toggleLoading(true);
             try {
                 const response = await axios.get('http://localhost:8083/items', {
 
@@ -173,6 +174,7 @@ function Admin() {
             } catch (e) {
                 console.error(e);
             }
+            toggleLoading(false);
         }
         void fetchItems();
         return function cleanup() {
@@ -209,7 +211,7 @@ function Admin() {
             console.error(e);
             toggleError(true);
         }
-        toggleLoading(true);
+        toggleLoading(false);
     }
 /////  to get all accounts info ////////////////////////////////////////////////////////////////
 
@@ -217,7 +219,7 @@ function Admin() {
 
         const controller = new AbortController();
         async function fetchAccounts() {
-
+            toggleLoading(true);
             try {
                 const response = await axios.get('http://localhost:8083/accounts', {
 
@@ -234,6 +236,7 @@ function Admin() {
             } catch (e) {
                 console.error(e);
             }
+            toggleLoading(false);
         }
 
         void fetchAccounts();
@@ -248,7 +251,7 @@ function Admin() {
 
         const controller = new AbortController();
         async function fetchOrders() {
-
+            toggleLoading(true);
             try {
                 const response = await axios.get('http://localhost:8083/orders', {
 
@@ -265,6 +268,7 @@ function Admin() {
             } catch (e) {
                 console.error(e);
             }
+            toggleLoading(false);
         }
 
         void fetchOrders();
@@ -284,6 +288,7 @@ function Admin() {
         const controller = new AbortController();
         async function fetchSubscriptions() {
             togglePatchThisSubscription(false);
+            toggleLoading(true);
             try {
                 const response = await axios.get('http://localhost:8083/subscriptions', {
 
@@ -301,6 +306,7 @@ function Admin() {
             } catch (e) {
                 console.error(e);
             }
+            toggleLoading(false);
         }
 
         void fetchSubscriptions();
@@ -340,7 +346,7 @@ function Admin() {
             console.error(e);
             toggleError(true);
         }
-        toggleLoading(true);
+        toggleLoading(false);
     }
 
 
@@ -371,7 +377,7 @@ function Admin() {
             console.error(e);
             toggleError(true);
         }
-        toggleLoading(true);
+        toggleLoading(false);
     }
 
 
@@ -413,6 +419,7 @@ function Admin() {
     return (
 
         <>
+            {loading && <p>Loading...</p>}
         <Main className="outer-container-admin">
           <div className="inner-container-admin">
               <div className="page_admin">
@@ -785,6 +792,9 @@ function Admin() {
             }
               </div>
           </div>
+            {error &&
+                <p>Er is iets mis gegaan.... Admin tijd om aan de slag te gaan.</p>}
+
         </Main>
             <Footer description="Copyright © 2023 LaBruja. Alle rechten voorbehouden."
             />

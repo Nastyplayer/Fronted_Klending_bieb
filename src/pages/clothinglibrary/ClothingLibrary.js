@@ -18,7 +18,7 @@ function ClothingLibrary(){
     const navigate = useNavigate();
     const [uploads, setUploads] = useState([]);;
     const [items, setItems] = useState([]);
-
+    const [error, toggleError] = useState(false);
 
     function handleClick() {
         console.log('We gaan direct door naar de subscription pagina!');
@@ -29,6 +29,9 @@ function ClothingLibrary(){
 
     useEffect(() => {
         async function fetchData() {
+            toggleError(false);
+
+
             try {
                 const response = await axios.get(`http://localhost:8083/downloadAllFiles`,{
 
@@ -52,6 +55,7 @@ function ClothingLibrary(){
             } catch (error) {
                 console.log('Error fetching items:', error);
             }
+            toggleError(true);
         }
 
        void fetchData();
@@ -62,6 +66,8 @@ function ClothingLibrary(){
 
      return (
                 <>
+
+
                 <Main className="outer-container">
 
                     <Header icon={cien} title="ClothingLibrary"/>
@@ -105,6 +111,10 @@ function ClothingLibrary(){
                     </Button>
                     {/*</Article>*/}
                     </section>
+
+                    {error &&
+                        <p>Er is iets mis gegaan.... neem contact met de Admin.</p>}
+
 
                 </Main>
 
