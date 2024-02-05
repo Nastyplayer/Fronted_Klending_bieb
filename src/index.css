@@ -34,27 +34,23 @@ select {
     margin: 12px 0 0 0;
 }
 
-/*text {*/
-/*    margin-left: 8px;*/
+text {
+    margin-left: 8px;
 
-/*}*/
+}
 
 
-/*textarea {*/
-/*    margin: 8px 0 0 0;*/
-/*    display: block;*/
-/*}*/
+textarea {
+    margin: 8px 0 0 0;
+    display: block;
+}
 
 fieldset {
     border: 2px solid #ededed;
     border-radius: 4px;
     margin-left: 16px ;
     margin-right: 10px;
-padding:  20px
-    /*height: 25vw;*/
-    /*flex-grow: 1;*/
-    /*alignment: top;*/
-
+    padding:  15px;
 }
 legend {
     font-size: 30px;

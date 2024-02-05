@@ -4,13 +4,12 @@ import {AuthContext} from "../../context/AuthContext";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {useForm} from "react-hook-form";
-import Header from "../../components/header/Header";
 import hilado from "../../assets/hilado-en-huso.jpg";
 import Main from "../../components/main/Main";
 import Footer from "../../components/footer/Footer";
 import Button from "../../components/button/Button";
 import './Account.css';
-import silk from "../../assets/silk.jpg";
+
 
 
 
@@ -19,13 +18,10 @@ function Account() {
 
     const { user} = useContext(AuthContext);
     const navigate = useNavigate();
-    const [email, setEmail] = useState("");
     const [item, setItem] = useState("");
     const [items, setItems] = useState([]);
 
     const [dateInfo, setDateInfo] = useState("");
-
-
     const [ id, setId] = useState(false);
     const [previewUrl, setPreviewUrl] = useState("");
     const [file, setFile] = useState([]);
@@ -35,7 +31,7 @@ function Account() {
 
     const {register: register2, formState: {errors: errors2}, handleSubmit: handleSubmit2} = useForm();
     const [ textarea, setTextarea ] = useState('');
-
+    const [loading, toggleLoading] = useState(false);
 
     const nameInfo = "http://localhost:8083/orders"
 
@@ -47,6 +43,8 @@ function Account() {
         setTextarea(""); // Clear the textarea value
         setDateInfo("");// Add other form fields you want to reset here
     };
+
+
 
 
     /////////////////////////////////////////////////////// // photo
@@ -65,8 +63,8 @@ function Account() {
         console.log(textarea)
         const formData = new FormData();
         formData.append("file", file);
-        //  data.tags = [];
 
+        toggleLoading(true);
         try {
             const response = await axios.post(`http://localhost:8083/items/photo`, formData,
                 {
@@ -85,6 +83,7 @@ function Account() {
             navigate("/Account");
         } catch (e) {
             console.error(e)
+            toggleLoading(false);
         }
 
         return formData
@@ -94,6 +93,8 @@ function Account() {
     const Order = async (e) => {
         e.preventDefault();
         console.log(item, dateInfo, user.username )
+        toggleLoading(true);
+
         try {
 
             const response = await axios.post(`${nameInfo}`, {
@@ -114,6 +115,7 @@ function Account() {
         } catch (e) {
             console.log(e)
         }
+        toggleLoading(false);
     }
 
 
@@ -125,7 +127,7 @@ function Account() {
     useEffect(() => {
         async function fetchItems() {
             const token = localStorage.getItem('token')
-
+            toggleLoading(true);
 
             try {
 
@@ -148,7 +150,7 @@ function Account() {
                 console.error(e);
 
             }
-
+            toggleLoading(false);
         }
         void  fetchItems()
 
@@ -158,13 +160,9 @@ function Account() {
 
     return (
 
-
-       // < p className="page2">
-       //
-       //
-       //          <Header icon={pic} />
-       //      <Main>
         <>
+            {loading && <p>Loading...</p>}
+
         <Main className="outer-container-account">
             <div className="inner-container-account">
             <div className="hilado-1">

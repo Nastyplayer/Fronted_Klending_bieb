@@ -18,7 +18,9 @@ function ClothingLibrary(){
     const navigate = useNavigate();
     const [uploads, setUploads] = useState([]);;
     const [items, setItems] = useState([]);
-    const [error, toggleError] = useState(false);
+    // const [error, toggleError] = useState(false);
+    const [loading, toggleLoading] = useState(false);
+
 
     function handleClick() {
         console.log('We gaan direct door naar de subscription pagina!');
@@ -29,8 +31,8 @@ function ClothingLibrary(){
 
     useEffect(() => {
         async function fetchData() {
-            toggleError(false);
-
+            // toggleError(false);
+            toggleLoading(true);
 
             try {
                 const response = await axios.get(`http://localhost:8083/downloadAllFiles`,{
@@ -44,7 +46,7 @@ function ClothingLibrary(){
             } catch (error) {
                 console.log('Error fetching uploads:', error);
             }
-
+            toggleLoading(false);
             try {
                 const response = await axios.get(`http://localhost:8083/items`, {
                     headers: {
@@ -55,7 +57,8 @@ function ClothingLibrary(){
             } catch (error) {
                 console.log('Error fetching items:', error);
             }
-            toggleError(true);
+
+            toggleLoading(false);
         }
 
        void fetchData();
@@ -66,7 +69,7 @@ function ClothingLibrary(){
 
      return (
                 <>
-
+                    {loading && <p>Loading...</p>}
 
                 <Main className="outer-container">
 
@@ -112,8 +115,8 @@ function ClothingLibrary(){
                     {/*</Article>*/}
                     </section>
 
-                    {error &&
-                        <p>Er is iets mis gegaan.... neem contact met de Admin.</p>}
+                    {/*{error &&*/}
+                    {/*    <p>Er is iets mis gegaan.... neem contact met de Admin.</p>}*/}
 
 
                 </Main>
