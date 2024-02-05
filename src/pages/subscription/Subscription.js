@@ -75,11 +75,12 @@
      const navigate = useNavigate();
      const {handleSubmit, formState: {errors}, register} = useForm();
      const [succesRegister, toggleSuccessRegister] = useState(true);
-
+     const [loading, toggleLoading] = useState(false);
 
 
 
      async function registerUser(data) {
+         toggleLoading(true);
          try {
 
              const response = await axios.post('http://localhost:8083/users', data)
@@ -90,6 +91,7 @@
          } catch (e) {
              console.error(e)
          }
+         toggleLoading(false);
      }
 
 
@@ -97,7 +99,7 @@
 
      return (
       <>
-         {/*<p className="page2">*/}
+          {loading && <p>Loading...</p>}
           <Main className="outer-container-sub">
             <div className="inner-container-sub">
             <div className="cotton-1">

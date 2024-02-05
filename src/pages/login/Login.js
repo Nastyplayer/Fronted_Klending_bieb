@@ -19,11 +19,16 @@ function Login() {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
     const [error, toggleError] = useState(false);
+    const [loading, toggleLoading] = useState(false);
+
 
     async function handleSubmit(e) {
         e.preventDefault();
         console.log(username, password)
         toggleError(false);
+        toggleLoading(true);
+
+
         try {
             const response = await axios.post('http://localhost:8083/authenticate', {
                 username: username,
@@ -41,6 +46,7 @@ function Login() {
                 console.error(e)
                 toggleError(true);
             }
+            toggleLoading(false);
         }
     }
 
@@ -51,6 +57,8 @@ function Login() {
     return (
 
 <>
+    {loading && <p>Loading...</p>}
+
     <Main className="outer-container-login">
         <div className="inner-container-login">
         <div className="silk-1">

@@ -410,7 +410,7 @@ function Admin() {
             console.error(e);
             toggleError(true);
         }
-        toggleLoading(true);
+        toggleLoading(false);
     }
 
 
