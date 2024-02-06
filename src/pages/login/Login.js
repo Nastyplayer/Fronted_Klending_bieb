@@ -40,7 +40,7 @@ function Login() {
            navigate('/Account');
             login(response.data.jwt);
         } catch ( e ) {
-            if(axios.isCancel(e)){
+            if (axios.isCancel(e)) {
                 console.log(' request was cancelled')
             } else {
                 console.error(e)
@@ -58,6 +58,7 @@ function Login() {
 
 <>
     {loading && <p>Loading...</p>}
+
 
     <Main className="outer-container-login">
         <div className="inner-container-login">

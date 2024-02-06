@@ -23,7 +23,7 @@ function Admin() {
     const token = localStorage.getItem('token');
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
-
+    const [errorMessage, setErrorMessage] = useState("");
     const [users, setUsers] = useState([]);
     const [singleUser, setSingleUser] = useState('');
 
@@ -112,8 +112,7 @@ function Admin() {
 
             } catch (e) {
                     console.error(e);
-                // console.error("Error status:", e.response.status);
-                // console.error("Error data:", e.response.data);
+
                 }
             toggleLoading(false);
               }
@@ -122,7 +121,7 @@ function Admin() {
         return function cleanup() {
             controller.abort();
         };
-    }, []);
+    }, [token]);
 
 
     // to delete user//////////////////////////////////////////////////////////////////////////////////////////
@@ -146,6 +145,7 @@ function Admin() {
         } catch (e) {
             console.error(e);
             toggleError(true);
+            setErrorMessage("Er is een fout opgetreden bij het verwijderen van de gebruiker.");
         }
         toggleLoading(false);
     }
@@ -157,8 +157,10 @@ function Admin() {
 
         const controller = new AbortController();
         async function fetchItems() {
+
             toggleLoading(true);
             try {
+                toggleError(false);
                 const response = await axios.get('http://localhost:8083/items', {
 
 
@@ -173,6 +175,8 @@ function Admin() {
                 setItems(response.data);
             } catch (e) {
                 console.error(e);
+                toggleError(true);
+                setErrorMessage("Er is een fout opgetreden.");
             }
             toggleLoading(false);
         }
@@ -180,7 +184,7 @@ function Admin() {
         return function cleanup() {
             controller.abort();
         };
-    }, []);
+    }, [token]);
 
 
 
@@ -210,6 +214,8 @@ function Admin() {
         } catch (e) {
             console.error(e);
             toggleError(true);
+            setErrorMessage("Er is een fout opgetreden bij het verwijderen van de gebruiker.");
+
         }
         toggleLoading(false);
     }
@@ -243,7 +249,7 @@ function Admin() {
         return function cleanup() {
             controller.abort();
         }
-    }, []);
+    }, [token]);
 
 /////  to get all orders info ////////////////////////////////////////////////
 
@@ -275,10 +281,7 @@ function Admin() {
         return function cleanup() {
             controller.abort();
         }
-    }, []);
-
-
-
+    }, [token]);
 
 
 /////  to get all subscriptions info ////////////////////////////////////////////////////////////////
@@ -309,11 +312,11 @@ function Admin() {
             toggleLoading(false);
         }
 
-        void fetchSubscriptions();
+          void fetchSubscriptions();
         return function cleanup() {
             controller.abort();
         }
-    }, []);
+    }, [token]);
 
 
     /////// Change info bij subscriptions /////////////////////////////////////////
@@ -376,6 +379,7 @@ function Admin() {
         } catch (e) {
             console.error(e);
             toggleError(true);
+            setErrorMessage("Er is een fout opgetreden.");
         }
         toggleLoading(false);
     }
@@ -420,6 +424,8 @@ function Admin() {
 
         <>
             {loading && <p>Loading...</p>}
+            {error && <p>{errorMessage}</p>}
+
         <Main className="outer-container-admin">
           <div className="inner-container-admin">
               <div className="page_admin">
