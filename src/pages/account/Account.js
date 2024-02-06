@@ -32,7 +32,9 @@ function Account() {
     const {register: register2, formState: {errors: errors2}, handleSubmit: handleSubmit2} = useForm();
     const [ textarea, setTextarea ] = useState('');
     const [loading, toggleLoading] = useState(false);
-
+    // const [error, toggleError] = useState(false);
+    // const [errorMessage, setErrorMessage] = useState('');
+    // const [updateTrigger, setUpdateTrigger] = useState(false);
     const nameInfo = "http://localhost:8083/orders"
 
 
@@ -83,6 +85,8 @@ function Account() {
             navigate("/Account");
         } catch (e) {
             console.error(e)
+            // toggleError(true);
+            // setErrorMessage('Er is een fout opgetreden bij het uploaden, roep de administrator');
             toggleLoading(false);
         }
 
@@ -114,8 +118,12 @@ function Account() {
 
         } catch (e) {
             console.log(e)
+            // toggleError(true);
+            // setErrorMessage('Er is een fout opgetreden bij het reserveren van het item.');
+
         }
         toggleLoading(false);
+        // setUpdateTrigger((prev) => !prev);
     }
 
 
@@ -148,7 +156,8 @@ function Account() {
             } catch (e) {
 
                 console.error(e);
-
+                // toggleError(true);
+                // setErrorMessage('Er is een fout opgetreden bij het ophalen van items.');
             }
             toggleLoading(false);
         }
@@ -162,11 +171,15 @@ function Account() {
 
         <>
             {loading && <p>Loading...</p>}
+            {/*{error && <p>{errorMessage}</p>}*/}
 
         <Main className="outer-container-account">
             <div className="inner-container-account">
+
             <div className="hilado-1">
-                 <img src={hilado}/>
+
+
+                <img src={hilado}/>
 
 
             <form className="form-xtra">
@@ -298,8 +311,7 @@ function Account() {
             </form>
             </div>
             </div>
-            {/*{error &&*/}
-            {/*    <p>Er is iets mis gegaan.... neem contact met de Admin.</p>}*/}
+
             </Main>
 
             <Footer description="Copyright © 2023 LaBruja. Alle rechten voorbehouden."

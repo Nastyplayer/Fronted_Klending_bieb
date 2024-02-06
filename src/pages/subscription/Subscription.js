@@ -1,66 +1,7 @@
-//
-// import "./Subscription.css";
-// import React from "react";
-// import Header from "../../components/header/Header";
-// import Footer from "../../components/footer/Footer";
-// import Main from "../../components/main/Main";
-// //import FormRegister from "../../components/form/register/FormRegister";
-// import {Link} from "react-router-dom";
-// //import {AiOutlineArrowLeft} from "react-icons/ai";
-// import BodySubscription from "../../components/body/bodySubscription/BodySubscription";
-//
-//
-// function Registration() {
-//     return (
-//         <>
-//             <Header
-//                 message="Registration page"
-//             />
-//
-//             <Main>
-//                 {/*<Link to={`/`}>*/}
-//                 {/*<AiOutlineArrowLeft*/}
-//                 {/*    style={*/}
-//                 {/*        {color: 'blue', fontSize: '44px', fontWeight: 'bold'}}*/}
-//                 {/*/>*/}
-//                 {/*</Link>*/}
-//
-//                 <BodySubscription/>
-//
-//             </Main>
-//
-//
-//             <Footer
-//
-//                 description="Copyright © 2023 LaBruja. Alle rechten voorbehouden."
-//             />
-//
-//
-//
-//         </>
-//     )
-// }
-//
-// export default Registration;
-//
-//
-//
 
-
-
-
-
-
-
-
-
-
-
-///////////////////////////////////////////////////////////////////////////  original
  import React, { useState} from "react";
  import {Link, useNavigate} from "react-router-dom";
  import axios from "axios";
- import Header from "../../components/header/Header";
  import {useForm} from "react-hook-form";
  import Input from "../../components/input/Input";
  import cotton from "../../assets/cotton.jpg";
@@ -76,10 +17,11 @@
      const {handleSubmit, formState: {errors}, register} = useForm();
      const [succesRegister, toggleSuccessRegister] = useState(true);
      const [loading, toggleLoading] = useState(false);
-
-
+     const [error, toggleError] = useState(false);
+     const [errorMessage, setErrorMessage] = useState("");
 
      async function registerUser(data) {
+         toggleError(false);
          toggleLoading(true);
          try {
 
@@ -90,6 +32,8 @@
              navigate('/login')
          } catch (e) {
              console.error(e)
+             toggleError(true);
+             setErrorMessage("Er is een fout opgetreden, roep de administrator");
          }
          toggleLoading(false);
      }
@@ -100,6 +44,8 @@
      return (
       <>
           {loading && <p>Loading...</p>}
+          {error && <p>{errorMessage}</p>}
+
           <Main className="outer-container-sub">
             <div className="inner-container-sub">
             <div className="cotton-1">
@@ -208,4 +154,3 @@
 
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -7,19 +7,14 @@ import axios from "axios";
 import Button from "../../components/button/Button";
 import Main from "../../components/main/Main";
 import Footer from "../../components/footer/Footer";
-import Article from "../../components/article/Article";
-
-
-
-
 
 
 function ClothingLibrary(){
     const navigate = useNavigate();
     const [uploads, setUploads] = useState([]);;
     const [items, setItems] = useState([]);
-    // const [error, toggleError] = useState(false);
-    const [loading, toggleLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
 
     function handleClick() {
@@ -31,8 +26,8 @@ function ClothingLibrary(){
 
     useEffect(() => {
         async function fetchData() {
-            // toggleError(false);
-            toggleLoading(true);
+            setError(null);
+            setLoading(true);
 
             try {
                 const response = await axios.get(`http://localhost:8083/downloadAllFiles`,{
@@ -45,8 +40,9 @@ function ClothingLibrary(){
                 console.log('files', response.data)
             } catch (error) {
                 console.log('Error fetching uploads:', error);
+                setError('Er is iets misgegaan bij het ophalen van uploads.');
             }
-            toggleLoading(false);
+
             try {
                 const response = await axios.get(`http://localhost:8083/items`, {
                     headers: {
@@ -56,9 +52,12 @@ function ClothingLibrary(){
                 setItems(response.data);
             } catch (error) {
                 console.log('Error fetching items:', error);
+                setError('Er is iets misgegaan bij het ophalen van items.'); // Stel de error in bij fout
+
+
             }
 
-            toggleLoading(false);
+            setLoading(false);
         }
 
        void fetchData();
@@ -70,6 +69,7 @@ function ClothingLibrary(){
      return (
                 <>
                     {loading && <p>Loading...</p>}
+                    {error && <p>{error}</p>}
 
                 <Main className="outer-container">
 
@@ -94,7 +94,7 @@ function ClothingLibrary(){
 
                     <section className="wrapper-container-library">
                         <h1>Onze nieuwe collectie</h1>
-                    {/*<Article className="article-inner-container">*/}
+
                     <div className="page3">
 
                         {uploads.map((img) => {
@@ -112,7 +112,7 @@ function ClothingLibrary(){
                         onClick={handleClick}
                     >come visit us
                     </Button>
-                    {/*</Article>*/}
+
                     </section>
 
                     {/*{error &&*/}
