@@ -17,8 +17,6 @@ import Footer from "../../components/footer/Footer";
 
 function Admin() {
 
-
-
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
     const [error, toggleError] = useState(false);
@@ -145,7 +143,7 @@ function Admin() {
         } catch (e) {
             console.error(e);
             toggleError(true);
-            setErrorMessage("Er is een fout opgetreden bij het verwijderen van de gebruiker.");
+            // setErrorMessage("Er is een fout opgetreden bij het verwijderen van de gebruiker.");
         }
         toggleLoading(false);
     }
@@ -157,10 +155,9 @@ function Admin() {
 
         const controller = new AbortController();
         async function fetchItems() {
-
+            toggleError(false);
             toggleLoading(true);
             try {
-                toggleError(false);
                 const response = await axios.get('http://localhost:8083/items', {
 
 
@@ -176,7 +173,7 @@ function Admin() {
             } catch (e) {
                 console.error(e);
                 toggleError(true);
-                setErrorMessage("Er is een fout opgetreden.");
+                // setErrorMessage("Er is een fout opgetreden.");
             }
             toggleLoading(false);
         }
@@ -214,7 +211,7 @@ function Admin() {
         } catch (e) {
             console.error(e);
             toggleError(true);
-            setErrorMessage("Er is een fout opgetreden bij het verwijderen van de gebruiker.");
+            // setErrorMessage("Er is een fout opgetreden bij het verwijderen van de gebruiker.");
 
         }
         toggleLoading(false);
@@ -228,7 +225,6 @@ function Admin() {
             toggleLoading(true);
             try {
                 const response = await axios.get('http://localhost:8083/accounts', {
-
 
                     headers: {
                         "Content-Type": "application/json",
@@ -260,7 +256,6 @@ function Admin() {
             toggleLoading(true);
             try {
                 const response = await axios.get('http://localhost:8083/orders', {
-
 
                     headers: {
                         "Content-Type": "application/json",
@@ -393,6 +388,7 @@ function Admin() {
 
 
     async function sendMail(data) {
+        toggleError(false)
         try {
             const response = await axios.post('http://localhost:8083/sendMail', {
                 data
@@ -424,6 +420,7 @@ function Admin() {
 
         <>
             {loading && <p>Loading...</p>}
+            {console.log('error:', error)}
             {error && <p>{errorMessage}</p>}
 
         <Main className="outer-container-admin">
@@ -798,8 +795,9 @@ function Admin() {
             }
               </div>
           </div>
-            {error &&
-                <p>Er is iets mis gegaan.... Admin tijd om aan de slag te gaan.</p>}
+            {/*{error &&*/}
+            {/*    <p>Er is iets mis gegaan.... Admin tijd om aan de slag te gaan.</p>}*/}
+
 
         </Main>
             <Footer description="Copyright © 2023 LaBruja. Alle rechten voorbehouden."

@@ -178,13 +178,6 @@ function Account() {
 
         <>
             {loading && <p>Loading...</p>}
-            {/*/!*{error && <p>{errorMessage}</p>}*!/*/}
-
-
-            {/*< div className="page2">*/}
-
-
-            {/*    <Header icon={pic} />*/}
 
 
         <Main className="outer-container-account">
@@ -196,7 +189,7 @@ function Account() {
                 <img src={hilado} alt={"Hilado"}/>
 
 
-            <form className="form-xtra">
+            <div className="form-xtra">
 
                 <label htmlFor="name">
 
@@ -322,7 +315,7 @@ function Account() {
 
                     <Button id="button-box" className="button" type="button" onClick={Order}>Verstuur</Button>
                     </fieldset>
-            </form>
+            </div>
             </div>
             </div>
 
