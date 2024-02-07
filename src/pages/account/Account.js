@@ -1,4 +1,10 @@
 
+
+
+
+
+
+
 import React, {useContext, useEffect, useState} from 'react';
 import {AuthContext} from "../../context/AuthContext";
 import {useNavigate} from "react-router-dom";
@@ -9,8 +15,9 @@ import Main from "../../components/main/Main";
 import Footer from "../../components/footer/Footer";
 import Button from "../../components/button/Button";
 import './Account.css';
-
-
+// import Header from "../../components/header/Header";
+// import pic from "../../assets/hilado-en-huso.jpg";
+//
 
 
 function Account() {
@@ -171,7 +178,14 @@ function Account() {
 
         <>
             {loading && <p>Loading...</p>}
-            {/*{error && <p>{errorMessage}</p>}*/}
+            {/*/!*{error && <p>{errorMessage}</p>}*!/*/}
+
+
+            {/*< div className="page2">*/}
+
+
+            {/*    <Header icon={pic} />*/}
+
 
         <Main className="outer-container-account">
             <div className="inner-container-account">
@@ -179,7 +193,7 @@ function Account() {
             <div className="hilado-1">
 
 
-                <img src={hilado}/>
+                <img src={hilado} alt={"Hilado"}/>
 
 
             <form className="form-xtra">
@@ -316,6 +330,7 @@ function Account() {
 
             <Footer description="Copyright © 2023 LaBruja. Alle rechten voorbehouden."
             />
+
        </>
     );
 }

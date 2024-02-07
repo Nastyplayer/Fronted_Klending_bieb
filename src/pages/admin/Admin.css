@@ -15,7 +15,7 @@
 }
 .inner-container-admin{
     display: flex;
-    padding-bottom: 120px;
+    padding-bottom: 180px;
     /*column-count: 2;*/
 
     justify-content: center;
@@ -30,5 +30,5 @@
 }
 .page_admin {
     column-count: 2;
-
+    padding-bottom: 185px;
 }
