@@ -39,7 +39,7 @@
 }
 .inner-container-login {
     display: flex;
-    padding-bottom: 110px;
+    padding-bottom: 130px;
     justify-content: center;
     /*flex-wrap: wrap;*/
     /*align-items: stretch;*/
@@ -53,7 +53,7 @@
     display: flex;
     justify-content: space-evenly;
     flex-grow: 1;
-    padding-bottom: 120px;
+    padding-bottom: 130px;
     /*flex-wrap: wrap;*/
 
 }
