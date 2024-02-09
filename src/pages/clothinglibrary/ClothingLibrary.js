@@ -52,7 +52,7 @@ function ClothingLibrary(){
                 setItems(response.data);
             } catch (error) {
                 console.log('Error fetching items:', error);
-                setError('Er is iets misgegaan bij het ophalen van items.'); // Stel de error in bij fout
+                setError('Er is iets misgegaan bij het ophalen van items.');
 
 
             }
@@ -115,8 +115,6 @@ function ClothingLibrary(){
 
                     </section>
 
-                    {/*{error &&*/}
-                    {/*    <p>Er is iets mis gegaan.... neem contact met de Admin.</p>}*/}
 
 
                 </Main>

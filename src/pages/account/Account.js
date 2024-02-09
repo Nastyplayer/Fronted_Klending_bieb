@@ -1,10 +1,5 @@
 
 
-
-
-
-
-
 import React, {useContext, useEffect, useState} from 'react';
 import {AuthContext} from "../../context/AuthContext";
 import {useNavigate} from "react-router-dom";
@@ -15,46 +10,48 @@ import Main from "../../components/main/Main";
 import Footer from "../../components/footer/Footer";
 import Button from "../../components/button/Button";
 import './Account.css';
-// import Header from "../../components/header/Header";
-// import pic from "../../assets/hilado-en-huso.jpg";
-//
+import { useAccountUtils } from "../../helpers/useAccountUtils";
+import { useAccountConstants } from "../../helpers/useAccountConstants";
 
 
 function Account() {
-
-
-    const { user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
     const [item, setItem] = useState("");
     const [items, setItems] = useState([]);
-
-    const [dateInfo, setDateInfo] = useState("");
-    const [ id, setId] = useState(false);
-    const [previewUrl, setPreviewUrl] = useState("");
-    const [file, setFile] = useState([]);
-
+    const { loading, setLoading, error, setError, errorMessage, setErrorMessage } = useAccountUtils();
+    const { nameInfo } = useAccountConstants();
     const token = localStorage.getItem('token');
-    const [addSuccessPhoto,toggleAddSuccessPhoto] = useState(false);
 
-    const {register: register2, formState: {errors: errors2}, handleSubmit: handleSubmit2} = useForm();
-    const [ textarea, setTextarea ] = useState('');
-    const [loading, toggleLoading] = useState(false);
+
+
+    // const { user} = useContext(AuthContext);
+    // const navigate = useNavigate();
+    // const [item, setItem] = useState("");
+    // const [items, setItems] = useState([]);
+    //
+    // const [dateInfo, setDateInfo] = useState("");
+    // const [ id, setId] = useState(false);
+    // const [previewUrl, setPreviewUrl] = useState("");
+    // const [file, setFile] = useState([]);
+    // const token = localStorage.getItem('token');
+    // const [addSuccessPhoto,toggleAddSuccessPhoto] = useState(false);
+    //
+    // const {register: register2, formState: {errors: errors2}, handleSubmit: handleSubmit2} = useForm();
+    // const [ textarea, setTextarea ] = useState('');
+    // const [loading, toggleLoading] = useState(false);
     // const [error, toggleError] = useState(false);
-    // const [errorMessage, setErrorMessage] = useState('');
-    // const [updateTrigger, setUpdateTrigger] = useState(false);
-    const nameInfo = "http://localhost:8083/orders"
+    // const [errorMessage, setErrorMessage] = useState("");
+    // const nameInfo = "http://localhost:8083/orders"
+    //
 
 
-
-    const resetFormFields = () => {
-        setPreviewUrl(""); // Clear the image preview
-        setItem(""); // Clear the item value
-        setTextarea(""); // Clear the textarea value
-        setDateInfo("");// Add other form fields you want to reset here
-    };
-
-
-
+    // const resetFormFields = () => {
+    //     setPreviewUrl(""); // Clear the image preview
+    //     setItem(""); // Clear the item value
+    //     setTextarea(""); // Clear the textarea value
+    //     setDateInfo("");// Add other form fields you want to reset here
+    // };
 
     /////////////////////////////////////////////////////// // photo
     function handleImageChance(e) {
@@ -64,15 +61,13 @@ function Account() {
         setPreviewUrl(URL.createObjectURL(uploadedFile));
     }
 
-
-
     async function sendImage(e) {
         e.preventDefault();
 
         console.log(textarea)
         const formData = new FormData();
         formData.append("file", file);
-
+        toggleError(false);
         toggleLoading(true);
         try {
             const response = await axios.post(`http://localhost:8083/items/photo`, formData,
@@ -92,8 +87,12 @@ function Account() {
             navigate("/Account");
         } catch (e) {
             console.error(e)
-            // toggleError(true);
-            // setErrorMessage('Er is een fout opgetreden bij het uploaden, roep de administrator');
+            toggleError(true);
+            setErrorMessage('Er is een fout opgetreden bij het uploaden, roep de administrator');
+
+        } finally {
+
+
             toggleLoading(false);
         }
 
@@ -104,6 +103,7 @@ function Account() {
     const Order = async (e) => {
         e.preventDefault();
         console.log(item, dateInfo, user.username )
+        toggleError(false);
         toggleLoading(true);
 
         try {
@@ -125,17 +125,15 @@ function Account() {
 
         } catch (e) {
             console.log(e)
-            // toggleError(true);
-            // setErrorMessage('Er is een fout opgetreden bij het reserveren van het item.');
+            toggleError(true);
+            setErrorMessage('Er is een fout opgetreden bij het reserveren van het item.');
+
+        } finally {
 
         }
         toggleLoading(false);
-        // setUpdateTrigger((prev) => !prev);
+
     }
-
-
-
-
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -163,14 +161,13 @@ function Account() {
             } catch (e) {
 
                 console.error(e);
-                // toggleError(true);
-                // setErrorMessage('Er is een fout opgetreden bij het ophalen van items.');
+
             }
             toggleLoading(false);
         }
         void  fetchItems()
 
-    }, [])
+    }, [token, navigate, setLoading, setError, setErrorMessage]);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -178,7 +175,7 @@ function Account() {
 
         <>
             {loading && <p>Loading...</p>}
-
+            {error && <p>{errorMessage}</p>}
 
         <Main className="outer-container-account">
             <div className="inner-container-account">
@@ -194,7 +191,7 @@ function Account() {
                 <label htmlFor="name">
 
 
-                    {/*<strong>{user.username}{email}</strong>*/}
+
                     <div className="img-row">
 
 
@@ -268,13 +265,10 @@ function Account() {
                                     {errors2.subject && <p>{errors2.subject.message}</p>}
                                     <button type="submit"> Uploaden</button>
 
-
                                 </label>
 
                             </form>
                         </fieldset>
-
-
                     </div>
 
                 </label>
