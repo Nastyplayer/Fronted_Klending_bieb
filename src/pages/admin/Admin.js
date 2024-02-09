@@ -13,75 +13,61 @@ import {AuthContext} from "../../context/AuthContext";
 import pic from "../../assets/hilado-en-huso.jpg";
 import Main from "../../components/main/Main";
 import Footer from "../../components/footer/Footer";
-
+import { useConstants } from "../../helpers/useConstants";
+import { useFormUtils } from "../../helpers/useFormUtils";
 
 function Admin() {
+
+
+    const {
+        API_BASE_URL,
+        USER_ROLES,
+        INITIAL_STATE_USERS,
+        INITIAL_STATE_SINGLE_USER,
+        INITIAL_STATE_ACCOUNTS,
+        INITIAL_STATE_ACCOUNTS_LIST,
+        INITIAL_STATE_TO_DELETE,
+        INITIAL_STATE_ITEMS,
+        INITIAL_STATE_ID_TO_DELETE,
+        INITIAL_STATE_ORDERS,
+        INITIAL_STATE_ORDERS_LIST,
+        INITIAL_STATE_SUBSCRIPTIONS,
+        INITIAL_STATE_SUBSCRIPTIONS_LIST,
+        INITIAL_STATE_EXPIRATION_DATE,
+        INITIAL_STATE_TYPE_SUBSCRIPTION,
+        INITIAL_STATE_PATCH_THIS_SUBSCRIPTION,
+        INITIAL_STATE_SUBSCRIPTION_ID_TO_PATCH
+    } = useConstants();
+
+    const {
+        register,
+        errors,
+        handleSubmit,
+        reset,
+        resetFormFields
+    } = useFormUtils();
 
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
-    const [users, setUsers] = useState([]);
-    const [singleUser, setSingleUser] = useState('');
-
-    const [accounts, setAccounts] = useState([]);
-    const [accountsList, setAccountsList] = useState('');
-
-    const [toDelete, setToDelete] = useState([]);
-    const [items, setItems] = useState([]);
-
-    const [IdToDelete, setIdToDelete] = useState("");
-
-    const [orders, setOrders] = useState([]);
-    const [ordersList,  setOrdersList] = useState([]);
-
-    const [subscriptions, setSubscriptions] = useState([]);
-    const [SubscriptionsList, setSubscriptionsList] = useState([]);
-
-    const [expirationDate, setExpirationDate] = useState("");
-
-    const [typeSubscription, setTypeSubscription] = useState("");
-    const [PatchThisSubscription, togglePatchThisSubscription] = useState(false);
-    const [subscriptionIdToPatch, setSubscriptionIdToPatch] = useState("");
-    const  subscriptionStatus = "http://localhost:8083/subscriptions/"
-
-
-    //patch user
-    const {register, handleSubmit: handleSubmit1, formState: {errors}} = useForm();
-    const [PatchThisUser, togglePatchThisUser] = useState(false);
-    const [userIdToPatch, setUserIdToPatch] = useState("");
-
-    const {isAuth, user, email} = useContext(AuthContext);
-    const [admin] = useState(false);
-
-
-    //mail
-
-    const [userIdToEmail, setUserIdToEmail] = useState("");
-    const [succesSendMail, toggleSuccesSendMail] = useState(false);
-
-
-    const { register: register2, formState: {errors: errors2}, handleSubmit: handleSubmit2, reset} = useForm();
-    const { register: register3, handleSubmit: handleSubmit3, reset: resetForm3, formState: { errors: errors3 } } = useForm();
-    const { register: register4, handleSubmit: handleSubmit4, reset: resetForm4, formState: { errors: errors4 } } = useForm();
-    const { register: register5, handleSubmit: handleSubmit5, reset: resetForm5, formState: { errors: errors5 } } = useForm();
-    const { register: register6, handleSubmit: handleSubmit6, reset: resetForm6, formState: { errors: errors6 } } = useForm();
-    const { register: register7, handleSubmit: handleSubmit7, reset: resetForm7, formState: { errors: errors7 } } = useForm();
-    const resetFormFields = () => {
-        setSingleUser(""); // Clear the selected user value
-        setToDelete([]); // Clear the selected item value
-        setUserIdToPatch(""); // Clear the user id value for user patch
-        setUserIdToEmail(""); // Clear the user id value for sending email
-        toggleSuccesSendMail(false); // Reset email success state
-        togglePatchThisUser(false); // Reset user patch state
-        setSubscriptions( []);
-        resetForm3();
-        resetForm5();
-        resetForm6();
-        resetForm7();
-    };
-
+    const [users, setUsers] = useState(INITIAL_STATE_USERS);
+    const [singleUser, setSingleUser] = useState(INITIAL_STATE_SINGLE_USER);
+    const [accounts, setAccounts] = useState(INITIAL_STATE_ACCOUNTS);
+    const [accountsList, setAccountsList] = useState(INITIAL_STATE_ACCOUNTS_LIST);
+    const [toDelete, setToDelete] = useState(INITIAL_STATE_TO_DELETE);
+    const [items, setItems] = useState(INITIAL_STATE_ITEMS);
+    const [IdToDelete, setIdToDelete] = useState(INITIAL_STATE_ID_TO_DELETE);
+    const [orders, setOrders] = useState(INITIAL_STATE_ORDERS);
+    const [ordersList, setOrdersList] = useState(INITIAL_STATE_ORDERS_LIST);
+    const [subscriptions, setSubscriptions] = useState(INITIAL_STATE_SUBSCRIPTIONS);
+    const [SubscriptionsList, setSubscriptionsList] = useState(INITIAL_STATE_SUBSCRIPTIONS_LIST);
+    const [expirationDate, setExpirationDate] = useState(INITIAL_STATE_EXPIRATION_DATE);
+    const [typeSubscription, setTypeSubscription] = useState(INITIAL_STATE_TYPE_SUBSCRIPTION);
+    const [PatchThisSubscription, togglePatchThisSubscription] = useState(INITIAL_STATE_PATCH_THIS_SUBSCRIPTION);
+    const [subscriptionIdToPatch, setSubscriptionIdToPatch] = useState(INITIAL_STATE_SUBSCRIPTION_ID_TO_PATCH);
+    const subscriptionStatus = `${API_BASE_URL}/subscriptions`; // Use constant
 
 
     // to get all users//////////////////////////////////////////////////////////////////////////////////////
@@ -119,7 +105,7 @@ function Admin() {
         return function cleanup() {
             controller.abort();
         };
-    }, [token]);
+    },  [token, navigate, toggleLoading, togglePatchThisUser, setUsers]);
 
 
     // to delete user//////////////////////////////////////////////////////////////////////////////////////////
@@ -143,7 +129,7 @@ function Admin() {
         } catch (e) {
             console.error(e);
             toggleError(true);
-            // setErrorMessage("Er is een fout opgetreden bij het verwijderen van de gebruiker.");
+
         }
         toggleLoading(false);
     }
@@ -173,7 +159,7 @@ function Admin() {
             } catch (e) {
                 console.error(e);
                 toggleError(true);
-                // setErrorMessage("Er is een fout opgetreden.");
+
             }
             toggleLoading(false);
         }
@@ -181,7 +167,7 @@ function Admin() {
         return function cleanup() {
             controller.abort();
         };
-    }, [token]);
+    },  [token, navigate, toggleLoading, togglePatchThisUser, setUsers]);
 
 
 
@@ -211,7 +197,7 @@ function Admin() {
         } catch (e) {
             console.error(e);
             toggleError(true);
-            // setErrorMessage("Er is een fout opgetreden bij het verwijderen van de gebruiker.");
+
 
         }
         toggleLoading(false);
@@ -245,7 +231,7 @@ function Admin() {
         return function cleanup() {
             controller.abort();
         }
-    }, [token]);
+    },  [token, navigate, toggleLoading, togglePatchThisUser, setUsers]);
 
 /////  to get all orders info ////////////////////////////////////////////////
 
@@ -276,7 +262,7 @@ function Admin() {
         return function cleanup() {
             controller.abort();
         }
-    }, [token]);
+    },  [token, navigate, toggleLoading, togglePatchThisUser, setUsers]);
 
 
 /////  to get all subscriptions info ////////////////////////////////////////////////////////////////
@@ -311,7 +297,7 @@ function Admin() {
         return function cleanup() {
             controller.abort();
         }
-    }, [token]);
+    },  [token, navigate, toggleLoading, togglePatchThisUser, setUsers]);
 
 
     /////// Change info bij subscriptions /////////////////////////////////////////
@@ -420,7 +406,6 @@ function Admin() {
 
         <>
             {loading && <p>Loading...</p>}
-            {console.log('error:', error)}
             {error && <p>{errorMessage}</p>}
 
         <Main className="outer-container-admin">
@@ -431,7 +416,7 @@ function Admin() {
                 <article className="page" > <h1>Sorry, go back to your<Link to="/Account"> account </Link>  😵</h1>
                     <h2>Only for Administrator </h2>
 
-                    {/*<Header icon={pic}/>*/}
+
                 </article>}
             {(isAuth && user.authority === "ROLE_ADMIN" && !admin) &&
 
@@ -441,7 +426,7 @@ function Admin() {
                 {/*//////////   accounts lijst/////////////////////////////////////////////////////////////////////////*/}
 
                 <fieldset>
-            {/*<legend>className="margin-top2">Lijst van accounts</legend>*/}
+
                 <legend>Lijst van accounts</legend>
 
                 <h3>id - username - email - comment</h3>
@@ -470,7 +455,7 @@ function Admin() {
             {/*//////////  Orders lijst/////////////////////////////////////////////////////////////////////////*/}
 
                 <fieldset>
-            {/*<legend>className="margin-top2">Lijst  van orders</legend>*/}
+
                 <legend>Lijst  van orders</legend>
 
                 <h3>order id  en items  </h3>
@@ -508,7 +493,7 @@ function Admin() {
 
 
                 <fieldset>
-            {/*<legend>className="margin-top2">Lijst van users</legend>*/}
+
                 <legend>Lijst van users</legend>
 
                 <h3> username - email </h3>
@@ -544,7 +529,7 @@ function Admin() {
 
                 <section>
                 <fieldset>
-            {/*<legend>className="margin-top2">Aanpassen van user</legend>*/}
+
                 <legend>Aanpassen van user</legend>
                 <select
                 className="user-change"
@@ -599,7 +584,7 @@ function Admin() {
                 <section>
 
                 <fieldset>
-            {/*<legend>className="margin-top2">Lijst en aanpassen van subscriptions</legend>*/}
+
                 <legend>Lijst en aanpassen van subscriptions</legend>
 
                 <select
@@ -671,7 +656,7 @@ function Admin() {
 
             {/*Items lijst/////////////////////////////////////////////////////////////////////////.*/}
                 <fieldset>
-            {/*<legend>className="margin-top2">Lijst van items</legend>*/}
+
                 <legend>Lijst van items</legend>
 
                 <h3>Tags - item Info - item Id</h3>
@@ -707,7 +692,7 @@ function Admin() {
 
                 <section>
                 <fieldset>
-            {/*<legend>className="margin-top2">Bericht versturen</legend>*/}
+
 
                 <legend>Bericht versturen</legend>
                 <form
@@ -795,8 +780,7 @@ function Admin() {
             }
               </div>
           </div>
-            {/*{error &&*/}
-            {/*    <p>Er is iets mis gegaan.... Admin tijd om aan de slag te gaan.</p>}*/}
+
 
 
         </Main>
@@ -804,7 +788,7 @@ function Admin() {
             />
         </>
 
-    );
+  );
 }
 export default Admin;
 
