@@ -1,52 +1,15 @@
-/*.login.outer-container {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    flex-basis: 1200px;*/
-/*    flex-grow: 0;*/
-/*    flex-shrink: 1;*/
-/*    align-items: center;*/
-/*    margin:130px;*/
-/*    width: 100%;*/
-/*    !*flex-wrap: wrap;*!*/
-/*}*/
 
-/*.content-container{*/
-/*    !*display: flex;*!*/
-/*    column-count: 2;*/
-
-
-/*margin-bottom: 350px;*/
-/*    margin-right: 100px;*/
-    /*flex-direction: row;*/
-/*}*/
-
-/*.page2 {*/
-/*    column-count: 2;*/
-
-/*}*/
 
 .outer-container-login {
     display: flex;
-    /*padding-bottom: 100px;*/
-    /*!*column-count: 2;*!*/
-    /*width: 100vw;*/
-    /*border: 4px solid red;*/
-    /*!*padding-top: 200px;*!*/
-    /*justify-content: center;*/
-    /*!*align-items: center;*!*/
     alignment: top;
-
 }
 .inner-container-login {
     display: flex;
     padding-bottom: 130px;
     justify-content: center;
-    /*flex-wrap: wrap;*/
-    /*align-items: stretch;*/
     width: 90vw;
-    /*align-content: flex-start;*/
-    /*flex-grow: 1;*/
-    /*alignment: top;*/
+
 }
 
 .silk-1 {
@@ -54,22 +17,7 @@
     justify-content: space-evenly;
     flex-grow: 1;
     padding-bottom: 130px;
-    /*flex-wrap: wrap;*/
+
 
 }
 
-
-    /*align-items: stretch ;*/
-    /*align-content: flex-start;*/
-    /*border: 1rem solid red;*/
-
-    /*width: 100vw;*/
-    /*alignment: top;*/
-    /*flex-direction: row;*/
-    /*align-items: center;*/
-    /*justify-content: center;*/
-
-    /*margin-left: 100px;*/
-    /*padding-top: 270px;*/
-
-/*}*/

@@ -10,50 +10,40 @@ import Main from "../../components/main/Main";
 import Footer from "../../components/footer/Footer";
 import Button from "../../components/button/Button";
 import './Account.css';
-import { useAccountUtils } from "../../helpers/useAccountUtils";
-import { useAccountConstants } from "../../helpers/useAccountConstants";
+
 
 
 function Account() {
-    const { user } = useContext(AuthContext);
+
+    const { user} = useContext(AuthContext);
     const navigate = useNavigate();
     const [item, setItem] = useState("");
     const [items, setItems] = useState([]);
-    const { loading, setLoading, error, setError, errorMessage, setErrorMessage } = useAccountUtils();
-    const { nameInfo } = useAccountConstants();
+
+    const [dateInfo, setDateInfo] = useState("");
+    const [ id, setId] = useState(false);
+    const [previewUrl, setPreviewUrl] = useState("");
+    const [file, setFile] = useState([]);
     const token = localStorage.getItem('token');
+    const [addSuccessPhoto,toggleAddSuccessPhoto] = useState(false);
+
+    const {register: register2, formState: {errors: errors2}, handleSubmit: handleSubmit2} = useForm();
+    const [ textarea, setTextarea ] = useState('');
+    const [loading, toggleLoading] = useState(false);
+    const [error, toggleError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const nameInfo = "http://localhost:8083/orders"
 
 
 
-    // const { user} = useContext(AuthContext);
-    // const navigate = useNavigate();
-    // const [item, setItem] = useState("");
-    // const [items, setItems] = useState([]);
-    //
-    // const [dateInfo, setDateInfo] = useState("");
-    // const [ id, setId] = useState(false);
-    // const [previewUrl, setPreviewUrl] = useState("");
-    // const [file, setFile] = useState([]);
-    // const token = localStorage.getItem('token');
-    // const [addSuccessPhoto,toggleAddSuccessPhoto] = useState(false);
-    //
-    // const {register: register2, formState: {errors: errors2}, handleSubmit: handleSubmit2} = useForm();
-    // const [ textarea, setTextarea ] = useState('');
-    // const [loading, toggleLoading] = useState(false);
-    // const [error, toggleError] = useState(false);
-    // const [errorMessage, setErrorMessage] = useState("");
-    // const nameInfo = "http://localhost:8083/orders"
-    //
+    const resetFormFields = () => {
+        setPreviewUrl("");
+        setItem("");
+        setTextarea("");
+        setDateInfo("");
+    };
 
-
-    // const resetFormFields = () => {
-    //     setPreviewUrl(""); // Clear the image preview
-    //     setItem(""); // Clear the item value
-    //     setTextarea(""); // Clear the textarea value
-    //     setDateInfo("");// Add other form fields you want to reset here
-    // };
-
-    /////////////////////////////////////////////////////// // photo
+   // photo
     function handleImageChance(e) {
         const uploadedFile = e.target.files[0];
         console.log (uploadedFile);
@@ -99,7 +89,7 @@ function Account() {
         return formData
     }
 
-//////////////////////////////////////////////////// Reserveren
+
     const Order = async (e) => {
         e.preventDefault();
         console.log(item, dateInfo, user.username )
@@ -136,7 +126,7 @@ function Account() {
     }
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     useEffect(() => {
         async function fetchItems() {
             const token = localStorage.getItem('token')
@@ -167,9 +157,9 @@ function Account() {
         }
         void  fetchItems()
 
-    }, [token, navigate, setLoading, setError, setErrorMessage]);
+    }, [token]);
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
     return (
 

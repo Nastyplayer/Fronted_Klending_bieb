@@ -1,26 +1,10 @@
-/*.first-title {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    margin: 140px*/
-
-/*}*/
-
-
 
 
 .header-outer-container {
     display: flex;
     justify-content: center;
     margin-left: 100px;
-
-
-    /*flex-direction: row;*/
-    /*justify-content: center;*/
-    /*align-items: center;*/
-    /*width: 80%;*/
     height: 350px;
-    /*background-color: transparent;*/
-
 
 }
 .silk {
@@ -29,8 +13,6 @@
 
 .header-inner-container {
     display: flex;
-    /*flex-direction: column;*/
-    /*flex-basis: 1200px;*/
     flex-grow: 0;
     flex-shrink: 1;
     align-items: center;
@@ -39,24 +21,5 @@
     width: 80%;
 }
 
-/*.header-content-container {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    justify-content: center;*/
-/*    flex-wrap: wrap;*/
-/*    text-align: center;*/
-/*    background-color: transparent;*/
-/*    padding: 40px;*/
-/*    margin: 10px;*/
-/*}*/
-
-/*.header-description {*/
-/*    font-weight: bold;*/
-/*    margin: 10px;*/
-/*}*/
-
-/*.logo {*/
-/*    max-width: 100px;*/
-/*}*/
 
 

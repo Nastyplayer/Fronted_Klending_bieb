@@ -1,76 +1,69 @@
 
-import React, {useContext, useEffect, useRef, useState} from 'react';
+import React, { useEffect, useState, useContext} from 'react';
 import './Admin.css';
 import axios from "axios";
 import Input from "../../components/input/Input";
 import {useForm} from "react-hook-form";
-
 import Button from "../../components/button/Button";
 import {Link, useNavigate} from "react-router-dom";
-import Header from "../../components/header/Header";
-// import {Subscription} from "../subscription/Subscription";
 import {AuthContext} from "../../context/AuthContext";
-import pic from "../../assets/hilado-en-huso.jpg";
 import Main from "../../components/main/Main";
 import Footer from "../../components/footer/Footer";
-import { useConstants } from "../../helpers/useConstants";
-import { useFormUtils } from "../../helpers/useFormUtils";
+
 
 function Admin() {
 
 
-    const {
-        API_BASE_URL,
-        USER_ROLES,
-        INITIAL_STATE_USERS,
-        INITIAL_STATE_SINGLE_USER,
-        INITIAL_STATE_ACCOUNTS,
-        INITIAL_STATE_ACCOUNTS_LIST,
-        INITIAL_STATE_TO_DELETE,
-        INITIAL_STATE_ITEMS,
-        INITIAL_STATE_ID_TO_DELETE,
-        INITIAL_STATE_ORDERS,
-        INITIAL_STATE_ORDERS_LIST,
-        INITIAL_STATE_SUBSCRIPTIONS,
-        INITIAL_STATE_SUBSCRIPTIONS_LIST,
-        INITIAL_STATE_EXPIRATION_DATE,
-        INITIAL_STATE_TYPE_SUBSCRIPTION,
-        INITIAL_STATE_PATCH_THIS_SUBSCRIPTION,
-        INITIAL_STATE_SUBSCRIPTION_ID_TO_PATCH
-    } = useConstants();
-
-    const {
-        register,
-        errors,
-        handleSubmit,
-        reset,
-        resetFormFields
-    } = useFormUtils();
-
-    const navigate = useNavigate();
-    const token = localStorage.getItem('token');
-    const [error, toggleError] = useState(false);
-    const [loading, toggleLoading] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("");
-    const [users, setUsers] = useState(INITIAL_STATE_USERS);
-    const [singleUser, setSingleUser] = useState(INITIAL_STATE_SINGLE_USER);
-    const [accounts, setAccounts] = useState(INITIAL_STATE_ACCOUNTS);
-    const [accountsList, setAccountsList] = useState(INITIAL_STATE_ACCOUNTS_LIST);
-    const [toDelete, setToDelete] = useState(INITIAL_STATE_TO_DELETE);
-    const [items, setItems] = useState(INITIAL_STATE_ITEMS);
-    const [IdToDelete, setIdToDelete] = useState(INITIAL_STATE_ID_TO_DELETE);
-    const [orders, setOrders] = useState(INITIAL_STATE_ORDERS);
-    const [ordersList, setOrdersList] = useState(INITIAL_STATE_ORDERS_LIST);
-    const [subscriptions, setSubscriptions] = useState(INITIAL_STATE_SUBSCRIPTIONS);
-    const [SubscriptionsList, setSubscriptionsList] = useState(INITIAL_STATE_SUBSCRIPTIONS_LIST);
-    const [expirationDate, setExpirationDate] = useState(INITIAL_STATE_EXPIRATION_DATE);
-    const [typeSubscription, setTypeSubscription] = useState(INITIAL_STATE_TYPE_SUBSCRIPTION);
-    const [PatchThisSubscription, togglePatchThisSubscription] = useState(INITIAL_STATE_PATCH_THIS_SUBSCRIPTION);
-    const [subscriptionIdToPatch, setSubscriptionIdToPatch] = useState(INITIAL_STATE_SUBSCRIPTION_ID_TO_PATCH);
-    const subscriptionStatus = `${API_BASE_URL}/subscriptions`; // Use constant
+const navigate = useNavigate();
+const token = localStorage.getItem('token');
+const [error, toggleError] = useState(false);
+const [loading, toggleLoading] = useState(false);
+const [errorMessage, setErrorMessage] = useState("");
+const [users, setUsers] = useState([]);
+const [singleUser, setSingleUser] = useState('');
+const [accounts, setAccounts] = useState([]);
+const [accountsList, setAccountsList] = useState('');
+const [toDelete, setToDelete] = useState([]);
+const [items, setItems] = useState([]);
+const [setIdToDelete] = useState("");
+const [orders, setOrders] = useState([]);
+const [ordersList,  setOrdersList] = useState([]);
+const [subscriptions, setSubscriptions] = useState([]);
+const [setSubscriptionsList] = useState([]);
+const [expirationDate] = useState("");
+const [typeSubscription] = useState("");
+const [PatchThisSubscription, togglePatchThisSubscription] = useState(false);
+const [subscriptionIdToPatch, setSubscriptionIdToPatch] = useState("");
+const  subscriptionStatus = "http://localhost:8083/subscriptions/"
+const {register, handleSubmit: handleSubmit1, formState: {errors}} = useForm();
+const [PatchThisUser, togglePatchThisUser] = useState(false);
+const [userIdToPatch, setUserIdToPatch] = useState("");
+const {isAuth, user, email} = useContext(AuthContext);
+const [admin] = useState(false);
+const [userIdToEmail, setUserIdToEmail] = useState("");
+const [succesSendMail, toggleSuccesSendMail] = useState(false);
 
 
-    // to get all users//////////////////////////////////////////////////////////////////////////////////////
+const { register: register2, formState: {errors: errors2}, handleSubmit: handleSubmit2, reset} = useForm();
+const { register: register3, handleSubmit: handleSubmit3, reset: resetForm3, formState: { errors: errors3 } } = useForm();
+const { register: register4, handleSubmit: handleSubmit4, reset: resetForm4, formState: { errors: errors4 } } = useForm();
+const { register: register5, handleSubmit: handleSubmit5, reset: resetForm5, formState: { errors: errors5 } } = useForm();
+const { register: register6, handleSubmit: handleSubmit6, reset: resetForm6, formState: { errors: errors6 } } = useForm();
+const { register: register7, handleSubmit: handleSubmit7, reset: resetForm7, formState: { errors: errors7 } } = useForm();
+const resetFormFields = () => {
+    setSingleUser("");
+    setToDelete([]);
+    setUserIdToPatch("");
+    setUserIdToEmail("");
+    toggleSuccesSendMail(false);
+    togglePatchThisUser(false);
+    resetForm3();
+    resetForm5();
+    resetForm6();
+    resetForm7();
+};
+
+
     useEffect(() => {
 
         const controller = new AbortController();
@@ -105,10 +98,7 @@ function Admin() {
         return function cleanup() {
             controller.abort();
         };
-    },  [token, navigate, toggleLoading, togglePatchThisUser, setUsers]);
-
-
-    // to delete user//////////////////////////////////////////////////////////////////////////////////////////
+    },  [token]);
 
 
     async function deleteUserFunction(e, username) {
@@ -125,17 +115,17 @@ function Admin() {
             });
             console.log(response)
             resetFormFields();
-            navigate('/Account');
+            navigate('/Admin');
         } catch (e) {
             console.error(e);
             toggleError(true);
+
+        } finally {
 
         }
         toggleLoading(false);
     }
 
-
-/////  to get all items  ////////////////////////////////////////////////////////////////
 
     useEffect(() => {
 
@@ -160,6 +150,8 @@ function Admin() {
                 console.error(e);
                 toggleError(true);
 
+            } finally {
+
             }
             toggleLoading(false);
         }
@@ -167,11 +159,8 @@ function Admin() {
         return function cleanup() {
             controller.abort();
         };
-    },  [token, navigate, toggleLoading, togglePatchThisUser, setUsers]);
+    },  [token]);
 
-
-
-    /////to delete item///////////////////////////////////////////////////////////////////////////////////////////
 
     async function deleteItemFunction(e, idToDelete) {
         e.preventDefault(idToDelete);
@@ -193,16 +182,18 @@ function Admin() {
             console.log(response)
             setIdToDelete(response.data);
             resetFormFields();
-            navigate('/Account');
+            navigate('/Admin');
         } catch (e) {
             console.error(e);
             toggleError(true);
 
 
+        } finally {
+
         }
         toggleLoading(false);
     }
-/////  to get all accounts info ////////////////////////////////////////////////////////////////
+
 
     useEffect(() => {
 
@@ -223,6 +214,8 @@ function Admin() {
                 navigate('/Admin');
             } catch (e) {
                 console.error(e);
+            } finally {
+
             }
             toggleLoading(false);
         }
@@ -231,9 +224,9 @@ function Admin() {
         return function cleanup() {
             controller.abort();
         }
-    },  [token, navigate, toggleLoading, togglePatchThisUser, setUsers]);
+    },  [token]);
 
-/////  to get all orders info ////////////////////////////////////////////////
+
 
     useEffect(() => {
 
@@ -254,6 +247,7 @@ function Admin() {
                 navigate('/Admin');
             } catch (e) {
                 console.error(e);
+            } finally {
             }
             toggleLoading(false);
         }
@@ -262,10 +256,9 @@ function Admin() {
         return function cleanup() {
             controller.abort();
         }
-    },  [token, navigate, toggleLoading, togglePatchThisUser, setUsers]);
+    },  [token]);
 
 
-/////  to get all subscriptions info ////////////////////////////////////////////////////////////////
 
     useEffect(() => {
 
@@ -289,6 +282,8 @@ function Admin() {
                 setSubscriptionsList(response.data);
             } catch (e) {
                 console.error(e);
+            } finally {
+
             }
             toggleLoading(false);
         }
@@ -297,10 +292,8 @@ function Admin() {
         return function cleanup() {
             controller.abort();
         }
-    },  [token, navigate, toggleLoading, togglePatchThisUser, setUsers]);
+    },  [token]);
 
-
-    /////// Change info bij subscriptions /////////////////////////////////////////
 
 
     async function patchSubscription(data) {
@@ -325,17 +318,16 @@ function Admin() {
             togglePatchThisSubscription(true);
             console.log('Subscription updated:', response.data);
             resetFormFields();
-            navigate('/Account');
+            navigate('/Admin');
         } catch (e) {
             console.error(e);
             toggleError(true);
+        } finally {
+
         }
         toggleLoading(false);
     }
 
-
-
-    /////// Change info bij users /////////////////////////////////////////
     async function patchUser(data) {
         toggleError(false);
         toggleLoading(true);
@@ -356,17 +348,18 @@ function Admin() {
             togglePatchThisUser(true);
             console.log(response);
             resetFormFields();
-            navigate('/Account');
+            navigate('/Admin');
         } catch (e) {
             console.error(e);
             toggleError(true);
             setErrorMessage("Er is een fout opgetreden.");
+        } finally {
+
         }
         toggleLoading(false);
     }
 
 
-    // //to send mail//////////////////////////////////////////////////////////////////////////////////
     function emailUserFunction(data) {
         data.recipient = userIdToEmail;
         void sendMail(data);
@@ -395,12 +388,12 @@ function Admin() {
         } catch (e) {
             console.error(e);
             toggleError(true);
+        } finally {
+
         }
         toggleLoading(false);
     }
 
-
-// return//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return (
 
@@ -423,7 +416,6 @@ function Admin() {
                 <article className="page2">
 
 
-                {/*//////////   accounts lijst/////////////////////////////////////////////////////////////////////////*/}
 
                 <fieldset>
 
@@ -448,11 +440,6 @@ function Admin() {
 
                 </select>
                 </fieldset>
-
-
-
-
-            {/*//////////  Orders lijst/////////////////////////////////////////////////////////////////////////*/}
 
                 <fieldset>
 
@@ -481,13 +468,6 @@ function Admin() {
                 </fieldset>
 
 
-
-
-
-
-
-
-            {/*//////////////// LIJST VAN USERS  /////////////////////////////////////////////////////////////////////////////////*/}
 
 
 
@@ -522,9 +502,6 @@ function Admin() {
                 </fieldset>
 
 
-
-
-            {/*////////////////////change user///////////////////////////////////////////////////////////////////////////////////////*/}
 
 
                 <section>
@@ -580,7 +557,7 @@ function Admin() {
                 </fieldset>
                 </section>
 
-            {/*change subscription ///////////////////////////////////////////////////////////////////////////////////////*/}
+
                 <section>
 
                 <fieldset>
@@ -651,10 +628,6 @@ function Admin() {
                 </section>
 
 
-
-
-
-            {/*Items lijst/////////////////////////////////////////////////////////////////////////.*/}
                 <fieldset>
 
                 <legend>Lijst van items</legend>
@@ -686,9 +659,6 @@ function Admin() {
 
 
 
-
-
-            {/*////////////////////mail/////////////////////////////////////////////////////////////////////////.*/}
 
                 <section>
                 <fieldset>

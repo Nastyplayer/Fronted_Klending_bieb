@@ -7,7 +7,7 @@ import logo  from "../../assets/organic.jpg";
 import berg from "../../assets/berg_kleding.jpg";
 import Main from "../../components/main/Main";
 import Footer from "../../components/footer/Footer";
-import Article from "../../components/article/Article";
+
 
 
 function Home() {
@@ -42,7 +42,7 @@ function Home() {
         </section>
 
         <section className="wrapper-container">
-         {/*<Article  className="article-inner-container" >*/}
+
 
 
             <Header icon={berg} title= "Grotere of meer kasten gaan kopen omdat je ruimtegebruik hebt?"/>
@@ -60,7 +60,7 @@ function Home() {
             </p>
             <p>Lees <Link to="/Blog">hier</Link> meer over duurzaamheid</p>
             <p>Nog geen account? <Link to="/Subscription">Registreer</Link> je dan eerst.</p>
-         {/*</Article>*/}
+
          </section>
 
 
