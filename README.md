@@ -1,4 +1,4 @@
-# Fronted_Klending_bieb
+# Fronted_Kleding_bieb
 
 Om het project operationeel te maken, moet eerst een aantal “tools” (javaScript-bibliotheken) via de terminal worden geïnstalleerd. 
 
