@@ -1,12 +1,9 @@
 
 
-/*.page {*/
-/*    max-width: 2000px;*/
-/*    margin: 60px auto;*/
-/*}*/
-
-
-
+.page {
+    max-width: 1000px;
+    margin: 60px auto;
+}
 
 
 .outer-container-admin {
@@ -16,17 +13,10 @@
 .inner-container-admin{
     display: flex;
     padding-bottom: 180px;
-    /*column-count: 2;*/
-
     justify-content: center;
     flex-wrap: wrap;
-    /*flex-direction: row;*/
 
-
-
-    /*!*align-items: stretch;*!*/
     width: 90vw;
-    /*border: 1rem solid red;*/
 }
 .page_admin {
     column-count: 2;

@@ -14,14 +14,14 @@ function Blog() {
 
 
        <Main className="outer-container">
-            {/*<Article className="page">*/}
+
 
 
             <Header icon={Img} title=" Wat is duurzame kleding & waarom is het belangrijk? "/>
 
 
 
-           {/*<div className="home-page-layout">*/}
+
            <section className="wrapper-container-blog" >
 
             <p>Maar spullen weggooien is toch helemaal niet duurzaam? Een kritische vraag die vaak gesteld wordt wanneer je begint te minimaliseren.
@@ -94,7 +94,6 @@ function Blog() {
            </section>
 
 
-             {/*<div className="wrapper-container">*/}
 
             <Article className="article-inner-container">
                 <div className="page3">
@@ -114,7 +113,7 @@ function Blog() {
                 </div>
             </Article>
 
-            {/*</div>*/}
+
 
 
            <section className="wrapper-container-blog">

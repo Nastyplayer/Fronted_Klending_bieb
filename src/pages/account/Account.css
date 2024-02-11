@@ -1,28 +1,24 @@
 .page {
-    max-width: 2000px;
+    max-width: 1000px;
     margin: 60px auto;
 }
 
 
 .outer-container-account {
     display: flex;
-    /*marging-bottom: 145px;*/
 }
 .inner-container-account{
     display: flex;
     padding-bottom: 120px;
-    /*justify-content: space-evenly;*/
     flex-wrap: wrap;
-    /*!*align-items: stretch;*!*/
     width: 90vw;
-    /*border: 1rem solid red;*/
+
 }
 
 .hilado-1 {
     display: flex;
     justify-content: space-evenly;
     flex-grow: 1;
-    /*padding-bottom: 45px;*/
     flex-wrap: wrap;
 
 }

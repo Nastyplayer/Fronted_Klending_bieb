@@ -1,29 +1,21 @@
-/*.page {*/
-/*    max-width:1000px;*/
-/*    margin: 60px auto;*/
-/*}*/
+.page {
+    max-width:1000px;
+    margin: 60px auto;
+}
 
-
-/*.wrapper-container-sub {*/
-/*display: flex;*/
-/*    !*column-count: 2;*!*/
-/*    flex-direction: row;*/
-/*}*/
 
 
 .outer-container-sub {
     display: flex;
     flex-wrap: wrap;
-    /*padding-bottom: 90px;*/
+
 }
 .inner-container-sub{
     display: flex;
     padding-bottom: 90px;
     justify-content: center;
-
-    /*!*align-items: stretch;*!*/
     width: 90vw;
-    /*border: 1rem solid red;*/
+
 }
 
 .cotton-1 {
@@ -31,6 +23,5 @@
     justify-content: space-evenly;
     flex-grow: 1;
     padding-bottom: 100px;
-    /*flex-wrap: wrap;*/
-    /*border: 1rem solid red;*/
+
 }

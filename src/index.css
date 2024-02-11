@@ -10,23 +10,11 @@ body {
 
 }
 
-/*code {*/
-/*    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',*/
-/*    monospace;*/
-/*}*/
-
 
 .form-xtra {
     max-width:300px;
-    /*margin-bottom: 80px;*/
     flex-direction: column;
-    /*display: inline-block;*/
-    /*padding-left: 15px;*/
-    /*flex-grow: 1;*/
-    /*height: 30vw;*/
-    /*align-items:center;*/
-    /*border: 1rem solid red;*/
-/*justify-content: center;*/
+
 }
 
 select {
@@ -57,5 +45,5 @@ legend {
     margin-left: 17px ;
     margin-bottom: 10px;
     font-family: sans-serif;
-    /*padding-left: 100px;*/
+
 }
